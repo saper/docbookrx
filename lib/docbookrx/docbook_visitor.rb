@@ -496,8 +496,11 @@ class DocbookVisitor
     append_blank_line
     # TODO make leveloffset more context-aware
     append_line %(:leveloffset: #{@level - 1}) if @level > 1
+    append_blank_line
     append_line %(include::#{include_outfile}[])
+    append_blank_line
     append_line %(:leveloffset: 0) if @level > 1
+    append_blank_line
     false
   end
 
