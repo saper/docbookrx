@@ -362,9 +362,15 @@ class DocbookVisitor
     false
   end
 
-  # pass thru XML entities unchanged, eg., for &rarr;
- def visit_entity_ref node
-    append_text "{#{node.to_s[1..-2]}}"
+  # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
+  def visit_entity_ref node
+    entity_ref_name = node.to_s[1..-2]
+    if entity_ref_name == "mdash"
+      # AsciiDoc syntax requires -- is surrounded by white space
+      append_text " -- "
+    else
+      append_text %({#{entity_ref_name}})
+    end
     false
   end
 
