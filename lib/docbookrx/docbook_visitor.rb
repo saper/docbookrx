@@ -1399,7 +1399,13 @@ class DocbookVisitor
   end
 
   def visit_remark node
-    format_append_text node, "##", "#"
+    append_blank_line
+    append_text %(ifdef::showremarks[])
+    append_blank_line
+    format_append_text node, "#", "#"
+    append_blank_line
+    append_text %(endif::showremarks[])
+    append_blank_line
     false
   end
 
