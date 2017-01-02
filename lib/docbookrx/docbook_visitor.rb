@@ -1536,21 +1536,26 @@ class DocbookVisitor
 
   # FIXME share logic w/ visit_inlinemediaobject, which is the same here except no block_title and uses append_text, not append_line
   def visit_figure node
-    append_blank_line
-    append_block_title node
+    append_block_title node if node.name != 'informalfigure'
     if (image_node = node.at_css('imageobject imagedata'))
       src = image_node.attr('fileref')
       alt = text_at_css node, 'textobject phrase'
       generated_alt = ::File.basename(src)[0...-(::File.extname(src).length)]
       alt = nil if alt && alt == generated_alt
-      append_blank_line
-      append_line %(image::#{src}[#{lazy_quote alt}])
-      append_blank_line
+      output = %(image::#{src}[#{lazy_quote alt}])
+      if node.parent.name == 'listitem'
+        append_text output
+      else
+        append_blank_line
+        append_line output
+        append_blank_line
+      end
     else
       warn %(Unknown mediaobject <#{node.elements.first.name}>! Skipping.)
     end
     false
   end
+  alias :visit_informalfigure :visit_figure
 
   def visit_footnote node
     append_text %(footnote:[#{(text_at_css node, '> para', '> simpara').strip}])
