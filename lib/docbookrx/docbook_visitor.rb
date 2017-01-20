@@ -888,6 +888,66 @@ class DocbookVisitor
     false
   end
 
+  def visit_cmdsynopsis node
+    append_blank_line
+    true
+  end
+  
+  def visit_arg node
+    process_arg_or_group node
+    false
+  end
+  
+  def visit_group node
+    process_arg_or_group node
+    false
+  end
+  
+  def process_arg_or_group node
+    choice = node.attr('choice') || 'opt'
+    choice = choice.downcase
+    rep = node.attr('rep') || 'norepeat'
+    rep = rep.downcase
+    # Parse the 'choice' attribute
+    openchar, closechar = case choice
+    when 'opt'
+      [ '[ ', ' ]' ]
+    when 'req'
+      [ '{ ', ' }' ]
+    when 'plain'
+      [ '', '' ]
+    else
+      [ '[ ', ' ]' ]
+    end
+    # Parse the 'rep' attribute
+    repeatchar = case rep
+    when 'norepeat'
+      ''
+    when 'repeat'
+      '...'
+    else
+      ''
+    end
+    separator = ' | '
+    append_text ' '
+    append_text openchar
+    first = true
+    node.children.each do |child|
+      if (node.name == 'group') && (child.type == ELEMENT_NODE)
+        unless first
+          append_text separator
+        end
+        first = false
+        child.accept self
+      elsif (node.name == 'arg')
+        child.accept self
+      end
+    end
+    append_text repeatchar if repeatchar
+    append_text closechar
+    false
+  end
+
   def visit_citation node
     append_text %(<<#{node.text}>>)
   end
