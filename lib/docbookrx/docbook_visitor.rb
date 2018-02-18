@@ -53,7 +53,7 @@ class DocbookVisitor
 
   SPECIAL_SECTION_NAMES = ['abstract', 'appendix', 'bibliography', 'glossary', 'preface']
 
-  DOCUMENT_NAMES = ['article', 'book']
+  DOCUMENT_NAMES = ['article', 'book', 'set']
 
   SECTION_NAMES = DOCUMENT_NAMES + ['chapter', 'part'] + NORMAL_SECTION_NAMES + SPECIAL_SECTION_NAMES
 
@@ -101,6 +101,7 @@ class DocbookVisitor
     @in_table = false
     @nested_formatting = []
     @last_added_was_special = false
+    @cwd = opts[:cwd] || Dir.pwd
   end
 
   ## Traversal methods
@@ -481,7 +482,8 @@ class DocbookVisitor
   # Very rough first pass at processing xi:include
   def visit_include node
     # QUESTION should we reuse this instance to traverse the new tree?
-    include_infile = node.attr 'href'
+    href = node.attr 'href'
+    include_infile = File.join(@cwd, href)
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
       doc = ::Nokogiri::XML::Document.parse(::File.read include_infile)
@@ -498,7 +500,7 @@ class DocbookVisitor
     # TODO make leveloffset more context-aware
     append_line %(:leveloffset: #{@level - 1}) if @level > 1
     append_blank_line
-    append_line %(include::#{include_outfile}[])
+    append_line %(include::#{href.sub '.xml', '.adoc'}[])
     append_blank_line
     append_line %(:leveloffset: 0) if @level > 1
     append_blank_line
@@ -1729,6 +1731,9 @@ class DocbookVisitor
 
   # <set> ... <xi:include ...> </set>
   def visit_set node
+    node.elements.to_a.each do |element|
+      visit element
+    end
   end
 
   def lazy_quote text, seek = ','
