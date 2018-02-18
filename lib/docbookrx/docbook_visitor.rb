@@ -1727,6 +1727,10 @@ class DocbookVisitor
     end
   end
 
+  # <set> ... <xi:include ...> </set>
+  def visit_set node
+  end
+
   def lazy_quote text, seek = ','
     if text && (text.include? seek)
       %("#{text}")
