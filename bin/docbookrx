@@ -27,6 +27,7 @@ opts = {
 #    'sourcedir' => '.',
 #    'uri-example' => 'http://example.org'
 #  }
+  cwd: File.dirname(infile)
 }
 
 Docbookrx.convert_file infile, opts
