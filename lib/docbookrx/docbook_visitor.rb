@@ -102,7 +102,7 @@ class DocbookVisitor
     @in_table = false
     @nested_formatting = []
     @last_added_was_special = false
-    @cwd = opts[:cwd] || raise # Dir.pwd
+    @cwd = opts[:cwd] || Dir.pwd
   end
 
   ## Traversal methods
