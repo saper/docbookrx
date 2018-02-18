@@ -78,6 +78,7 @@ class DocbookVisitor
   attr_reader :lines
 
   def initialize opts = {}
+    @opts = opts
     @lines = []
     @level = 1
     @skip = {}
@@ -101,7 +102,7 @@ class DocbookVisitor
     @in_table = false
     @nested_formatting = []
     @last_added_was_special = false
-    @cwd = opts[:cwd] || Dir.pwd
+    @cwd = opts[:cwd] || raise # Dir.pwd
   end
 
   ## Traversal methods
@@ -487,8 +488,7 @@ class DocbookVisitor
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
       doc = ::Nokogiri::XML::Document.parse(::File.read include_infile)
-      # TODO pass in options that were passed to this visitor
-      visitor = self.class.new
+      visitor = self.class.new @opts
       doc.root.accept visitor
       result = visitor.lines
       result.shift while result.size > 0 && result.first.empty?
