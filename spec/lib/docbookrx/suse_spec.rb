@@ -79,4 +79,21 @@ EOS
     dirname = File.dirname(__FILE__)
     expect(File.read(File.join(dirname,"suse_book.expected"))).to eq(File.read(File.join(dirname,"suse_book.adoc")))
   end
+
+  it 'should accept a <keycombo> node' do
+    input = <<-EOS
+     <para>
+      Once you have finished your capture re-open terminal 1 and stop the
+      capture of data with: <keycombo> <keycap>CTRL</keycap> <keycap>c</keycap>
+      </keycombo>
+     </para>
+    EOS
+    expected = <<-EOS.rstrip
+
+Once you have finished your capture re-open terminal 1 and stop the capture of data with:  ``CTRL`` ``c`` 
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to eq(expected)
+  end
 end # 'SUSE Conversion'

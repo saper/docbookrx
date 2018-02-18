@@ -1736,6 +1736,17 @@ class DocbookVisitor
     end
   end
 
+  # <keycombo> ... <keycap>...</keycap> </keycombo>
+  def visit_keycombo node
+    node.elements.to_a.each do |keycap|
+      if keycap.name == "keycap"
+        append_text " ``#{keycap.text}``"
+      else
+        warn %(keycombo not followed by keycap but #{keycap.name.inspect}. Skipping.)
+      end
+    end
+  end
+
   def lazy_quote text, seek = ','
     if text && (text.include? seek)
       %("#{text}")
