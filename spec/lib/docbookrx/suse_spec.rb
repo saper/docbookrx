@@ -90,7 +90,7 @@ EOS
     EOS
     expected = <<-EOS.rstrip
 
-Once you have finished your capture re-open terminal 1 and stop the capture of data with:  ``CTRL`` ``c`` 
+Once you have finished your capture re-open terminal 1 and stop the capture of data with: kbd:[CTRL+c] 
 EOS
     output = Docbookrx.convert input
 
