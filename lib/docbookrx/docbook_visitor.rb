@@ -137,14 +137,12 @@ class DocbookVisitor
         %(visit_#{name}).to_sym
       end
     end
-
     before_traverse node, visit_method_name if (respond_to? :before_traverse)
     result = if respond_to? visit_method_name
       send visit_method_name, node
     elsif respond_to? :default_visit
       send :default_visit, node
     end
-
     traverse_children node if result == true
     after_traverse node, visit_method_name if (respond_to? :after_traverse)
   end
@@ -367,6 +365,7 @@ class DocbookVisitor
 
   # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
   def visit_entity_ref node
+    STDERR.puts "visit_entity_ref({node.to_s})"
     entity_ref_name = node.to_s[1..-2]
     if entity_ref_name == "mdash"
       # AsciiDoc syntax requires -- is surrounded by white space
@@ -1218,9 +1217,10 @@ class DocbookVisitor
     if wsMatch != nil && wsMatch.size > 0
       return EmptyString
     end
-    text.gsub(LeadingEndlinesRx, '')
+    res = text.gsub(LeadingEndlinesRx, '')
       .gsub(WrappedIndentRx, @preserve_line_wrap ? EOL : ' ')
       .gsub(TrailingEndlinesRx, '')
+    res
   end
 
   def visit_text node
@@ -1754,6 +1754,26 @@ class DocbookVisitor
   # <email>foo@bar.org</email>
   def visit_email node
     append_line "mailto:#{node.text}[#{node.text}]"
+  end
+
+  # <calloutlist><callout arearefs="...">...</callout></calloutlist>
+  # see https://github.com/asciidoctor/asciidoctor/issues/1077
+  def visit_calloutlist node
+    node.elements.each do |element|
+      if (element.name == "callout")
+        arearefs = element.attribute('arearefs')
+        append_line "arearefs:#{arearefs}"
+      end
+      visit element
+    end
+  end
+  def visit_callout node
+    unless node.parent.name == "calloutlist"
+      warn %(callout outside of calloutlist)
+    end
+    node.elements.each do |element|
+      visit element
+    end
   end
 
   def lazy_quote text, seek = ','
