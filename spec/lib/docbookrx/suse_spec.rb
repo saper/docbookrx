@@ -130,4 +130,20 @@ EOS
     expect(output).to eq(expected)
 
   end
+
+  it 'should handle email' do
+    input = <<-EOS
+<email>doc-team@suse.de</email>
+EOS
+
+    expected = <<-EOS.rstrip
+mailto:doc-team@suse.de[doc-team@suse.de]
+EOS
+
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
 end # 'SUSE Conversion'

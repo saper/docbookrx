@@ -1751,6 +1751,11 @@ class DocbookVisitor
     append_text "]"
   end
 
+  # <email>foo@bar.org</email>
+  def visit_email node
+    append_line "mailto:#{node.text}[#{node.text}]"
+  end
+
   def lazy_quote text, seek = ','
     if text && (text.include? seek)
       %("#{text}")
