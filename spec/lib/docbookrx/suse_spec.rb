@@ -182,4 +182,52 @@ EOS
     expect(output).to eq(expected)
 
   end
+
+  it 'should handle simplelist' do
+    input = <<-EOS
+    <simplelist>
+     <member>User name: <literal>admin</literal></member>
+    </simplelist>
+EOS
+
+    expected = <<-EOS.rstrip
+
+* User name: `admin`
+EOS
+
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
+
+  it 'should handle nested simplelist' do
+    input = <<-EOS.rstrip
+    <itemizedlist>
+      <listitem>
+        <para>
+          Itemized listitem para
+        </para>
+        <simplelist>
+          <member>User name: <literal>admin</literal></member>
+        </simplelist>
+      </listitem>
+    </itemizedlist>
+EOS
+
+    expected = <<-EOS
+
+* Itemized listitem para 
++
+* User name: `admin`
+EOS
+
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
+
 end # 'SUSE Conversion'

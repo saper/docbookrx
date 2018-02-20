@@ -71,7 +71,7 @@ class DocbookVisitor
 
   UI_NAMES = ['guibutton', 'guilabel', 'menuchoice', 'guimenu', 'keycap']
 
-  LIST_NAMES = ['itemizedlist', 'orderedlist', 'variablelist', 'procedure', 'substeps', 'stepalternatives' ]
+  LIST_NAMES = ['simplelist', 'itemizedlist', 'orderedlist', 'variablelist', 'procedure', 'substeps', 'stepalternatives' ]
 
   IGNORED_NAMES = ['title', 'subtitle', 'toc']
 
@@ -304,7 +304,7 @@ class DocbookVisitor
     end
 
     case method.to_s
-    when "visit_itemizedlist", "visit_orderedlist", 
+    when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", 
          "visit_procedure", "visit_substeps", "visit_stepalternatives"
       @list_depth += 1
     when "visit_table", "visit_informaltable"
@@ -331,7 +331,7 @@ class DocbookVisitor
     else
       method_name = method.to_s
       case method_name
-      when "visit_itemizedlist", "visit_orderedlist", 
+      when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", 
            "visit_procedure", "visit_substeps", "visit_stepalternatives"
         @list_depth -= 1
       when "visit_table", "visit_informaltable"
@@ -647,6 +647,19 @@ class DocbookVisitor
     @adjoin_next = false
     append_line '===='
     false
+  end
+
+  def visit_simplelist node
+    append_blank_line
+    append_block_title node
+    append_blank_line if @list_depth == 1
+    true
+  end
+  def visit_member node
+    append_text "* "
+    node.children.each do |child|
+      child.accept self
+    end
   end
 
   def visit_itemizedlist node
