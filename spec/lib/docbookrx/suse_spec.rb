@@ -96,4 +96,38 @@ EOS
 
     expect(output).to eq(expected)
   end
+
+  it 'should handle entities' do
+    input = <<-EOS
+    <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml" 
+                 title="Profiling step"?>
+<!DOCTYPE EXAMPLE SYSTEM "suse.dtd" [
+  <!ENTITY productnumber "{productnumber}">
+]>
+<book xmlns="http://docbook.org/ns/docbook">
+<info>
+<title>SUSE Manager &productnumber;</title>
+</info>
+</book>
+    EOS
+
+    expected = <<-EOS
+= SUSE Manager {productnumber}
+
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+
+EOS
+
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
 end # 'SUSE Conversion'
