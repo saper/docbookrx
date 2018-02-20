@@ -4,8 +4,8 @@ require_relative 'docbookrx/docbook_visitor'
 module Docbookrx
   def self.convert(str, opts = {})
     xmldoc = ::Nokogiri::XML(str) do |config|
-    config.default_xml.dtdload
-  end
+      config.default_xml.dtdload
+    end
     raise 'Not a parseable document' unless (root = xmldoc.root)
     visitor = DocbookVisitor.new opts
     root.accept visitor
