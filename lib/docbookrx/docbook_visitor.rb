@@ -363,8 +363,8 @@ class DocbookVisitor
   end
 
   # pass thru XML entities unchanged, eg., for &rarr;
-  def visit_entity_ref node
-    append_text %(#{node})
+ def visit_entity_ref node
+    append_text "{#{node.to_s[1..-2]}}"
     false
   end
 
