@@ -29,9 +29,9 @@
         <para>Nullam sed dolor ut nisi interdum euismod.</para>
 <procedure>
     <title>Test Procedure</title>
-    <step><para>Step one</para></step>
-    <step><para>Step two</para></step>
-    <step><para>Step three</para></step>
+    <step><para>Do this first...</para></step>
+    <step><para>Now do that...</para></step>
+    <step><para>Then do this again...</para></step>
 </procedure>
         <!-- Informal figure TEST -->
         <informalfigure>
