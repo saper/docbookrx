@@ -4,7 +4,7 @@
 
 <!DOCTYPE set
 [
-  <!ENTITY % entities SYSTEM "suse-entities.ent">
+  <!ENTITY % entities SYSTEM "entities.ent">
     %entities;
 ]>
 
@@ -15,7 +15,6 @@
     <!-- Info TEST -->
     <info>
         <title>A Set of Books</title>
-
         <!-- Entity TEST
         <productname>&productname;</productname>
         <productnumber>&productnumber;</productnumber>

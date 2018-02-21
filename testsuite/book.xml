@@ -3,7 +3,7 @@
 <?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
 <!DOCTYPE book
 [
-  <!ENTITY % entities SYSTEM "suse-entities.ent">
+  <!ENTITY % entities SYSTEM "entities.ent">
     %entities;
 ]>
 <book version="5.0" xml:lang="en" xml:id="book.one" xmlns="http://docbook.org/ns/docbook"
