@@ -20,13 +20,19 @@
     </info>
  -->
 
-    <para>Nullam sed dolor ut nisi interdum euismod.</para>
+    <para>Standing atop NASA's historic <link
+            xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
+            >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its three-core
+        of its first-stage at 12:30 p.m. </para>
 
     <!-- Section 1 TEST -->
     <sect1 xml:id="chapt.one.b1.sect1">
         <title>Section One</title>
 
-        <para>Nullam sed dolor ut nisi interdum euismod.</para>
+        <para>Standing atop NASA's historic <link
+                xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
+                >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its
+            three-core of its first-stage at 12:30 p.m. </para>
 <procedure>
     <title>Test Procedure</title>
     <step><para>Do this first...</para></step>
