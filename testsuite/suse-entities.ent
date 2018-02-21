@@ -1,0 +1,69 @@
+<!ENTITY % sgml.features "IGNORE">
+<!ENTITY % xml.features "INCLUDE">
+<!ENTITY % dbcent PUBLIC "-//OASIS//ENTITIES DocBook Character
+  Entities V4.5//EN"
+  "http://www.oasis-open.org/docbook/xml/4.5/dbcentx.mod">
+    %dbcent;
+<!-- ...................................................................... -->
+<!-- Test Entities                                                       -->
+<!-- ...................................................................... -->
+
+<!ENTITY exampleuser    "tux">
+<!ENTITY exampleuserII  "wilber">
+<!ENTITY examplegroup   "users">
+
+<!-- ============================================================= -->
+<!--                    Platforms                                  -->
+<!-- ============================================================= -->
+
+<!ENTITY x86            "x86">
+<!ENTITY amd64          "AMD64">
+<!ENTITY zseries        "z&nbsp;Systems">
+<!ENTITY zsystems       "z Systems">
+<!ENTITY ipf            "Itanium">
+<!ENTITY ipseries       "POWER">
+<!ENTITY ppc            "POWER">
+<!ENTITY power          "POWER">
+<!ENTITY ppc64le        "ppc64le">
+<!ENTITY intel64        "Intel&nbsp;64">
+<!ENTITY x86-64         "&amd64;/&intel64;">
+<!ENTITY arm            "ARM">
+<!ENTITY aarch64        "AArch64">
+<!ENTITY arm64          "&arm;&nbsp;&aarch64;">
+
+<!ENTITY suselinux      "&suse; Linux">
+<!ENTITY yast           "YaST">
+<!ENTITY yastcc         "&yast; Control Center">
+<!ENTITY ay             "AutoYaST">
+<!ENTITY openscap       "OpenSCAP">
+
+<!ENTITY deploy         "Deployment Guide"> 
+
+<!-- ============================================================= -->
+<!--                    Products                                   -->
+<!-- ============================================================= -->
+
+<!-- please change product to anything that makes sense in your current
+release -->
+       
+<!ENTITY slea          "SLE">
+<!ENTITY slsa          "SLES">
+<!ENTITY sls           "<phrase xmlns='http://docbook.org/ns/docbook'>SUSE Linux Enterprise Server</phrase>">
+<!ENTITY sle            "<phrase xmlns='http://docbook.org/ns/docbook'>SUSE Linux Enterprise</phrase>">
+<!ENTITY sled           "<phrase xmlns='http://docbook.org/ns/docbook'>SUSE Linux Enterprise Desktop</phrase>">
+<!ENTITY productname    "<phrase xmlns='http://docbook.org/ns/docbook'>SUSE Test</phrase>">
+<!ENTITY productnumber  "<phrase xmlns='http://docbook.org/ns/docbook'>1.0</phrase>">
+<!ENTITY productnumber3 "<phrase xmlns='http://docbook.org/ns/docbook'>3</phrase>">
+<!ENTITY sdk            "SUSE Software Development Kit">
+<!ENTITY ncc            "<phrase xmlns='http://docbook.org/ns/docbook'>Novell Customer Center</phrase>">
+<!ENTITY scc            "<phrase xmlns='http://docbook.org/ns/docbook'>SUSE Customer Center</phrase>">
+<!ENTITY susemgr        "<phrase xmlns='http://docbook.org/ns/docbook'>&suse; Manager</phrase>">
+<!ENTITY susemgrdb      "<phrase xmlns='http://docbook.org/ns/docbook'>&suse; Manager with Database</phrase>">
+<!ENTITY susemgrproxy   "<phrase xmlns='http://docbook.org/ns/docbook'>&susemgr; Proxy</phrase>">
+<!ENTITY mgrquick       "Quick Start">
+<!ENTITY mgrproxyquick  "Proxy Quick Start">
+<!ENTITY slereg        "SUSE&reg; Linux Enterprise">
+<!ENTITY susemgrreg    "&suse;&reg; Manager">
+
+<!--                             End of file                       -->
+<!-- ............................................................. -->

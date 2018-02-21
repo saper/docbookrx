@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+
+<!DOCTYPE set
+[
+  <!ENTITY % entities SYSTEM "suse-entities.ent">
+    %entities;
+]>
+
+<set xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0" xml:lang="en"
+    xml:id="set.test.document">
+
+    <!-- Info TEST -->
+    <info>
+        <title>A Set of Books</title>
+
+        <!-- Entity TEST -->
+        <productname>&productname;</productname>
+        <productnumber>&productnumber;</productnumber>
+      
+        <!-- Author TEST -->
+        <author>
+            <!-- Personname -->
+            <personname>
+                <!-- Firstname -->
+                <firstname>Sally</firstname>
+                <!-- surname -->
+                <surname>Penguin</surname>
+            </personname>
+        </author>
+
+        <!-- Authorgroup TEST -->
+        <authorgroup>
+            <author>
+                <!-- Personname -->
+                <personname>
+                    <!-- Firstname -->
+                    <firstname>Tux</firstname>
+                    <!-- surname -->
+                    <surname>Penguin</surname>
+                </personname>
+            </author>
+            <author>
+                <personname>
+                    <firstname>Wilber</firstname>
+                    <surname>Penguin</surname>
+                </personname>
+            </author>
+        </authorgroup>
+        <!-- Abstract TEST -->
+        <abstract>
+            <para>This is a test document for DocbookRX/SUSErx it contains all tags used by SUSE for
+                checking output.</para>
+        </abstract>
+    </info>
+
+    <!-- Include TEST-->
+    <xi:include href="book_one.xml"/>
+    <!-- Include TEST Book two -->
+    <xi:include href="book_two.xml"/>
+
+</set>

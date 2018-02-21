@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!DOCTYPE book
+[
+  <!ENTITY % entities SYSTEM "suse-entities.ent">
+    %entities;
+]>
+<book version="5.0" xml:lang="en" xml:id="book.one" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <!-- Info TEST http://creativecommons.org/licenses/by/3.0/legalcode -->
+    <info>
+        <title>Book One</title>
+        
+        <!-- Legalnotice TEST -->
+        <legalnotice role="cc-by">
+            <para>Except where otherwise noted, this document is licensed under
+                <emphasis role="bold">Creative Commons Attribution 3.0 License </emphasis>:
+                <link xlink:href="http://creativecommons.org/licenses/by/3.0/legalcode"/>
+            </para>
+        </legalnotice>
+    </info>
+
+    <!-- Part TEST -->
+    <part xml:id="part.one.book.I">
+        <!-- Title is required for Part in schema -->
+        <title>Part One</title>
+        <!-- Chapter One TEST -->
+        <xi:include href="chapter_one_b1.xml"/>
+    </part>
+
+    <!-- Part Test -->
+    <part xml:id="part.two.book.I">
+        <title>Part Two</title>
+        <!-- Chapter two TEST -->
+        <xi:include href="chapter_two_b1.xml"/>
+    </part>
+
+</book>

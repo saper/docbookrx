@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbookxi.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://docbook.org/xml/5.0/rng/docbook.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<!DOCTYPE book
+[
+  <!ENTITY % entities SYSTEM "suse-entities.ent">
+    %entities;
+]>
+<book version="5.0" xml:lang="en" xml:id="book.two" xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <info>
+        <title>Book Two</title>
+        <abstract>
+            <para>Test Abstract</para>
+        </abstract>
+    </info>
+
+    <!-- Chapter Example -->
+    <xi:include href="chapter_one_b2.xml"/>
+
+    <!-- Chapter Example -->
+    <xi:include href="chapter_two_b2.xml"/>
+
+</book>
