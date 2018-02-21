@@ -34,7 +34,7 @@
                 <!-- Alt TEST -->
                 <alt>Airplane Jokes Image</alt>
                 <imageobject>
-                    <imagedata fileref="AirplaneJokes.jpg"/>
+                    <imagedata fileref="airplanejokes.jpg"/>
                 </imageobject>
             </mediaobject>
         </informalfigure>
