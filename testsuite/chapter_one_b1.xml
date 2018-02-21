@@ -12,24 +12,21 @@
     <title>Chapter One</title>
     <subtitle>Chapter One Subtitle</subtitle>
 
-    <!-- Info TEST -->
+    <!-- Info TEST
     <info>
         <abstract>
             <para>Test abstract</para>
         </abstract>
     </info>
+ -->
 
-    <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio, pulvinar ut consequat ac,
-        pharetra id mauris. Orci varius natoque penatibus et magnis dis parturient montes, nascetur
-        ridiculus mus.</para>
+    <para>Nullam sed dolor ut nisi interdum euismod.</para>
 
     <!-- Section 1 TEST -->
-    <sect1>
+    <sect1 xml:id="chapt.one.b1.sect1">
         <title>Section One</title>
 
-        <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio, pulvinar ut consequat
-            ac, pharetra id mauris. Orci varius natoque penatibus et magnis dis parturient montes,
-            nascetur ridiculus mus.</para>
+        <para>Nullam sed dolor ut nisi interdum euismod.</para>
 
         <!-- Informal figure TEST -->
         <informalfigure>
@@ -42,7 +39,7 @@
             </mediaobject>
         </informalfigure>
 
-        <!-- Figure TEST -->
+        <!-- Figure TEST
         <figure>
             <title/>
             <mediaobject>
@@ -55,42 +52,48 @@
 
             </mediaobject>
         </figure>
-
-        <!-- Tip TEST -->
+        -->
+        
+        <!-- Tip TEST 
         <tip>
             <title>Tip</title>
             <para>It is not important to win, its important to make the other guys lose!</para>
         </tip>
-
-        <!-- Note TEST -->
+-->
+        <!-- Note TEST 
         <note>
             <title>Note</title>
             <para>Children on a rampage will be asked to leave. Thank you</para>
         </note>
+        -->
 
-        <!-- Caution TEST -->
+        <!-- Caution TEST 
         <caution>
             <title>Caution</title>
             <para>Caution pedestrians slippery when wet.</para>
         </caution>
-
-        <!-- Important TEST -->
+         -->
+        
+        <!-- Important TEST
         <important>
             <title>Important</title>
             <para>Speed limit 35 unless, of course, Mr. important is running late.</para>
         </important>
-
-        <!-- Warning TEST -->
+        -->
+        
+        <!-- Warning TEST 
         <warning>
             <title>Warning</title>
             <para>Do not touch! Not only will this kill you, it will hurt the whole time you are
                 dying.</para>
         </warning>
-
-        <!-- bridgehead TEST — A free-floating heading. -->
+        -->
+        
+        <!-- bridgehead TEST — A free-floating heading.
         <bridgehead renderas="sect2">Bridgehead (False heading with size attribute)</bridgehead>
+        -->
 
-        <!-- Variablelist TEST  NOTE: We may need to tests these lists when they are nested -->
+        <!-- Variablelist TEST  NOTE: We may need to tests these lists when they are nested
         <variablelist>
             <varlistentry>
                 <term>Variable List</term>
@@ -106,21 +109,20 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-
-        <!-- Itemizedlist TEST NOTE: We may need to tests these lists when they are nested -->
+        -->
+        
+        <!-- Itemizedlist TEST NOTE: We may need to tests these lists when they are nested 
         <itemizedlist>
             <listitem>
                 <para>First item in the list</para>
             </listitem>
             <listitem>
                 <para>Second item in the list.</para>
-                <!-- xref TEST -->
-                <para>
-                    <xref linkend="chapt.one.b1.sect2" xrefstyle="SectTitleOnPage"/></para>
             </listitem>
         </itemizedlist>
-
-        <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested -->
+        -->
+        
+        <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested 
         <orderedlist>
             <listitem>
                 <para>This is the first item.</para>
@@ -129,12 +131,14 @@
                 <para>This is the second item.</para>
             </listitem>
         </orderedlist>
-
-        <!-- Keycap TEST -->
+        -->
+        
+        <!-- Keycap TEST 
         <para> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the uppper left
             quadrant. </para>
-
-        <!-- Keycombo TEST -->
+        -->
+        
+        <!-- Keycombo TEST 
         <para><keycombo>
                 <keycap>Shift</keycap>
                 <mousebutton>Button1</mousebutton>
@@ -144,20 +148,31 @@
                 <keycap>alt</keycap>
                 <keycap>t</keycap>
             </keycombo></para>
-
-        <!-- Keycode TEST -->
-        <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
-
-        <!-- Filename TEST -->
-        <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
-
-        <!-- Literal TEST -->
-        <para> This is a <literal>Literal</literal> string.</para>
+        -->
         
-        <!-- Link TEST -->
-        <para>See <link linkend="nextsect">this</link> to find more information on hot dogs and New York coffee.</para>
-
-        <!-- Question and Answer TEST -->
+        <!-- Keycode TEST 
+        <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
+        -->
+        
+        <!-- Filename TEST 
+        <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
+        -->
+        
+        <!-- Literal TEST
+        <para> This is a <literal>Literal</literal> string.</para>
+          -->
+        
+        <!-- Link TEST 
+        <para>See <link linkend="nextsect">this</link> to find more information on hot dogs and New
+            York coffee.</para>
+        -->
+        
+        <!-- xref TEST
+        <para>
+            <xref linkend="chapt.one.b1.sect2" xrefstyle="SectTitleOnPage"/></para>
+        -->
+        
+        <!-- Question and Answer TEST 
         <qandaset>
             <qandaentry>
                 <question>
@@ -184,40 +199,31 @@
                 </answer>
             </qandaentry>
         </qandaset>
-
+        -->
+        
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
 
-            <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio, pulvinar ut
-                consequat ac, pharetra id mauris. Orci varius natoque penatibus et magnis dis
-                parturient montes, nascetur ridiculus mus.</para>
+            <para>Nullam sed dolor ut nisi interdum euismod.</para>
 
             <!-- Section 3 TEST -->
             <sect3>
                 <title>Section Three</title>
-                <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio, pulvinar ut
-                    consequat ac, pharetra id mauris. Orci varius natoque penatibus et magnis dis
-                    parturient montes, nascetur ridiculus mus.</para>
+                <para>Nullam sed dolor ut nisi interdum euismod.</para>
 
                 <!-- Section 4 TEST -->
                 <sect4 xml:id="nextsect">
                     <title>Section Four</title>
-                    <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio, pulvinar
-                        ut consequat ac, pharetra id mauris. Orci varius natoque penatibus et magnis
-                        dis parturient montes, nascetur ridiculus mus.</para>
+                    <para>Nullam sed dolor ut nisi interdum euismod.</para>
 
                     <!-- Section 5 TEST -->
                     <sect5>
                         <title>Section Five</title>
-                        <para>Nullam sed dolor ut nisi interdum euismod. Praesent lacus odio,
-                            pulvinar ut consequat ac, pharetra id mauris. Orci varius natoque
-                            penatibus et magnis dis parturient montes, nascetur ridiculus
-                            mus.</para>
+                        <para>Nullam sed dolor ut nisi interdum euismod.</para>
                     </sect5>
                 </sect4>
             </sect3>
         </sect2>
     </sect1>
-
 </chapter>
