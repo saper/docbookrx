@@ -27,7 +27,12 @@
         <title>Section One</title>
 
         <para>Nullam sed dolor ut nisi interdum euismod.</para>
-
+<procedure>
+    <title>Test Procedure</title>
+    <step><para>Step one</para></step>
+    <step><para>Step two</para></step>
+    <step><para>Step three</para></step>
+</procedure>
         <!-- Informal figure TEST -->
         <informalfigure>
             <mediaobject>
