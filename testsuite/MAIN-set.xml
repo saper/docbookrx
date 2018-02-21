@@ -16,29 +16,24 @@
     <info>
         <title>A Set of Books</title>
 
-        <!-- Entity TEST -->
+        <!-- Entity TEST
         <productname>&productname;</productname>
         <productnumber>&productnumber;</productnumber>
-      
-        <!-- Author TEST -->
+       -->
+        <!-- Author TEST
         <author>
-            <!-- Personname -->
             <personname>
-                <!-- Firstname -->
                 <firstname>Sally</firstname>
-                <!-- surname -->
                 <surname>Penguin</surname>
             </personname>
         </author>
-
-        <!-- Authorgroup TEST -->
+        -->
+        
+        <!-- Authorgroup TEST
         <authorgroup>
             <author>
-                <!-- Personname -->
                 <personname>
-                    <!-- Firstname -->
                     <firstname>Tux</firstname>
-                    <!-- surname -->
                     <surname>Penguin</surname>
                 </personname>
             </author>
@@ -49,16 +44,17 @@
                 </personname>
             </author>
         </authorgroup>
-        <!-- Abstract TEST -->
+        -->
+        
+        <!-- Abstract TEST
         <abstract>
             <para>This is a test document for DocbookRX/SUSErx it contains all tags used by SUSE for
                 checking output.</para>
         </abstract>
+         -->
     </info>
-
+    
     <!-- Include TEST-->
     <xi:include href="book_one.xml"/>
-    <!-- Include TEST Book two -->
-    <xi:include href="book_two.xml"/>
 
 </set>

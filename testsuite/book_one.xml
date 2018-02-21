@@ -13,13 +13,14 @@
     <info>
         <title>Book One</title>
         
-        <!-- Legalnotice TEST -->
+        <!-- Legalnotice TEST 
         <legalnotice role="cc-by">
             <para>Except where otherwise noted, this document is licensed under
                 <emphasis role="bold">Creative Commons Attribution 3.0 License </emphasis>:
                 <link xlink:href="http://creativecommons.org/licenses/by/3.0/legalcode"/>
             </para>
         </legalnotice>
+        -->
     </info>
 
     <!-- Part TEST -->
@@ -28,13 +29,6 @@
         <title>Part One</title>
         <!-- Chapter One TEST -->
         <xi:include href="chapter_one_b1.xml"/>
-    </part>
-
-    <!-- Part Test -->
-    <part xml:id="part.two.book.I">
-        <title>Part Two</title>
-        <!-- Chapter two TEST -->
-        <xi:include href="chapter_two_b1.xml"/>
     </part>
 
 </book>
