@@ -12,7 +12,7 @@
     <!-- Info TEST http://creativecommons.org/licenses/by/3.0/legalcode -->
     <info>
         <title>Book One</title>
-        
+
         <!-- Legalnotice TEST 
         <legalnotice role="cc-by">
             <para>Except where otherwise noted, this document is licensed under
@@ -22,13 +22,12 @@
         </legalnotice>
         -->
     </info>
+    <!-- Chapter TEST -->
+    <xi:include href="chapter.xml"/>
 
-    <!-- Part TEST -->
+    <!-- Part TEST
     <part xml:id="part.one.book.I">
-        <!-- Title is required for Part in schema -->
-        <title>Part One</title>
-        <!-- Chapter One TEST -->
-        <xi:include href="chapter.xml"/>
+        <title>Part One</title>  
     </part>
-
+    -->
 </book>
