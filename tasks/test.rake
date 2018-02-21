@@ -7,7 +7,7 @@
 # => compare both results
 #
 
-task :test => [:daps, :docbookrx] do
+task :test => [:daps, :asciidoctor] do
   puts "Now compare"
 end
 
