@@ -55,6 +55,6 @@
     </info>
     
     <!-- Include TEST-->
-    <xi:include href="book_one.xml"/>
+    <xi:include href="book.xml"/>
 
 </set>

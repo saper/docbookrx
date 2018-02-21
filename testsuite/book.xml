@@ -28,7 +28,7 @@
         <!-- Title is required for Part in schema -->
         <title>Part One</title>
         <!-- Chapter One TEST -->
-        <xi:include href="chapter_one_b1.xml"/>
+        <xi:include href="chapter.xml"/>
     </part>
 
 </book>
