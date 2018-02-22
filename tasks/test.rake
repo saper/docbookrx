@@ -7,8 +7,8 @@
 # => compare both results
 #
 
-task :test => [:daps, :asciidoctor] do
-  puts "Now compare"
+task :test => [:daps, :asciidoctor, :testsuite] do
+  puts "Now view output.pdf"
 end
 
         
