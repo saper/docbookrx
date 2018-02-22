@@ -1,7 +1,7 @@
 dirname = File.dirname(__FILE__)
 testsuite = File.expand_path(File.join(dirname, "..", "testsuite"))
 
-task :asciidoctor => [:docbookrx, :adoc_docbook, :adocxml_html, :adocxml_pdf]
+task :asciidoctor => [:docbookrx, :adoc_docbook, :images, :adocxml_html, :adocxml_pdf]
 
 # use asciidoctor to convert .adoc to .xml
 task :adoc_docbook do
@@ -9,6 +9,18 @@ task :adoc_docbook do
   -d book\
   -D #{File.join(testsuite, "asciidoctor", "xml")}\
   #{File.join(testsuite, "xml", "MAIN-set.adoc")}`
+end
+
+# copy all images to local-subdir
+task :images do
+  require 'find'
+  sourcedir = File.join(testsuite, "images")
+  destdir = File.join(testsuite, "asciidoctor","build","MAIN-set","html","MAIN-set", "images")
+  Dir.mkdir(destdir) rescue nil
+  Find.find(sourcedir) do |path|
+    next unless path =~ /\.jpg/
+    `cp #{path} #{destdir}`
+  end
 end
 
 # convert adoc-generated-xml to html
