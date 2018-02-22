@@ -6,3 +6,5 @@
 /tmp/
 *~
 spec/lib/docbookrx/suse_book.adoc
+testsuite/asciidoctor
+testsuite/xml/*.adoc
