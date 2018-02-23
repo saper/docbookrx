@@ -83,7 +83,9 @@ class SuseXmlTest < MiniTest::Spec
     # part section
     #
     describe "part section" do
-      title = xml.at_xpath("/book/part/title")
+      part = xml.at_xpath("/book/part")
+      title = part.at_xpath("title")
+      chapter = part.at_xpath("chapter")
       it "has a title" do
         assert title
       end
@@ -91,19 +93,27 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'Book One', title.text
       end
       it "has a chapter" do
-        assert xml.at_xpath("/book/part/chapter")
+        assert chapter
       end
     end
     #
     # chapter section
     #
     describe "chapter section" do
-      title = xml.at_xpath("/book/part/chapter/title")
+      chapter = xml.at_xpath("/book/part/chapter")
+      title = chapter.at_xpath("title")
+      abstract = chapter.at_xpath("abstract/simpara")
       it "has a title" do
         assert title
       end
       it "has a non-empty title" do
         refute_empty title.text
+      end
+      it "has an abstract" do
+        assert abstract
+      end
+      it "s title abstract reads" do
+        assert_equal 'Test abstract', abstract.text
       end
     end
   end
