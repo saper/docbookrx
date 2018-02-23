@@ -249,6 +249,11 @@ EOS
     expected = <<-EOS.rstrip
 = Info title
 
+
+[abstract]
+--
+Info abstract 
+--
 :doctype: book
 :sectnums:
 :toc: left

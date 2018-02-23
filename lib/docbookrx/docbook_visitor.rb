@@ -436,6 +436,20 @@ class DocbookVisitor
     false
   end
 
+  def process_abstract node
+    if (abstract_node = (node.at_css '> abstract'))
+      append_line
+      append_line '[abstract]'
+      append_line '--'
+      abstract_node.elements.each do |el|
+        append_line
+        proceed el
+        append_line
+      end
+      append_text '--'
+    end
+  end
+
   def process_info node
     # In DocBook 4.5, title is nested inside info element
     if (title = text_at_css node, '> title')
@@ -463,6 +477,7 @@ class DocbookVisitor
     if (date_node = node.at_css('> date', '> pubdate'))
       append_line %(#{date_line}#{date_node.text})
     end
+    process_abstract node
     if node.name == 'bookinfo' || node.parent.name == 'book' || node.parent.name == 'chapter'
       append_line ':compat-mode:' if @compat_mode
       append_line ':doctype: book'
@@ -557,16 +572,8 @@ class DocbookVisitor
     lines.concat(text) unless text.nil? || text.empty?
     append_ifdef_end_if_condition(title_node) if title_node
     yield if block_given?
-    if (abstract_node = (node.at_css '> info > abstract'))
-      append_line
-      append_line '[abstract]'
-      append_line '--'
-      abstract_node.elements.each do |el|
-        append_line
-        proceed el
-        append_line
-      end
-      append_text '--'
+    if (info_node = node.at_css('> info'))
+      process_info info_node
     end
     @level += 1
     proceed node, :using_elements => true
