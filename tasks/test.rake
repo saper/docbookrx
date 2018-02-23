@@ -1,14 +1,5 @@
 #
-# run "testsuite"
-#
-# 1. docbookxml -> daps -> html
-# 2. docbookxml -> docbookrx -> asciidoctor -> docbookxml -> daps -> html
-#
-# => compare both results
-#
+# convert .xml -[docbookrx]-> .adoc -[asciidoctor]-> .xml
+# and check the generated xml (via testsuite)
 
-task :test => [:daps, :asciidoctor, :testsuite] do
-  puts "Now view output.pdf"
-end
-
-        
+task :test => [:docbookrx, :asciidoctor, :testsuite]
