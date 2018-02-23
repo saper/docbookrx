@@ -439,7 +439,7 @@ class DocbookVisitor
   def process_info node
     # In DocBook 4.5, title is nested inside info element
     if (title = text_at_css node, '> title')
-      append_line %(= #{title})
+      append_line %(= #{title.strip})
       append_blank_line
     end
     authors = []

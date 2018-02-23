@@ -60,7 +60,7 @@ EOS
     EOS
 
     expected = <<-EOS
-= SUSE Manager 
+= SUSE Manager
 
 
 
@@ -114,7 +114,7 @@ EOS
     EOS
 
     expected = <<-EOS.rstrip
-= SUSE Manager 
+= SUSE Manager
 
 :doctype: book
 :sectnums:
@@ -230,4 +230,36 @@ EOS
 
   end
 
+  it 'should handle info abstracts' do
+    input = <<-EOS.rstrip
+    <book>
+     <info>
+      <title>
+       Info title
+      </title>
+      <abstract>
+       <para>
+        Info abstract
+       </para>
+      </abstract>
+     </info>
+    </book>
+EOS
+
+    expected = <<-EOS.rstrip
+= Info title
+
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+EOS
+
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
 end # 'SUSE Conversion'
