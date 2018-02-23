@@ -66,8 +66,17 @@ class SuseXmlTest < MiniTest::Spec
     # asciidoctor converts info > abstract into preface > abstract
     #
     describe "preface section" do
+      it "has authors" do
+        simpara = xml.at_xpath("/book/preface/simpara")
+        assert_equal "Sally Penguin; Tux Penguin; Wilber Penguin", simpara.text
+      end
       it "has an abstract" do
         assert xml.at_xpath("/book/preface/abstract")
+      end
+      it "has simpara in abstract" do
+        simpara = xml.at_xpath("/book/preface/abstract/simpara")
+        assert simpara
+        assert_equal "This is a test document for DocbookRX/SUSErx it contains all tags used by SUSE for checking output.", simpara.text
       end
     end
     #

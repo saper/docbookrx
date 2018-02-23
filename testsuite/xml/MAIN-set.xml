@@ -19,16 +19,15 @@
         <productname>&productname;</productname>
         <productnumber>&productnumber;</productnumber>
        -->
-        <!-- Author TEST
+        <!-- Author TEST        -->
         <author>
             <personname>
                 <firstname>Sally</firstname>
                 <surname>Penguin</surname>
             </personname>
         </author>
-        -->
         
-        <!-- Authorgroup TEST
+        <!-- Authorgroup TEST        -->
         <authorgroup>
             <author>
                 <personname>
@@ -43,7 +42,6 @@
                 </personname>
             </author>
         </authorgroup>
-        -->
         
         <!-- Abstract TEST         -->
         <abstract>
