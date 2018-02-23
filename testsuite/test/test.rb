@@ -50,11 +50,11 @@ class SuseXmlTest < MiniTest::Spec
     # info section
     #
     describe "info section" do
+      title =  xml.at_xpath("/book/info/title")
       it "has a title" do
-        assert xml.at_xpath("/book/info/title")
+        assert title
       end
       it "has a title 'A Set of Books'" do
-        title =  xml.at_xpath("/book/info/title")
         assert_equal 'A Set of Books', title.text
       end
       it "has a date" do
@@ -83,12 +83,23 @@ class SuseXmlTest < MiniTest::Spec
     # part section
     #
     describe "part section" do
+      title = xml.at_xpath("/book/part/title")
       it "has a title" do
-        assert xml.at_xpath("/book/part/title")
+        assert title
       end
       it "has a title 'Book One'" do
-        title =  xml.at_xpath("/book/part/title")
         assert_equal 'Book One', title.text
+      end
+      it "has a chapter" do
+        assert xml.at_xpath("/book/part/chapter")
+      end
+    end
+    #
+    # chapter section
+    #
+    describe "chapter section" do
+      it "has a title" do
+        assert xml.at_xpath("/book/part/chapter")
       end
     end
   end
