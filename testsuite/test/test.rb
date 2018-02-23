@@ -97,12 +97,13 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     #
-    # chapter section
+    # chapter one
     #
-    describe "chapter section" do
+    describe "chapter one" do
       chapter = xml.at_xpath("/book/part/chapter")
       title = chapter.at_xpath("title")
       abstract = chapter.at_xpath("abstract/simpara")
+      section = chapter.at_xpath("section")
       it "has a title" do
         assert title
       end
@@ -127,6 +128,18 @@ class SuseXmlTest < MiniTest::Spec
         href = link.attribute("href")
         assert href
         assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
+      end
+      it "has a section" do
+        assert section
+      end
+    end
+    describe "chapter one sections" do
+      section1 = xml.at_xpath("/book/part/chapter/section")
+      it "has a section with a proper id" do
+        assert section1
+        id = section1.attribute('id')
+        assert id
+        assert_equal '_chapt.one.b1.sect1', id.text
       end
     end
   end
