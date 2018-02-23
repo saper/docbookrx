@@ -115,6 +115,19 @@ class SuseXmlTest < MiniTest::Spec
       it "s title abstract reads" do
         assert_equal 'Test abstract', abstract.text
       end
+      it "has a simpara" do
+        simpara = chapter.at_xpath("simpara")
+        assert simpara
+        assert_match /^Standing atop NASA/, simpara.text
+      end
+      it "simpara has an embedded link" do
+        link = chapter.at_xpath("simpara/link")
+        assert link
+        assert_equal "Launch Pad 39A", link.text
+        href = link.attribute("href")
+        assert href
+        assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
+      end
     end
   end
 end
