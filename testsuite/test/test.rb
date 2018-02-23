@@ -11,16 +11,48 @@ class SuseXmlTest < MiniTest::Spec
   end
   prepare
 
+  xml = @@xml # syntactic sugar
+  xml.remove_namespaces! # xpath would be /xmlns:book/xmlns:... otherwise
+  root = xml.root
+
   describe "SUSE XML tags" do
+    #
+    # overall format
+    #
     describe "docbook xml" do
       it "is readable" do
         assert File.readable? @@asciidoctor_xml
       end
       it "is XML" do
-        assert_equal ::Nokogiri::XML::Document, @@xml.class 
+        assert_equal ::Nokogiri::XML::Document, xml.class 
       end
       it "is a <book>" do
-        @@xml.root.name.must_equal "book"
+        root.name.must_equal "book"
+      end
+    end
+
+    #
+    # internal structure
+    #
+    describe "internal structure" do
+      it "has a <info> section" do
+        assert xml.at_xpath('/book/info')
+      end
+      it "has a <part> section" do
+        assert xml.at_xpath('/book/part')
+      end
+    end
+
+    #
+    # info section
+    #
+    describe "info section" do
+      it "has a title" do
+        assert xml.at_xpath("/book/info/title")
+      end
+      it "has a title 'A Set of Books'" do
+        title =  xml.at_xpath("/book/info/title")
+        assert_equal 'A Set of Books', title.text
       end
     end
   end
