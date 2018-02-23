@@ -45,12 +45,11 @@
         </authorgroup>
         -->
         
-        <!-- Abstract TEST
+        <!-- Abstract TEST         -->
         <abstract>
             <para>This is a test document for DocbookRX/SUSErx it contains all tags used by SUSE for
                 checking output.</para>
         </abstract>
-         -->
     </info>
     
     <!-- Include TEST-->

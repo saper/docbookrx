@@ -38,6 +38,9 @@ class SuseXmlTest < MiniTest::Spec
       it "has a <info> section" do
         assert xml.at_xpath('/book/info')
       end
+      it "has a <preface> section" do
+        assert xml.at_xpath('/book/preface')
+      end
       it "has a <part> section" do
         assert xml.at_xpath('/book/part')
       end
@@ -53,6 +56,30 @@ class SuseXmlTest < MiniTest::Spec
       it "has a title 'A Set of Books'" do
         title =  xml.at_xpath("/book/info/title")
         assert_equal 'A Set of Books', title.text
+      end
+      it "has a date" do
+        assert xml.at_xpath("/book/info/date")
+      end
+    end
+    #
+    # preface section
+    # asciidoctor converts info > abstract into preface > abstract
+    #
+    describe "preface section" do
+      it "has an abstract" do
+        assert xml.at_xpath("/book/preface/abstract")
+      end
+    end
+    #
+    # part section
+    #
+    describe "part section" do
+      it "has a title" do
+        assert xml.at_xpath("/book/part/title")
+      end
+      it "has a title 'Book One'" do
+        title =  xml.at_xpath("/book/part/title")
+        assert_equal 'Book One', title.text
       end
     end
   end
