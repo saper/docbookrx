@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE appendix
+[
+  <!ENTITY % entities SYSTEM "entities.ent">
+    %entities;
+]>
+
+<appendix xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0"
+    xml:id="appendix.example">
+    
+    <title>Appendix A</title>
+    <para>This document is a test for the appendix doctype.</para>
+    <sect1>
+        <title>Welcome to the Appendix</title>
+        <para>This document is a test for the appendix doctype.</para>
+    </sect1>
+</appendix>

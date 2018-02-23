@@ -30,4 +30,8 @@
         <title>Part One</title>  
     </part>
     -->
+
+    <!-- Appendix TEST
+    <xi:include href="appendix.xml"/>
+    -->
 </book>
