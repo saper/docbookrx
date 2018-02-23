@@ -34,7 +34,9 @@
     <!-- Appendix TEST
     <xi:include href="appendix.xml"/>
     -->
-    
-    <!-- Article TEST -->
+
+    <!-- Article TEST 
     <xi:include href="article.xml"/>
+    -->
+
 </book>
