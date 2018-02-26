@@ -50,7 +50,8 @@ class SuseXmlTest < MiniTest::Spec
     # info section
     #
     describe "info section" do
-      title =  xml.at_xpath("/book/info/title")
+      info = xml.at_xpath("/book/info")
+      title = info.at_xpath("title")
       it "has a title" do
         assert title
       end
@@ -58,7 +59,12 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'A Set of Books', title.text
       end
       it "has a date" do
-        assert xml.at_xpath("/book/info/date")
+        assert info.at_xpath("date")
+      end
+      it "has 3 authors" do
+        authorgroup = info.at_xpath("authorgroup")
+        assert_equal 3, authorgroup.elements.size
+#        assert_equal "Sally Penguin; Tux Penguin; Wilber Penguin", simpara.text
       end
     end
     #
@@ -66,10 +72,6 @@ class SuseXmlTest < MiniTest::Spec
     # asciidoctor converts info > abstract into preface > abstract
     #
     describe "preface section" do
-      it "has authors" do
-        simpara = xml.at_xpath("/book/preface/simpara")
-        assert_equal "Sally Penguin; Tux Penguin; Wilber Penguin", simpara.text
-      end
       it "has an abstract" do
         assert xml.at_xpath("/book/preface/abstract")
       end
@@ -135,12 +137,36 @@ class SuseXmlTest < MiniTest::Spec
     end
     describe "chapter one sections" do
       section1 = xml.at_xpath("/book/part/chapter/section")
+      simpara = section1.at_xpath("simpara")
       it "has a section with a proper id" do
         assert section1
         id = section1.attribute('id')
         assert id
         assert_equal '_chapt.one.b1.sect1', id.text
       end
+      it "has a title" do
+        title = section1.at_xpath("title")
+        assert title
+        assert_equal 'Section One', title.text
+      end
+      it "has a paragraph" do
+        assert simpara
+        assert_match /^Standing atop NASA/, simpara.text
+      end
+      it "simpara has an embedded link" do
+        link = simpara.at_xpath("link")
+        assert link
+        assert_equal "Launch Pad 39A", link.text
+        href = link.attribute("href")
+        assert href
+        assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
+      end
+      it "is has an odered list" do
+        assert section1.at_xpath("orderedlist")
+      end
+    end
+    describe "chapter one section ordered list" do
+      ol = xml.at_xpath("/book/part/chapter/section/orderedlist")
     end
   end
 end

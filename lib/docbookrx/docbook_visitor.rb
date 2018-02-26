@@ -454,7 +454,6 @@ class DocbookVisitor
     # In DocBook 4.5, title is nested inside info element
     if (title = text_at_css node, '> title')
       append_line %(= #{title.strip})
-      append_blank_line
     end
     authors = []
     (node.css 'author').each do |author_node|
@@ -491,6 +490,7 @@ class DocbookVisitor
     @attributes.each do |name, val|
       append_line %(:#{name}: #{val}).rstrip
     end
+    append_blank_line
     false
   end
 
