@@ -286,8 +286,51 @@ Directory of  C:\
         </para>
         -->
 
+        <!-- Emphasis TEST 
+        <para>
+            <emphasis>This is the emphasis tag.</emphasis>
+        </para>
+        -->
 
+        <!-- Example TEST 
+        <example xml:id="ex.dssslfunction">
+            <title>A DSSSL Function</title>
+                <screen>(define (node-list-filter-by-gi nodelist gilist)
+     ;; Returns the node-list that contains every element of the original
+     ;; nodelist whose gi is in gilist
+    (let loop ((result (empty-node-list)) (nl nodelist))
+        (if (node-list-empty? nl)
+  	result
+    	(if (member (gi (node-list-first nl)) gilist)
+  	    (loop (node-list result (node-list-first nl)) 
+    		  (node-list-rest nl))
+  	    (loop result (node-list-rest nl))))))                </screen>
+        </example>
+        -->
 
+        <!-- Formalpara TEST 
+        <formalpara>
+            <title>Parameters</title>
+            <para>The blah blah blah is used for blah blah blah.</para>
+        </formalpara>
+        -->
+
+        <!-- Menuchoice TEST
+        <para>
+            <menuchoice>
+                <guimenu>System</guimenu>
+                <guimenu>Salt Systems</guimenu>
+            </menuchoice>
+        </para>
+         -->
+
+        <!-- Parameter TEST
+        <para>Using the <parameter class="command">-l</parameter>parameter on the Linux
+                <command>ls</command> command prints a long directory listing. </para>
+        <remark>You can use command, function, or option as attribs</remark>
+         -->
+        
+        
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
