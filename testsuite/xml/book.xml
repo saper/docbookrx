@@ -39,7 +39,8 @@
     <xi:include href="article.xml"/>
     -->
     
-    <!-- Index TEST -->
+    <!-- Index TEST 
     <xi:include href="index.xml"/>
-
+-->
+    
 </book>

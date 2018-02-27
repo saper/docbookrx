@@ -243,11 +243,14 @@
         </calloutlist>
  -->
 
-        <!-- Citetitle TEST 
+        <!-- Citetitle TEST  
         <para>
             <citetitle pubwork="book">Developing SGML DTDs: From Text to Model to
             Markup</citetitle></para>
-            -->
+        <remark>pubwork (enumeration) attributes “article” “bbs” “book” “cdrom” “chapter” “dvd”
+            “emailmessage” “gopher” “journal” “manuscript” “newsposting” “part” “refentry” “section”
+            “series” “set” “webpage” “wiki”</remark>
+         -->
 
         <!-- Email TEST
         <para><email>example@example.com</email></para>
@@ -329,8 +332,29 @@ Directory of  C:\
                 <command>ls</command> command prints a long directory listing. </para>
         <remark>You can use command, function, or option as attribs</remark>
          -->
-        
-        
+
+        <!-- Member TEST 
+        <simplelist>
+            <member>Item One</member>
+            <member>Item Two</member>
+        </simplelist>
+        -->
+
+        <!-- Systemitem TEST -->
+        <para><systemitem class="etheraddress">00:05:4E:49:FD:8E</systemitem></para>
+        <remark>class Identifies the nature of the system item Enumerated values: “daemon” A daemon
+            or other system process (syslogd) “domainname” A domain name (example.com)
+            “etheraddress” An ethernet address (00:05:4E:49:FD:8E) “event” An event of some sort
+            (SIGHUP) “eventhandler” An event handler of some sort (hangup) “filesystem” A filesystem
+            (ext3) “fqdomainname” A fully qualified domain name (my.example.com) “groupname” A group
+            name (wheel) “ipaddress” An IP address (127.0.0.1) “library” A library (libncurses)
+            “macro” A macro “netmask” A netmask (255.255.255.192) “newsgroup” A newsgroup
+            (comp.text.xml) “osname” An operating system name (Hurd) “process” A process
+            (gnome-cups-icon) “protocol” A protocol (ftp) “resource” A resource “server” A server
+            (mail.example.com) “service” A service (ppp) “systemname” A system name (hephaistos)
+            “username” A user name (ndw)</remark>
+
+
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
