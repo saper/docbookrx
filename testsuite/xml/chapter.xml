@@ -32,12 +32,18 @@
                 xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
                 >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its
             three-core of its first-stage at 12:30 p.m. </para>
-<procedure>
-    <title>Test Procedure</title>
-    <step><para>Do this first...</para></step>
-    <step><para>Now do that...</para></step>
-    <step><para>Then do this again...</para></step>
-</procedure>
+        <procedure>
+            <title>Test Procedure</title>
+            <step>
+                <para>Do this first...</para>
+            </step>
+            <step>
+                <para>Now do that...</para>
+            </step>
+            <step>
+                <para>Then do this again...</para>
+            </step>
+        </procedure>
         <!-- Informal figure TEST -->
         <informalfigure>
             <mediaobject>
@@ -63,13 +69,14 @@
             </mediaobject>
         </figure>
         -->
-        
+
         <!-- Tip TEST 
         <tip>
             <title>Tip</title>
             <para>It is not important to win, its important to make the other guys lose!</para>
         </tip>
 -->
+
         <!-- Note TEST 
         <note>
             <title>Note</title>
@@ -83,14 +90,14 @@
             <para>Caution pedestrians slippery when wet.</para>
         </caution>
          -->
-        
+
         <!-- Important TEST
         <important>
             <title>Important</title>
             <para>Speed limit 35 unless, of course, Mr. important is running late.</para>
         </important>
         -->
-        
+
         <!-- Warning TEST 
         <warning>
             <title>Warning</title>
@@ -98,7 +105,7 @@
                 dying.</para>
         </warning>
         -->
-        
+
         <!-- bridgehead TEST — A free-floating heading.
         <bridgehead renderas="sect2">Bridgehead (False heading with size attribute)</bridgehead>
         -->
@@ -120,7 +127,7 @@
             </varlistentry>
         </variablelist>
         -->
-        
+
         <!-- Itemizedlist TEST NOTE: We may need to tests these lists when they are nested 
         <itemizedlist>
             <listitem>
@@ -131,7 +138,7 @@
             </listitem>
         </itemizedlist>
         -->
-        
+
         <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested 
         <orderedlist>
             <listitem>
@@ -142,12 +149,12 @@
             </listitem>
         </orderedlist>
         -->
-        
+
         <!-- Keycap TEST 
         <para> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the uppper left
             quadrant. </para>
         -->
-        
+
         <!-- Keycombo TEST 
         <para><keycombo>
                 <keycap>Shift</keycap>
@@ -159,29 +166,29 @@
                 <keycap>t</keycap>
             </keycombo></para>
         -->
-        
+
         <!-- Keycode TEST 
         <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
         -->
-        
+
         <!-- Filename TEST 
         <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
         -->
-        
+
         <!-- Literal TEST
         <para> This is a <literal>Literal</literal> string.</para>
           -->
-        
+
         <!-- Link TEST 
         <para>See <link linkend="nextsect">this</link> to find more information on hot dogs and New
             York coffee.</para>
         -->
-        
+
         <!-- xref TEST
         <para>
             <xref linkend="chapt.one.b1.sect2" xrefstyle="SectTitleOnPage"/></para>
         -->
-        
+
         <!-- Question and Answer TEST 
         <qandaset>
             <qandaentry>
@@ -210,7 +217,75 @@
             </qandaentry>
         </qandaset>
         -->
-        
+
+        <!-- Calloutlist TEST
+        <screen>-w /var/log/audit/ <co xml:id="co.auctllog"/>
+-w /var/log/audit/audit.log
+
+-w /var/log/audit/audit_log.1
+-w /var/log/audit/audit_log.2
+-w /var/log/audit/audit_log.3
+-w /var/log/audit/audit_log.4
+
+-w /etc/audit/auditd.conf -p wa<co xml:id="co.auctlconf"/>
+-w /etc/audit/audit.rules -p wa
+-w /etc/libaudit.conf -p wa</screen>
+        <calloutlist>
+            <callout arearefs="co.auctllog">
+                <para> Set a watch on the directory where the audit log is located. Trigger an event
+                    for any type of access attempt to this directory. If you are using log rotation,
+                    add watches for the rotated logs as well. </para>
+            </callout>
+            <callout arearefs="co.auctlconf">
+                <para> Set a watch on an audit configuration file. Log all write and attribute
+                    change attempts to this file. </para>
+            </callout>
+        </calloutlist>
+ -->
+
+        <!-- Citetitle TEST 
+        <para>
+            <citetitle pubwork="book">Developing SGML DTDs: From Text to Model to
+            Markup</citetitle></para>
+            -->
+
+        <!-- Email TEST
+        <para><email>example@example.com</email></para>
+         -->
+
+        <!-- Command TEST 
+        <para>The <command>ls -a</command> command is used to list all information about
+            files.</para>
+            -->
+
+        <!-- Date TEST
+            
+        <para><date>09/16/1978</date></para>
+ -->
+
+        <!-- Screen TEST
+        <screen>Volume in drive C is SYSTEM         Serial number is 2350:717C
+Directory of  C:\
+    
+10/17/97   9:04         &lt;DIR&gt;    bin
+10/16/97  14:11         &lt;DIR&gt;    DOS
+10/16/97  14:40         &lt;DIR&gt;    Program Files
+10/16/97  14:46         &lt;DIR&gt;    TEMP
+10/17/97   9:04         &lt;DIR&gt;    tmp
+10/16/97  14:37         &lt;DIR&gt;    WINNT
+10/16/97  14:25             119  AUTOEXEC.BAT
+ 2/13/94   6:21          54,619  COMMAND.COM
+10/16/97  14:25             115  CONFIG.SYS
+11/16/97  17:17      61,865,984  pagefile.sys
+ 2/13/94   6:21           9,349  WINA20.386  </screen>
+ -->
+
+        <!-- Constant TEST 
+        <para>To check your current <constant>$PATH</constant> from the CLI execute the following
+            command: <screen>$ echo $PATH</screen>
+        </para>
+        -->
+
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
