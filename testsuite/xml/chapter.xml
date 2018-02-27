@@ -340,7 +340,7 @@ Directory of  C:\
         </simplelist>
         -->
 
-        <!-- Systemitem TEST -->
+        <!-- Systemitem TEST
         <para><systemitem class="etheraddress">00:05:4E:49:FD:8E</systemitem></para>
         <remark>class Identifies the nature of the system item Enumerated values: “daemon” A daemon
             or other system process (syslogd) “domainname” A domain name (example.com)
@@ -353,8 +353,12 @@ Directory of  C:\
             (gnome-cups-icon) “protocol” A protocol (ftp) “resource” A resource “server” A server
             (mail.example.com) “service” A service (ppp) “systemname” A system name (hephaistos)
             “username” A user name (ndw)</remark>
-
-
+            -->
+        <!-- Replaceable TEST -->
+        <para>Exchange the <replaceable class="command">ls</replaceable> command with <replaceable
+                class="command">ls -a</replaceable></para>
+        <remark>class Identifies the nature of the replaceable text Enumerated values: “command” A
+            command “function” A function “option” An option “parameter” A parameter</remark>
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
