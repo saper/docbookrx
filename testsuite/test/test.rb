@@ -78,22 +78,23 @@ class SuseXmlTest < MiniTest::Spec
     describe "part section" do
       part = xml.at_xpath("/book/part")
       title = part.at_xpath("title")
-      chapter = part.at_xpath("chapter")
+      chapters = part.xpath("chapter")
       it "has a title" do
         assert title
       end
       it "has a title 'Book One'" do
         assert_equal 'Book One', title.text
       end
-      it "has a chapter" do
-        assert chapter
+      it "has two chapters" do
+        assert_equal 2, chapters.size
       end
     end
     #
     # chapter one
     #
     describe "chapter one" do
-      chapter = xml.at_xpath("/book/part/chapter")
+      chapters = xml.xpath("/book/part/chapter")
+      chapter = chapters.first
       title = chapter.at_xpath("title")
       info = chapter.at_xpath("info")
       abstract = info.at_xpath("abstract")
@@ -162,6 +163,20 @@ class SuseXmlTest < MiniTest::Spec
     end
     describe "chapter one section ordered list" do
       ol = xml.at_xpath("/book/part/chapter/section/orderedlist")
+    end
+    #
+    # chapter two
+    #
+    describe "chapter two" do
+      chapters = xml.xpath("/book/part/chapter")
+      chapter = chapters[1]
+      it "has a second chapter" do
+        assert chapter
+      end
+      it "has a title of 'Part One'" do
+        title = chapter.at_xpath("title")
+        assert_equal 'Part One', title.text
+      end
     end
   end
 end

@@ -25,11 +25,10 @@
     <!-- Chapter TEST -->
     <xi:include href="chapter.xml"/>
 
-    <!-- Part TEST
+    <!-- Part TEST    -->
     <part xml:id="part.one.book.I">
         <title>Part One</title>  
     </part>
-    -->
 
     <!-- Appendix TEST
     <xi:include href="appendix.xml"/>

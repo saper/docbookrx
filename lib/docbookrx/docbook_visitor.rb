@@ -401,7 +401,7 @@ class DocbookVisitor
   alias :visit_bookinfo :visit_info
   alias :visit_articleinfo :visit_info
 
-  def visit_chapter node
+  def visit_chapter node, as = :chapter
     # treat document with <chapter> root element as books
     if node == node.document.root
       @adjoin_next = true
@@ -422,6 +422,10 @@ class DocbookVisitor
     else
       process_section node
     end
+  end
+
+  def visit_part node
+    visit_chapter node, :part
   end
 
   def process_doc node
