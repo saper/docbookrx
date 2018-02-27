@@ -38,9 +38,6 @@ class SuseXmlTest < MiniTest::Spec
       it "has a <info> section" do
         assert xml.at_xpath('/book/info')
       end
-      it "has a <preface> section" do
-        assert xml.at_xpath('/book/preface')
-      end
       it "has a <part> section" do
         assert xml.at_xpath('/book/part')
       end
@@ -66,17 +63,11 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 3, authorgroup.elements.size
 #        assert_equal "Sally Penguin; Tux Penguin; Wilber Penguin", simpara.text
       end
-    end
-    #
-    # preface section
-    # asciidoctor converts info > abstract into preface > abstract
-    #
-    describe "preface section" do
       it "has an abstract" do
-        assert xml.at_xpath("/book/preface/abstract")
+        assert info.at_xpath("abstract")
       end
-      it "has simpara in abstract" do
-        simpara = xml.at_xpath("/book/preface/abstract/simpara")
+      it "has para in abstract" do
+        simpara = info.at_xpath("abstract/simpara")
         assert simpara
         assert_equal "This is a test document for DocbookRX/SUSErx it contains all tags used by SUSE for checking output.", simpara.text
       end
@@ -104,7 +95,8 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one" do
       chapter = xml.at_xpath("/book/part/chapter")
       title = chapter.at_xpath("title")
-      abstract = chapter.at_xpath("abstract/simpara")
+      info = chapter.at_xpath("info")
+      abstract = info.at_xpath("abstract")
       section = chapter.at_xpath("section")
       it "has a title" do
         assert title
@@ -112,11 +104,14 @@ class SuseXmlTest < MiniTest::Spec
       it "has a non-empty title" do
         refute_empty title.text
       end
-      it "has an abstract" do
+      it "has info" do
+        assert info
+      end
+      it "info has an abstract" do
         assert abstract
       end
       it "s title abstract reads" do
-        assert_equal 'Test abstract', abstract.text
+        assert_equal 'Test abstract', abstract.text.strip
       end
       it "has a simpara" do
         simpara = chapter.at_xpath("simpara")
