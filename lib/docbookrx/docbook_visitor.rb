@@ -490,7 +490,6 @@ class DocbookVisitor
     @attributes.each do |name, val|
       append_line %(:#{name}: #{val}).rstrip
     end
-    append_blank_line
     false
   end
 

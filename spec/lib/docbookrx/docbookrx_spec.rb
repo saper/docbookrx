@@ -23,7 +23,6 @@ describe 'Conversion' do
 
     expected = <<-EOS.rstrip
 = Document Title
-
 Doc Writer <doc@example.com>
 :doctype: book
 :sectnums:

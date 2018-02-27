@@ -63,7 +63,6 @@ EOS
 = SUSE Manager
 
 
-
 include::suse_book.adoc[]
 
 EOS
@@ -115,7 +114,6 @@ EOS
 
     expected = <<-EOS.rstrip
 = SUSE Manager
-
 :doctype: book
 :sectnums:
 :toc: left
@@ -248,7 +246,6 @@ EOS
 
     expected = <<-EOS.rstrip
 = Info title
-
 
 [abstract]
 --
