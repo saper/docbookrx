@@ -28,15 +28,14 @@
     <sect1 xml:id="chapt.one.b1.sect1">
         <title>Section One</title>
 
-        <!-- Link TEST
+        <!-- Link TEST -->
         <para>Standing atop NASA's historic <link
                 xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
                 >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its
             three-core of its first-stage at 12:30 p.m. </para>
             <remark>can also be used for linking to other sections by id within the same document <link linkend="section.2">Section Two</link></remark>
-         -->
 
-        <!-- Procedure TEST
+        <!-- Procedure TEST -->
         <procedure>
             <title>Test Procedure</title>
             <step>
@@ -49,9 +48,8 @@
                 <para>Then do this again...</para>
             </step>
         </procedure>
-         -->
 
-        <!-- Informal figure TEST
+        <!-- Informal figure TEST -->
         <informalfigure>
             <mediaobject>
                 <alt>Airplane Jokes Image</alt>
@@ -60,7 +58,6 @@
                 </imageobject>
             </mediaobject>
         </informalfigure>
-        -->
 
         <!-- Figure TEST
         <figure>
@@ -84,12 +81,11 @@
             <para>It is not important to win, its important to make the other guys lose!</para>
         </tip>
 
-        <!-- Note TEST 
+        <!-- Note TEST -->
         <note>
             <title>Note</title>
             <para>Children on a rampage will be asked to leave. Thank you</para>
         </note>
-        -->
 
         <!-- Caution TEST 
         <caution>
@@ -362,12 +358,11 @@ Directory of  C:\
             “username” A user name (ndw)</remark>
             -->
 
-        <!-- Replaceable TEST 
+        <!-- Replaceable TEST -->
         <para>Exchange the <replaceable class="command">ls</replaceable> command with <replaceable
                 class="command">ls -a</replaceable></para>
         <remark>class Identifies the nature of the replaceable text Enumerated values: “command” A
             command “function” A function “option” An option “parameter” A parameter</remark>
-        -->
 
         <!-- Option TEST 
         <para>The <option>-a</option> option on the <acronym>UNIX</acronym>
