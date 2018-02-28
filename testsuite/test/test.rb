@@ -259,6 +259,51 @@ class SuseXmlTest < MiniTest::Spec
         refute simpara.text.empty?
       end
     end
+    describe "chapter one caution" do
+      caution = xml.at_xpath("/book/part/chapter/section/caution")
+      it "exists" do
+        assert caution
+      end
+      it "has a title" do
+        title = caution.at_xpath("title")
+        assert_equal "Caution", title.text
+      end
+      it "has content" do
+        simpara = caution.at_xpath("simpara")
+        assert simpara.text
+        refute simpara.text.empty?
+      end
+    end
+    describe "chapter one important" do
+      important = xml.at_xpath("/book/part/chapter/section/important")
+      it "exists" do
+        assert important
+      end
+      it "has a title" do
+        title = important.at_xpath("title")
+        assert_equal "Important", title.text
+      end
+      it "has content" do
+        simpara = important.at_xpath("simpara")
+        assert simpara.text
+        refute simpara.text.empty?
+      end
+    end
+    describe "chapter one warning" do
+      warning = xml.at_xpath("/book/part/chapter/section/warning")
+      it "exists" do
+        assert warning
+      end
+      it "has a title" do
+        title = warning.at_xpath("title")
+        assert_equal "Warning", title.text
+      end
+      it "has content" do
+        simpara = warning.at_xpath("simpara")
+        assert simpara.text
+        refute simpara.text.empty?
+      end
+    end
     #
     # chapter two
     #

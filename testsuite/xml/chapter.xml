@@ -87,27 +87,24 @@
             <para>Children on a rampage will be asked to leave. Thank you</para>
         </note>
 
-        <!-- Caution TEST 
+        <!-- Caution TEST -->
         <caution>
             <title>Caution</title>
             <para>Caution pedestrians slippery when wet.</para>
         </caution>
-         -->
 
-        <!-- Important TEST
+        <!-- Important TEST -->
         <important>
             <title>Important</title>
             <para>Speed limit 35 unless, of course, Mr. important is running late.</para>
         </important>
-        -->
 
-        <!-- Warning TEST 
+        <!-- Warning TEST -->
         <warning>
             <title>Warning</title>
             <para>Do not touch! Not only will this kill you, it will hurt the whole time you are
                 dying.</para>
         </warning>
-        -->
 
         <!-- bridgehead TEST — A free-floating heading.
         <bridgehead renderas="sect2">Bridgehead (False heading with size attribute)</bridgehead>
