@@ -164,6 +164,21 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one section ordered list" do
       ol = xml.at_xpath("/book/part/chapter/section/orderedlist")
     end
+    describe "chapter one tip" do
+      tip = xml.at_xpath("/book/part/chapter/section/tip")
+      it "exists" do
+        assert tip
+      end
+      it "has a title" do
+        title = tip.at_xpath("title")
+        assert_equal "Tip", title.text
+      end
+      it "has content" do
+        simpara = tip.at_xpath("simpara")
+        assert simpara.text
+        refute simpara.text.empty?
+      end
+    end
     #
     # chapter two
     #
