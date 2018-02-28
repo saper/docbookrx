@@ -33,7 +33,7 @@
                 xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
                 >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its
             three-core of its first-stage at 12:30 p.m. </para>
-            <remark>can also be used for linking to other sections by id within the same document <link linkend="section.2">Section Two</link></remark>
+            <remark>can also be used for linking to other sections by id within the same document <link linkend="chapt.one.b1.sect2">Section Two</link></remark>
 
         <!-- Procedure TEST -->
         <procedure>
