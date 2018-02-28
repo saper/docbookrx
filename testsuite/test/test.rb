@@ -79,6 +79,9 @@ class SuseXmlTest < MiniTest::Spec
       part = xml.at_xpath("/book/part")
       title = part.at_xpath("title")
       chapters = part.xpath("chapter")
+      it "has an id" do
+        assert_equal "_book_one", part.attribute("id").text
+      end
       it "has a title" do
         assert title
       end
@@ -103,7 +106,13 @@ class SuseXmlTest < MiniTest::Spec
         assert title
       end
       it "has a non-empty title" do
-        refute_empty title.text
+        assert title
+        assert_equal 'Chapter One', title.text
+      end
+      it "has a subtitle" do
+        subtitle = chapter.at_xpath("subtitle")
+        assert subtitle
+        assert_equal 'Chapter One Subtitle', subtitle.text
       end
       it "has info" do
         assert info
@@ -132,7 +141,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one sections" do
-      section1 = xml.at_xpath("/book/part/chapter/section")
+      section1 = xml.at_xpath("/book/part/chapter[1]/section")
       simpara = section1.at_xpath("simpara")
       it "has a section with a proper id" do
         assert section1
@@ -162,7 +171,63 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one section ordered list" do
-      ol = xml.at_xpath("/book/part/chapter/section/orderedlist")
+      ol = xml.at_xpath("/book/part/chapter[1]/section/orderedlist")
+      it "has a title" do
+        title = ol.at_xpath("title")
+        assert title
+        assert_equal 'Procedure: Test Procedure', title.text
+      end
+      it "has three steps" do
+        listitems = ol.xpath("listitem")
+        assert listitems
+        assert_equal 3, listitems.size
+        assert_equal 'Do this first…​', listitems[0].at_xpath('simpara').text
+        assert_equal 'Now do that…​', listitems[1].at_xpath('simpara').text
+        assert_equal 'Then do this again…​', listitems[2].at_xpath('simpara').text
+      end
+    end
+    describe "chapter one section figure" do
+      fig = xml.at_xpath("/book/part/chapter[1]/section/informalfigure")
+      it "has a picture" do
+        assert fig
+      end
+      it "references airplainjokes.jpg" do
+        id = fig.at_xpath("mediaobject/imageobject/imagedata")
+        assert id
+        fr = id.attribute("fileref")
+        assert fr
+        assert_equal 'airplanejokes.jpg', fr.text
+      end
+    end
+    describe "chapter one section simparas" do
+      simparas = xml.xpath("/book/part/chapter[1]/section[1]/simpara")
+      simpara1 = simparas[0]
+      simpara2 = simparas[1]
+      it "has two simparas" do
+        assert simparas
+        assert_equal 2, simparas.size
+      end
+      it "simpara1 has an embedded link" do
+        link = simpara1.at_xpath("link")
+        assert link
+        assert_equal "Launch Pad 39A", link.text
+        href = link.attribute("href")
+        assert href
+        assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
+      end
+      it "has two literals with a replacable role" do
+        literals = simpara2.xpath("literal")
+        assert literals
+        assert_equal 2, literals.size
+        l = literals[0]
+        la = l.attribute('role')
+        assert_equal 'replaceable', la.text
+        assert_equal 'ls', l.text
+        l = literals[1]
+        la = l.attribute('role')
+        assert_equal 'replaceable', la.text
+        assert_equal 'ls -a', l.text
+      end
     end
     describe "chapter one tip" do
       tip = xml.at_xpath("/book/part/chapter/section/tip")
@@ -200,8 +265,10 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter two" do
       chapters = xml.xpath("/book/part/chapter")
       chapter = chapters[1]
-      it "has a second chapter" do
+      it "has a second chapter with the correct id" do
         assert chapter
+        id = chapter.attribute("id")
+        assert_equal "_part.one.book.i", id.text
       end
       it "has a title of 'Part One'" do
         title = chapter.at_xpath("title")
