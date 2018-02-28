@@ -179,6 +179,21 @@ class SuseXmlTest < MiniTest::Spec
         refute simpara.text.empty?
       end
     end
+    describe "chapter one note" do
+      note = xml.at_xpath("/book/part/chapter/section/note")
+      it "exists" do
+        assert note
+      end
+      it "has a title" do
+        title = note.at_xpath("title")
+        assert_equal "Note", title.text
+      end
+      it "has content" do
+        simpara = note.at_xpath("simpara")
+        assert simpara.text
+        refute simpara.text.empty?
+      end
+    end
     #
     # chapter two
     #
