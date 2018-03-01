@@ -22,7 +22,7 @@
     <para>Standing atop NASA's historic </para>
 
     <!-- Section 1 TEST -->
-    <sect1 xml:id="chapt.part.">
+    <sect1 xml:id="chapt.part">
         <title>Section One</title>
         <para>This is a section one paragraph.</para>
     </sect1>
