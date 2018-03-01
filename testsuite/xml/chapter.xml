@@ -10,15 +10,28 @@
 
     <!-- Title TEST -->
     <title>Chapter One</title>
+   
+    <!-- Titleabbrev TEST 
+    <titleabbrev>Chapt1</titleabbrev> -->
+    
+    <!-- Subtitle TEST -->
     <subtitle>Chapter One Subtitle</subtitle>
-
+   
     <!-- Info TEST -->
     <info>
+        
         <abstract>
             <para>Test abstract</para>
         </abstract>
     </info>
-
+    
+    <!-- Trademark TEST 
+    <para><trademark class='registered'>Nutshell Handbook</trademark> is a
+        registered trademark of O'Reilly Media, Inc.
+        6 </para>
+    -->
+    
+    <!-- Link xref TEST -->
     <para>Standing atop NASA's historic <link
             xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
             >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its three-core
@@ -382,7 +395,7 @@ Directory of  C:\
                 transport data.</primary></indexterm>
          -->
 
-        <!-- Table cals TEST OH WHAT JOY! TABLES! 
+        <!-- Table db.cals TEST  
         <table xml:id="ex.calstable" frame="all">
             <title>Sample CALS Table</title>
             <tgroup cols="5" align="left" colsep="1" rowsep="1">
@@ -431,8 +444,96 @@ Directory of  C:\
                 </tbody>
             </tgroup>
         </table>
--->
+        -->
 
+        <!-- Informaltable db.cals TEST (No TITLE)
+        <informaltable>
+            <tgroup cols="4">
+                <tbody>
+                    <row>
+                        <entry>
+                            <para>
+                                Type
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                User Permissions
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Group Permissions
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                Permissions for Others
+                            </para>
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            <para>
+                                <literal>&ndash;</literal>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <literal>rw&ndash;</literal>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <literal>r&ndash;&ndash;</literal>
+                            </para>
+                        </entry>
+                        <entry>
+                            <para>
+                                <literal>r&ndash;&ndash;</literal>
+                            </para>
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </informaltable>
+         -->
+
+        <!-- Procedure + Stepalternatives and Substeps (I do not use stepalternatives or substeps currently. It is used in sle documentation. I think its confusing/ugly and redundant(In most cases).)
+        <procedure>
+            <step>
+                <para> Create a custom X.509 key and certificate used for signing: </para>
+                <screen>openssl req -new -x509 -newkey rsa:2048 -keyout key.asc \
+  -out cert.pem -nodes -days 666 -subj "/CN=$USER/"</screen>
+            </step>
+            <step>
+                <para> Use <command>mokutil</command> to launch the MOK list automatically. </para>
+                <stepalternatives>
+                    <step>
+                        <substeps>
+                            <step>
+                                <para> Import the certificate to MOK: </para>
+                                <screen>mokutil &ndash;&ndash;root-pw &ndash;&ndash;import cert.der</screen>
+                                <para> The <option>&ndash;&ndash;root-pw</option> option enables usage of the
+                                    user directly. </para>
+                            </step>
+                        </substeps>
+                    </step>
+                    <step>
+                        <substeps>
+                            <step>
+                                <para> Alternatively, this is the procedure if you want to launch
+                                    MOK manually: </para>
+                                <para> Reboot </para>
+                            </step>
+                        </substeps>
+                    </step>
+                </stepalternatives>
+            </step>
+        </procedure>
+        -->
+        
+        
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
             <title>Section Two</title>
