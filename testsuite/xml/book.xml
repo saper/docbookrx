@@ -22,12 +22,16 @@
         </legalnotice>
         -->
     </info>
+   
     <!-- Chapter TEST -->
     <xi:include href="chapter.xml"/>
-
+    
     <!-- Part TEST    -->
+    
     <part xml:id="part.one.book.I">
         <title>Part One</title>  
+        <xi:include href="chapter_part.xml" />
+      
     </part>
 
     <!-- Appendix TEST

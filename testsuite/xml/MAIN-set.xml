@@ -49,7 +49,6 @@
                 checking output.</para>
         </abstract>
     </info>
-    
     <!-- Include TEST-->
     <xi:include href="book.xml"/>
 
