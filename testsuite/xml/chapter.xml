@@ -33,7 +33,8 @@
                 xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
                 >Launch Pad 39A</link>, the Falcon Heavy rocket ignited all 27 engines on its
             three-core of its first-stage at 12:30 p.m. </para>
-            <remark>can also be used for linking to other sections by id within the same document <link linkend="chapt.one.b1.sect2">Section Two</link></remark>
+        <remark>can also be used for linking to other sections by id within the same document <link
+                linkend="chapt.one.b1.sect2">Section Two</link></remark>
 
         <!-- Procedure TEST -->
         <procedure>
@@ -59,20 +60,20 @@
             </mediaobject>
         </informalfigure>
 
-        <!-- Figure TEST
+        <!-- Figure TEST  
         <figure>
             <title/>
             <mediaobject>
+                <textobject><para>Its not always safer in numbers...</para></textobject>
                 <imageobject role="fo">
                     <imagedata fileref="numbers.jpg" width="80%"/>
                 </imageobject>
                 <imageobject role="html">
                     <imagedata fileref="numbers.jpg" width="80%"/>
                 </imageobject>
-
             </mediaobject>
         </figure>
-        -->
+       -->
 
         <!-- Tip TEST -->
 
@@ -381,7 +382,56 @@ Directory of  C:\
                 transport data.</primary></indexterm>
          -->
 
-         
+        <!-- Table cals TEST OH WHAT JOY! TABLES! 
+        <table xml:id="ex.calstable" frame="all">
+            <title>Sample CALS Table</title>
+            <tgroup cols="5" align="left" colsep="1" rowsep="1">
+                <colspec colname="c1"/>
+                <colspec colname="c2"/>
+                <colspec colname="c3"/>
+                <colspec colname="c4"/>
+                <colspec colnum="5" colname="c5"/>
+                <thead>
+                    <row>
+                        <entry namest="c1" nameend="c2" align="center">Horizontal Span a1</entry>
+                        <entry>a2</entry>
+                        <entry>a3</entry>
+                        <entry>a4</entry>
+                    </row>
+                </thead>
+                <tfoot>
+                    <row>
+                        <entry>f1</entry>
+                        <entry>f2</entry>
+                        <entry>f3</entry>
+                        <entry>f4</entry>
+                        <entry>f5</entry>
+                    </row>
+                </tfoot>
+                <tbody>
+                    <row>
+                        <entry>b1</entry>
+                        <entry>b2</entry>
+                        <entry>b3</entry>
+                        <entry>b4</entry>
+                        <entry morerows="1" valign="middle"><para>Vertical Span</para>
+                            <para> b5/c5</para></entry>
+                    </row>
+                    <row>
+                        <entry>c1</entry>
+                        <entry namest="c2" nameend="c3" align="center" morerows="1" valign="bottom"
+                            >Span Both</entry>
+                        <entry>c4</entry>
+                    </row>
+                    <row>
+                        <entry>d1</entry>
+                        <entry>d4</entry>
+                        <entry>d5</entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+-->
 
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
