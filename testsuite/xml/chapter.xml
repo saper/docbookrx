@@ -10,27 +10,27 @@
 
     <!-- Title TEST -->
     <title>Chapter One</title>
-   
+
     <!-- Titleabbrev TEST 
-    <titleabbrev>Chapt1</titleabbrev> -->
-    
+    <titleabbrev>Chapt1 Abbrev</titleabbrev> -->
+
     <!-- Subtitle TEST -->
     <subtitle>Chapter One Subtitle</subtitle>
-   
+
     <!-- Info TEST -->
     <info>
-        
+
         <abstract>
             <para>Test abstract</para>
         </abstract>
     </info>
-    
+
     <!-- Trademark TEST 
     <para><trademark class='registered'>Nutshell Handbook</trademark> is a
         registered trademark of O'Reilly Media, Inc.
         6 </para>
     -->
-    
+
     <!-- Link xref TEST -->
     <para>Standing atop NASA's historic <link
             xlink:href="https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html"
@@ -395,7 +395,7 @@ Directory of  C:\
                 transport data.</primary></indexterm>
          -->
 
-        <!-- Table db.cals TEST  
+        <!-- Table TEST  
         <table xml:id="ex.calstable" frame="all">
             <title>Sample CALS Table</title>
             <tgroup cols="5" align="left" colsep="1" rowsep="1">
@@ -446,7 +446,7 @@ Directory of  C:\
         </table>
         -->
 
-        <!-- Informaltable db.cals TEST (No TITLE)
+        <!-- Informaltable TEST (No TITLE)
         <informaltable>
             <tgroup cols="4">
                 <tbody>
@@ -499,7 +499,7 @@ Directory of  C:\
         </informaltable>
          -->
 
-        <!-- Procedure + Stepalternatives and Substeps (I do not use stepalternatives or substeps currently. It is used in sle documentation. I think its confusing/ugly and redundant(In most cases).)
+        <!-- Procedure + Stepalternatives and Substeps
         <procedure>
             <step>
                 <para> Create a custom X.509 key and certificate used for signing: </para>
@@ -532,7 +532,15 @@ Directory of  C:\
             </step>
         </procedure>
         -->
-        
+
+        <!-- URI TEST
+        <para><uri> http://docbook.org/ns/docbook</uri></para>
+         -->
+
+<!-- Varname TEST 
+        <para>In Perl, <varname>@ARGV</varname> contains the command line parameters used when the
+            script was run.</para>
+        -->
         
         <!-- Section 2 TEST -->
         <sect2 xml:id="chapt.one.b1.sect2">
