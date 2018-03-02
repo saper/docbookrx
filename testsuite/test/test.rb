@@ -220,10 +220,10 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one section simparas" do
       simparas = xml.xpath("/book/part/chapter[1]/section[1]/simpara")
       simpara1 = simparas[0]
-      simparalast = simparas[5]
-      it "has four simparas" do
+      simparalast = simparas[-1]
+      it "has many simparas" do
         assert simparas
-        assert_equal 6, simparas.size
+        assert_equal 9, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -378,6 +378,15 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "says F1" do
         assert_equal "F1", keycap.text
+      end
+    end
+    describe "chapter one keycombos" do
+      keycombos = xml.xpath("/book/part/chapter/section/simpara/keycombo")
+      it "exists" do
+        assert keycombos
+        assert_equal 2, keycombos.size
+        assert_equal 2, keycombos[0].elements.size
+        assert_equal 3, keycombos[1].elements.size
       end
     end
     #

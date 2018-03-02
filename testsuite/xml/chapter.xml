@@ -166,17 +166,22 @@
         <para> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the upper left
             quadrant. </para>
 
-        <!-- Keycombo TEST 
+        <!-- Keycombo TEST -->
         <para><keycombo>
                 <keycap>Shift</keycap>
                 <mousebutton>Button1</mousebutton>
+            </keycombo></para>
+        <para><keycombo>
+                <keycap>Shift</keycap>
+                <mousebutton>Button1</mousebutton>
+                <keycap>Ctrl</keycap>
+                <keycap>c</keycap>
             </keycombo></para>
         <para><keycombo>
                 <keycap>Ctrl</keycap>
                 <keycap>alt</keycap>
                 <keycap>t</keycap>
             </keycombo></para>
-        -->
 
         <!-- Keycode TEST 
         <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
