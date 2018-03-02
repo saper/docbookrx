@@ -123,6 +123,7 @@
         <bridgehead renderas="sect2">Bridgehead (False heading with size attribute)</bridgehead>
 
         <!-- Variablelist TEST  NOTE: We may need to tests these lists when they are nested -->
+        <para>Here comes a variablelist:</para>
         <variablelist>
             <varlistentry>
                 <term>Variable List</term>
@@ -139,7 +140,8 @@
             </varlistentry>
         </variablelist>
 
-        <!-- Itemizedlist TEST NOTE: We may need to tests these lists when they are nested 
+        <!-- Itemizedlist TEST NOTE: We may need to tests these lists when they are nested -->
+        <para>Here comes an itemizedlist:</para>
         <itemizedlist>
             <listitem>
                 <para>First item in the list</para>
@@ -148,7 +150,6 @@
                 <para>Second item in the list.</para>
             </listitem>
         </itemizedlist>
-        -->
 
         <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested 
         <orderedlist>
