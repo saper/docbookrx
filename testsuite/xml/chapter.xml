@@ -119,9 +119,8 @@
                 dying.</para>
         </warning>
 
-        <!-- bridgehead TEST — A free-floating heading.
+        <!-- bridgehead TEST — A free-floating heading. -->
         <bridgehead renderas="sect2">Bridgehead (False heading with size attribute)</bridgehead>
-        -->
 
         <!-- Variablelist TEST  NOTE: We may need to tests these lists when they are nested
         <variablelist>

@@ -322,6 +322,18 @@ class SuseXmlTest < MiniTest::Spec
         refute simpara.text.empty?
       end
     end
+    describe "chapter one bridgehead" do
+      bridgehead = xml.at_xpath("/book/part/chapter/section/bridgehead")
+      it "exists" do
+        assert bridgehead
+      end
+      it "renders as sect3" do
+        assert_equal "sect3", bridgehead.attribute("renderas").text
+      end
+      it "starts with Bridgehead" do
+        assert bridgehead.text.start_with? "Bridgehead"
+      end
+    end
     #
     # chapter two
     #
