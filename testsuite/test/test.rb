@@ -186,9 +186,9 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'Then do this again…​', listitems[2].at_xpath('simpara').text
       end
     end
-    describe "chapter one section figure" do
+    describe "chapter one section informalfigure" do
       fig = xml.at_xpath("/book/part/chapter[1]/section/informalfigure")
-      it "has a picture" do
+      it "has a informalfigure" do
         assert fig
       end
       it "references airplainjokes.jpg" do
@@ -197,6 +197,24 @@ class SuseXmlTest < MiniTest::Spec
         fr = id.attribute("fileref")
         assert fr
         assert_equal 'airplanejokes.jpg', fr.text
+      end
+    end
+    describe "chapter one section figure" do
+      fig = xml.at_xpath("/book/part/chapter[1]/section/figure")
+      it "has a figure" do
+        assert fig
+      end
+      it "has an empty title" do
+        title = fig.at_xpath("title")
+        assert title
+        assert title.text.empty?
+      end
+      it "references numbers.jpg" do
+        id = fig.at_xpath("mediaobject/imageobject/imagedata")
+        assert id
+        fr = id.attribute("fileref")
+        assert fr
+        assert_equal 'numbers.jpg', fr.text
       end
     end
     describe "chapter one section simparas" do
