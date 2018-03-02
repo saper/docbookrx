@@ -183,7 +183,7 @@ EOS
     expected = <<-EOS[0..-2]
 arearefs:co.s2-cobbler-dhcp.exist.bootp
 
-Enable network booting with the [path]_bootp_
+Enable network booting with the [path]``bootp``
  protocol. 
 arearefs:co.s2-cobbler-dhcp.exist.pxe
 
