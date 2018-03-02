@@ -186,9 +186,8 @@
         <!-- Keycode TEST -->
         <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
 
-        <!-- Filename TEST 
+        <!-- Filename TEST -->
         <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
-        -->
 
         <!-- Literal TEST
         <para> This is a <literal>Literal</literal> string.</para>
