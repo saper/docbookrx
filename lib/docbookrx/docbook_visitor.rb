@@ -69,7 +69,7 @@ class DocbookVisitor
 
   PATH_NAMES = ['directory', 'filename', 'systemitem']
 
-  UI_NAMES = ['guibutton', 'guilabel', 'menuchoice', 'guimenu', 'keycap']
+  UI_NAMES = ['guibutton', 'guilabel', 'menuchoice', 'guimenu', 'keycap', 'mousebutton']
 
   LIST_NAMES = ['simplelist', 'itemizedlist', 'orderedlist', 'variablelist', 'procedure', 'substeps', 'stepalternatives' ]
 
@@ -1499,6 +1499,8 @@ class DocbookVisitor
       append_text %([label]##{node.text}#)
     when 'keycap'
       append_text %(kbd:[#{node.text}])
+    when 'mousebutton'
+      append_text %(mouse:[#{node.text}])
     end
     false
   end
@@ -1762,16 +1764,28 @@ class DocbookVisitor
   # <keycombo> ... <keycap>...</keycap> </keycombo>
   def visit_keycombo node
     append_text "kbd:["
+    follower = ""
     separator = ""
+    appender = "]"
     node.elements.each do |keycap|
       if keycap.name == "keycap"
+        if appender.empty?
+          append_text "#{follower}kbd:["
+          follower = ""
+          separator = ""
+          appender = "]"
+        end
         append_text "#{separator}#{keycap.text}"
+      elsif keycap.name == "mousebutton"
+        append_text "#{appender}-#{keycap.text}"
+        appender = ""
+        follower = "-"
       else
         warn %(keycombo not followed by keycap but #{keycap.name.inspect}. Skipping.)
       end
       separator = "+" 
     end
-    append_text "]"
+    append_text appender
   end
 
   # <email>foo@bar.org</email>

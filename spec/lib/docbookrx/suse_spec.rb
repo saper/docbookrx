@@ -79,17 +79,34 @@ EOS
     expect(File.read(File.join(dirname,"suse_book.expected"))).to eq(File.read(File.join(dirname,"suse_book.adoc")))
   end
 
-  it 'should accept a <keycombo> node' do
+  it 'should accept a <keycombo> with <mousebutton> node' do
     input = <<-EOS
      <para>
       Once you have finished your capture re-open terminal 1 and stop the
-      capture of data with: <keycombo> <keycap>CTRL</keycap> <keycap>c</keycap>
+      capture of data with: <keycombo> <keycap>CTRL</keycap> <keycap>c</keycap> <mousebutton>Button2</mousebutton>
       </keycombo>
      </para>
     EOS
     expected = <<-EOS.rstrip
 
-Once you have finished your capture re-open terminal 1 and stop the capture of data with: kbd:[CTRL+c] 
+Once you have finished your capture re-open terminal 1 and stop the capture of data with: kbd:[CTRL+c]-Button2
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to eq(expected)
+  end
+
+  it 'should accept a <keycombo> with <mousebutton> in the middle node' do
+    input = <<-EOS
+     <para>
+      Once you have finished your capture re-open terminal 1 and stop the
+      capture of data with: <keycombo> <keycap>CTRL</keycap> <keycap>c</keycap> <mousebutton>Button2</mousebutton> <keycap>F1</keycap>
+      </keycombo>
+     </para>
+    EOS
+    expected = <<-EOS.rstrip
+
+Once you have finished your capture re-open terminal 1 and stop the capture of data with: kbd:[CTRL+c]-Button2-kbd:[F1]
 EOS
     output = Docbookrx.convert input
 
