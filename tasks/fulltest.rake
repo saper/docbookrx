@@ -15,7 +15,7 @@ task :adocxml_html do
      --styleroot /usr/share/xml/docbook/stylesheet/suse2013-ns\
      html --single 2>&1)
   fail "daps html failed with #{err}" unless $?.exitstatus == 0
-  puts "Asciidoc generated HTML: testsuite/asciidoctor/build/MAIN-set/single-html/MAIN-set/index.html"
+  puts "Asciidoc/Daps generated HTML: testsuite/asciidoctor/build/MAIN-set/single-html/MAIN-set/index.html"
 end
 
 # convert adoc-generated-xml to pdf
@@ -24,5 +24,5 @@ task :adocxml_pdf do
            --styleroot /usr/share/xml/docbook/stylesheet/suse2013-ns\
            pdf 2>&1)
   fail "daps pdf failed with #{err}" unless $?.exitstatus == 0
-  puts "Asciidoc generated PDF: testsuite/asciidoctor/build/MAIN-set/MAIN-set_color_en.pdf"
+  puts "Asciidoc/Daps generated PDF: testsuite/asciidoctor/build/MAIN-set/MAIN-set_color_en.pdf"
 end
