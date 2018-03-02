@@ -151,7 +151,8 @@
             </listitem>
         </itemizedlist>
 
-        <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested 
+        <!-- Orderedlist TEST NOTE: We may need to tests these lists when they are nested -->
+        <para>Here comes an orderedlist:</para>
         <orderedlist>
             <listitem>
                 <para>This is the first item.</para>
@@ -160,7 +161,6 @@
                 <para>This is the second item.</para>
             </listitem>
         </orderedlist>
-        -->
 
         <!-- Keycap TEST 
         <para> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the uppper left

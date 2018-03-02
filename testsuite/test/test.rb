@@ -220,10 +220,10 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one section simparas" do
       simparas = xml.xpath("/book/part/chapter[1]/section[1]/simpara")
       simpara1 = simparas[0]
-      simpara4 = simparas[3]
+      simparalast = simparas[4]
       it "has four simparas" do
         assert simparas
-        assert_equal 4, simparas.size
+        assert_equal 5, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -234,7 +234,7 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
       end
       it "has two literals with a replacable role" do
-        literals = simpara4.xpath("literal")
+        literals = simparalast.xpath("literal")
         assert literals
         assert_equal 2, literals.size
         l = literals[0]
@@ -355,6 +355,17 @@ class SuseXmlTest < MiniTest::Spec
       entries = il.xpath("listitem")
       it "exists" do
         assert il
+      end
+      it "has two listitems" do
+        assert_equal 2, entries.size
+      end
+    end
+    describe "chapter one orderedlist" do
+      # get the second one. The first is the <procedure>
+      ol = xml.at_xpath("/book/part/chapter/section/orderedlist[2]")
+      entries = ol.xpath("listitem")
+      it "exists" do
+        assert ol
       end
       it "has two listitems" do
         assert_equal 2, entries.size
