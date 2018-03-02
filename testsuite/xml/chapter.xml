@@ -183,9 +183,8 @@
                 <keycap>t</keycap>
             </keycombo></para>
 
-        <!-- Keycode TEST 
+        <!-- Keycode TEST -->
         <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
-        -->
 
         <!-- Filename TEST 
         <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>

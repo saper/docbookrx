@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 9, simparas.size
+        assert_equal 10, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -387,6 +387,13 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 2, keycombos.size
         assert_equal 2, keycombos[0].elements.size
         assert_equal 3, keycombos[1].elements.size
+      end
+    end
+    describe "chapter one keycode" do
+      keycode = xml.xpath("/book/part/chapter/section/simpara/keycode")
+      it "exists" do
+        assert keycode
+        assert_equal "0x3B", keycode.text
       end
     end
     #
