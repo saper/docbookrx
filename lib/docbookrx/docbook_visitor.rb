@@ -1813,6 +1813,10 @@ class DocbookVisitor
     end
   end
 
+  def visit_keycode node
+    append_text "keycode:[#{node.text}]"
+  end
+
   def lazy_quote text, seek = ','
     if text && (text.include? seek)
       %("#{text}")
