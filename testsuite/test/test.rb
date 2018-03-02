@@ -334,6 +334,22 @@ class SuseXmlTest < MiniTest::Spec
         assert bridgehead.text.start_with? "Bridgehead"
       end
     end
+    describe "chapter one variablelist" do
+      vl = xml.at_xpath("/book/part/chapter/section/variablelist")
+      entries = vl.xpath("varlistentry")
+      it "exists" do
+        assert vl
+      end
+      it "has two varlistentries" do
+        assert_equal 2, entries.size
+      end
+      it "has a term and a listitem" do
+        entries.each do |e|
+          assert e.at_xpath("term")
+          assert e.at_xpath("listitem")
+        end
+      end
+    end
     #
     # chapter two
     #
