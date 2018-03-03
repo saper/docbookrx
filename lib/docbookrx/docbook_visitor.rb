@@ -1192,13 +1192,54 @@ class DocbookVisitor
     false
   end
 
+  # return [namest,nameend] of entry
+  def entry_span node
+    namest = node.attribute('namest').value rescue nil
+    nameend = node.attribute('nameend').value rescue nil
+    [namest, nameend]
+  end
+
+  def find_colname_index colspecs, name
+    colspecs.find_index do |colspec|
+      v = colspec.attribute('colname').value rescue nil
+      v == name
+    end
+  end
+
+  def compute_span colspecs, entry
+    nstart, nend = entry_span entry
+    if nstart && nend
+      # if there's a span given, compute the index difference
+      sindex = find_colname_index colspecs, nstart
+      eindex = find_colname_index colspecs, nend
+      if sindex && eindex
+        return (eindex - sindex) + 1
+      else
+        warn %('namest' #{nstart} not found in <colspec>) unless nstart
+        warn %('nameend' #{nend} not found in <colspec>) unless nend
+      end
+    end
+    return 1
+  end
+
   def process_table node
-    numcols = (node.at_css '> tgroup').attr('cols').to_i
-    unless (row_node = (node.at_css '> tgroup > thead > row')).nil?
-      if (numheaders = row_node.elements.length) != numcols
-        title = " \'" +
-          ((title_node = (node.at_css '> title')).nil? ?
-          "" : title_node.children[0].text) + "\'"
+    tgroup = node.at_css '> tgroup'
+    numcols = tgroup.attr('cols').to_i
+    colspecs = tgroup.css '> colspec'
+    head = tgroup.at_css '> thead'
+    title = " \'" +
+      ((title_node = (node.at_css '> title')).nil? ?
+        "" : title_node.children[0].text) +
+      "\'"
+    if colspecs && (colspecs.size != numcols)
+      warn %(#{numcols} columns specified in table#{title}, but only #{colspecs.size} colspecs)
+    end
+    if (head_row = (head.at_css '> row'))
+      numheaders = 0
+      head_row.css('> entry').each do |entry|
+        numheaders += compute_span colspecs, entry
+      end
+      if numheaders != numcols
         warn %(#{numcols} columns specified in table#{title}, but only #{numheaders} headers)
       end
     end
@@ -1222,22 +1263,24 @@ class DocbookVisitor
       frame = nil
     end
     options = []
-    if (head = node.at_css '> tgroup > thead')
+    if head
       options << 'header'
     end
-    if (foot = node.at_css '> tgroup > tfoot')
+    if (foot = tgroup.at_css '> tfoot')
       options << 'footer'
     end
     options = (options.empty? ? nil : %(, options="#{options * ','}"))
     append_line %([cols="#{cols * ','}"#{frame}#{options}])
     append_line '|==='
-    if head
-      (head.css '> row > entry').each do |cell|
-        append_line %(| #{text cell})
+    if head_row
+      (head_row.css '> entry').each do |cell|
+        span = compute_span(colspecs, cell)
+        xspan = (span > 1) ? "#{span}+" : ""
+        append_line %(#{xspan}| #{text cell})
       end
       append_blank_line
     end
-    (node.css '> tgroup > tbody > row').each do |row|
+    (tgroup.css '> tbody > row').each do |row|
       append_ifdef_start_if_condition(row)
       append_blank_line
       row.elements.each do |cell|
