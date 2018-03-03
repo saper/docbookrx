@@ -153,7 +153,7 @@ EOS
 EOS
 
     expected = <<-EOS.rstrip
-mailto:doc-team@suse.de[doc-team@suse.de]
+mailto:doc-team@suse.de[<doc-team@suse.de>]
 EOS
 
     dirname = File.dirname(__FILE__)

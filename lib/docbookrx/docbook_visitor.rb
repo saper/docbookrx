@@ -1823,7 +1823,7 @@ class DocbookVisitor
 
   # <email>foo@bar.org</email>
   def visit_email node
-    append_line "mailto:#{node.text}[#{node.text}]"
+    append_line "mailto:#{node.text}[<#{node.text}>]"
   end
 
   # <calloutlist><callout arearefs="...">...</callout></calloutlist>
