@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 12, simparas.size
+        assert_equal 13, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -390,22 +390,33 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one keycode" do
-      keycode = xml.xpath("/book/part/chapter/section/simpara/keycode")
+      keycode = xml.at_xpath("/book/part/chapter/section/simpara/keycode")
       it "exists" do
         assert keycode
         assert_equal "0x3B", keycode.text
       end
     end
     describe "chapter one literal filename" do
-      filename = xml.xpath("/book/part/chapter/section/simpara/literal[@role='filename']")
+      filename = xml.at_xpath("/book/part/chapter/section/simpara/literal[@role='path']")
       it "exists" do
         assert filename
       end
     end
     describe "chapter one literal" do
-      literal = xml.xpath("/book/part/chapter/section/simpara/literal[@id='literal']")
+      literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='literal']/literal")
       it "exists" do
         assert literal
+      end
+    end
+    describe "chapter one link" do
+      link = xml.at_xpath("/book/part/chapter/section/simpara[@id='link']/link")
+      it "exists" do
+        assert link
+      end
+      it "has a linkend attribute" do
+        linkend = link.attribute('linkend')
+        assert linkend
+        assert_equal '_nextsect', linkend.text
       end
     end
     #

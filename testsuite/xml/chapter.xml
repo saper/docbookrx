@@ -192,10 +192,9 @@
         <!-- Literal TEST -->
         <para xml:id="literal"> This is a <literal>Literal</literal> string.</para>
 
-        <!-- Link TEST 
-        <para>See <link linkend="nextsect">this</link> to find more information on hot dogs and New
+        <!-- Link TEST -->
+        <para xml:id="link">See <link linkend="nextsect">this</link> to find more information on hot dogs and New
             York coffee.</para>
-        -->
 
         <!-- xref TEST
         <para>
