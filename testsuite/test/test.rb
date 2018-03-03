@@ -430,6 +430,22 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal '_chapt.one.b1.sect2', linkend.text
       end
     end
+    describe "chapter one qandaset" do
+      qandaset = xml.at_xpath("/book/part/chapter/section/qandaset")
+      entries = qandaset.xpath("qandaentry")
+      it "exists" do
+        assert qandaset
+      end
+      it "has two entries" do
+        assert_equal 2, entries.size
+      end
+      it "has entries with question and answer" do
+        entries.each do |entry|
+          assert entry.at_xpath("question")
+          assert entry.at_xpath("answer")
+        end
+      end
+    end
     #
     # chapter two
     #

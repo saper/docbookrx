@@ -200,7 +200,7 @@
         <para xml:id="xref">
             <xref linkend="chapt.one.b1.sect2" xrefstyle="SectTitleOnPage"/></para>
 
-        <!-- Question and Answer TEST 
+        <!-- Question and Answer TEST -->
         <qandaset>
             <qandaentry>
                 <question>
@@ -227,7 +227,6 @@
                 </answer>
             </qandaentry>
         </qandaset>
-        -->
 
         <!-- Calloutlist TEST
         <screen>-w /var/log/audit/ <co xml:id="co.auctllog"/>
