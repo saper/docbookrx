@@ -242,12 +242,12 @@ All DocBook V5.0 elements are in the namespace http://docbook.org/ns/docbook.'
   it 'should convert various types to anonymous literal' do
     input = <<-EOS
 <para>
-<code>Apples</code>, <command>oranges</command>, <computeroutput>bananas</computeroutput>, <database>pears</database>, <function>grapes</function>, <literal>mangos</literal>, <tag>kiwis</tag>, and <userinput>persimmons</userinput>.
+<code>Apples</code>, <computeroutput>bananas</computeroutput>, <database>pears</database>, <function>grapes</function>, <literal>mangos</literal>, <tag>kiwis</tag>, and <userinput>persimmons</userinput>.
 </para>
     EOS
 
     expected = <<-EOS.rstrip
-``Apples``, ``oranges``, ``bananas``, ``pears``, ``grapes``, ``mangos``, ``kiwis``, and ``persimmons``.
+``Apples``, ``bananas``, ``pears``, ``grapes``, ``mangos``, ``kiwis``, and ``persimmons``.
     EOS
 
     output = Docbookrx.convert input
@@ -1179,13 +1179,13 @@ image::images/dummy.png[]
 
     expected = <<-EOS.rstrip
 
-``showStartProcessForm(hostUrl)``: Makes a call to the REST endpoint.::
+[command]``showStartProcessForm(hostUrl)``: Makes a call to the REST endpoint.::
 
 * __hostURL__: the URL
 * __deploymentId__: the deployment identifier
 * __processId__: the identifier of the process
 
-``startProcess(divId)``: Submits the form loaded.::
+[command]``startProcess(divId)``: Submits the form loaded.::
 
 * __divId__: the identifier
 * _onsuccessCallback_ (optional): a javascript function
