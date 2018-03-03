@@ -343,12 +343,11 @@
         <remark>class Identifies the nature of the replaceable text Enumerated values: “command” A
             command “function” A function “option” An option “parameter” A parameter</remark>
 
-        <!-- Option TEST 
-        <para>The <option>-a</option> option on the <acronym>UNIX</acronym>
+        <!-- Option TEST -->
+        <para xml:id="option">The <option>-a</option> option on the <acronym>UNIX</acronym>
             <command>ls</command> command or the <option>/r</option> option on the
                 <acronym>DOS</acronym>
             <command>attrib</command>command, for example.</para>
-         -->
 
         <!-- Package TEST
         <para>The <package>YaST2</package> package should be installed...</para>

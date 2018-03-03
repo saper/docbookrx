@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 23, simparas.size
+        assert_equal 24, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -584,6 +584,16 @@ class SuseXmlTest < MiniTest::Spec
         literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='systemitem']/literal")
         assert literal
         assert_equal 'path', literal.attribute("role").value
+      end
+    end
+    describe "chapter one option" do
+      option = xml.at_xpath("/book/part/chapter/section/simpara[@id='option']")
+      acronyms = option.xpath("acronym")
+      it "exists" do
+        assert option
+      end
+      it "has two acronyms" do
+        assert_equal 2, acronyms.size
       end
     end
     #
