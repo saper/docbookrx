@@ -533,6 +533,22 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'A DSSSL Function', title.text
       end
     end
+    describe "chapter one formalpara" do
+      # <formalpara>
+      # <title>Parameters</title>
+      # <para>
+      formalpara = xml.at_xpath("/book/part/chapter/section/formalpara")
+      title = formalpara.at_xpath("title")
+      para = formalpara.at_xpath("para")
+      it "exists" do
+        assert formalpara
+        assert title
+        assert para
+      end
+      it "has the correct title" do
+        assert_equal 'Parameters', title.text
+      end
+    end
     #
     # chapter two
     #

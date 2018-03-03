@@ -296,12 +296,11 @@
   	    (loop result (node-list-rest nl))))))                </screen>
         </example>
 
-        <!-- Formalpara TEST 
+        <!-- Formalpara TEST -->
         <formalpara>
             <title>Parameters</title>
             <para>The blah blah blah is used for blah blah blah.</para>
         </formalpara>
-        -->
 
         <!-- Menuchoice TEST
         <para>
