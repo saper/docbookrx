@@ -324,4 +324,19 @@ A paragraph
 
     expect(output).to include(expected)
   end
+  it 'should convert members to listitems' do
+    input = <<-EOS
+    <simplelist>
+      <member>Item One</member>
+      <member>Item Two</member>
+    </simplelist>
+EOS
+    expected = <<-EOS.rstrip
+* Item One
+* Item Two
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'

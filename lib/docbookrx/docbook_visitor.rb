@@ -675,6 +675,7 @@ class DocbookVisitor
     node.children.each do |child|
       child.accept self
     end
+    append_line "" if node.children.last.name == "text"
   end
 
   def visit_itemizedlist node
