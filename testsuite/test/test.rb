@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 11, simparas.size
+        assert_equal 12, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
