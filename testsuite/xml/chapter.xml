@@ -228,7 +228,7 @@
             </qandaentry>
         </qandaset>
 
-        <!-- Calloutlist TEST
+        <!-- Calloutlist TEST -->
         <screen>-w /var/log/audit/ <co xml:id="co.auctllog"/>
 -w /var/log/audit/audit.log
 
@@ -251,7 +251,6 @@
                     change attempts to this file. </para>
             </callout>
         </calloutlist>
- -->
 
         <!-- Citetitle TEST  
         <para>

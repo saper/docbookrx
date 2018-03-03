@@ -446,6 +446,33 @@ class SuseXmlTest < MiniTest::Spec
         end
       end
     end
+    describe "chapter one calloutlist" do
+      screen = xml.at_xpath("/book/part/chapter/section/screen")
+      col = xml.at_xpath("/book/part/chapter/section/calloutlist")
+      it "exists" do
+        assert screen
+        assert col
+      end
+      it "has two entries" do
+        refs = screen.xpath("co")
+        anchors = col.xpath("callout")
+        assert_equal 2, refs.size
+        assert_equal 2, anchors.size
+        rvalues = []
+        refs.each do |ref|
+          attr = ref.attribute("id")
+          assert attr
+          rvalues << attr.value
+        end
+        anchors.each do |anchor|
+          attr = anchor.attribute("arearefs")
+          assert attr
+          rvalues.delete attr.value
+        end
+        # cross-references are fine
+        assert_empty rvalues
+      end
+    end
     #
     # chapter two
     #
