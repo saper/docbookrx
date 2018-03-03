@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 13, simparas.size
+        assert_equal 14, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -417,6 +417,17 @@ class SuseXmlTest < MiniTest::Spec
         linkend = link.attribute('linkend')
         assert linkend
         assert_equal '_nextsect', linkend.text
+      end
+    end
+    describe "chapter one xref" do
+      xref = xml.at_xpath("/book/part/chapter/section/simpara[@id='xref']/xref")
+      it "exists" do
+        assert xref
+      end
+      it "has a linkend attribute" do
+        linkend = xref.attribute('linkend')
+        assert linkend
+        assert_equal '_chapt.one.b1.sect2', linkend.text
       end
     end
     #

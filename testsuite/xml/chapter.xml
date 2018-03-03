@@ -196,10 +196,9 @@
         <para xml:id="link">See <link linkend="nextsect">this</link> to find more information on hot dogs and New
             York coffee.</para>
 
-        <!-- xref TEST
-        <para>
+        <!-- xref TEST -->
+        <para xml:id="xref">
             <xref linkend="chapt.one.b1.sect2" xrefstyle="SectTitleOnPage"/></para>
-        -->
 
         <!-- Question and Answer TEST 
         <qandaset>
