@@ -233,13 +233,6 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
       end
     end
-    describe "chapter one replaceables" do
-      it "has two replacables" do
-        replaceables = xml.xpath("/book/part/chapter/section/simpara[@id='replaceable']/replaceable")
-        assert replaceables
-        assert_equal 2, replaceables.size
-      end
-    end
     describe "chapter one tip" do
       tip = xml.at_xpath("/book/part/chapter/section/tip")
       it "exists" do
@@ -571,6 +564,20 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "has the role parameter" do
         assert_equal 'parameter', parameter.attribute('role').value
+      end
+    end
+    describe "chapter one member" do
+      members = xml.xpath("/book/part/chapter/section/itemizedlist[@id='member']/listitem")
+      it "has two members" do
+        assert_equal 2, members.size
+      end
+    end
+    describe "chapter one replaceables" do
+      it "has two replacables" do
+        anchor = xml.at_xpath("/book/part/chapter/section/simpara/anchor[@id='replaceable']")
+        replaceables = anchor.parent.xpath("replaceable")
+        assert replaceables
+        assert_equal 2, replaceables.size
       end
     end
     #

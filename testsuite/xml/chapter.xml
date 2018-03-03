@@ -315,12 +315,13 @@
                 <command>ls</command> command prints a long directory listing. </para>
         <remark>You can use command, function, or option as attribs</remark>
 
-        <!-- Member TEST 
+        <!-- Member TEST -->
+        <para xml:id="member">
         <simplelist>
             <member>Item One</member>
             <member>Item Two</member>
         </simplelist>
-        -->
+        </para>
 
         <!-- Systemitem TEST
         <para><systemitem class="etheraddress">00:05:4E:49:FD:8E</systemitem></para>
