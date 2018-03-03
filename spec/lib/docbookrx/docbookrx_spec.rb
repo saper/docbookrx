@@ -468,7 +468,7 @@ Working Draft, 26 March 2003. OASIS. http://relaxng.org/compact-tutorial-2003032
     EOS
 
     expected = <<-EOS.rstrip
-`Scuba` is an acronym while `NSA` is an abbreviation
+[acronym]``Scuba`` is an acronym while `NSA` is an abbreviation
     EOS
 
     output = Docbookrx.convert input
