@@ -7,6 +7,7 @@ class DocbookVisitor
   end
 
   DocbookNs = 'http://docbook.org/ns/docbook'
+  XmlNs = 'http://www.w3.org/XML/1998/namespace'
   XlinkNs = 'http://www.w3.org/1999/xlink'
   IndentationRx = /^[[:blank:]]+/
   LeadingSpaceRx = /\A\s/
@@ -282,7 +283,7 @@ class DocbookVisitor
   end
 
   def append_block_role node
-    if (id = node.attribute_with_ns('id','http://www.w3.org/XML/1998/namespace'))
+    if (id = node.attribute_with_ns('id', XmlNs))
       append_line %([[#{id}]])
     end
     if (role = node.attr('role'))
