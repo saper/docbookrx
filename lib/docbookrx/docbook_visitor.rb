@@ -1723,6 +1723,7 @@ class DocbookVisitor
     #  append_blank_line
     #end
     @skip[:indexterm] = entries.size - 1 if entries.size > 1
+    append_blank_line unless @lines[-1].empty?
     append_line %[(((#{entries * ','})))]
     # Only if next word matches the index term do we use double-bracket form
     #if entries.size == 1
