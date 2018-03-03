@@ -252,14 +252,13 @@
             </callout>
         </calloutlist>
 
-        <!-- Citetitle TEST  
+        <!-- Citetitle TEST -->
         <para>
             <citetitle pubwork="book">Developing SGML DTDs: From Text to Model to
             Markup</citetitle></para>
         <remark>pubwork (enumeration) attributes “article” “bbs” “book” “cdrom” “chapter” “dvd”
             “emailmessage” “gopher” “journal” “manuscript” “newsposting” “part” “refentry” “section”
             “series” “set” “webpage” “wiki”</remark>
-         -->
 
         <!-- Email TEST
         <para><email>example@example.com</email></para>

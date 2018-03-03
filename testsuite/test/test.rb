@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 14, simparas.size
+        assert_equal 15, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -471,6 +471,12 @@ class SuseXmlTest < MiniTest::Spec
         end
         # cross-references are fine
         assert_empty rvalues
+      end
+    end
+    describe "chapter one ref" do
+      ref = xml.at_xpath("/book/part/chapter/section/simpara/emphasis/phrase[@role='ref']")
+      it "exists" do
+        assert ref
       end
     end
     #
