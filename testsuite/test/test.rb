@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 20, simparas.size
+        assert_equal 21, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -547,6 +547,21 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "has the correct title" do
         assert_equal 'Parameters', title.text
+      end
+    end
+    describe "chapter one menuchoice" do
+      # <example xml:id="_ex.dssslfunction">
+      #<title>A DSSSL Function</title>
+      #<screen>
+      menuchoice = xml.at_xpath("/book/part/chapter/section/simpara[@id='menuchoice']/menuchoice")
+      it "exists" do
+        assert menuchoice
+      end
+      it "has a guimenu" do
+        assert menuchoice.at_xpath("guimenu")
+      end
+      it "has a guimenuitem" do
+        assert menuchoice.at_xpath("guimenuitem")
       end
     end
     #

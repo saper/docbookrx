@@ -302,14 +302,13 @@
             <para>The blah blah blah is used for blah blah blah.</para>
         </formalpara>
 
-        <!-- Menuchoice TEST
-        <para>
+        <!-- Menuchoice TEST -->
+        <para xml:id="menuchoice">
             <menuchoice>
                 <guimenu>System</guimenu>
                 <guimenu>Salt Systems</guimenu>
             </menuchoice>
         </para>
-         -->
 
         <!-- Parameter TEST
         <para>Using the <parameter class="command">-l</parameter>parameter on the Linux
