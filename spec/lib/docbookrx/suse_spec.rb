@@ -1,4 +1,6 @@
 # coding: utf-8
+require 'rspec'
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), "..", ".."))
 require 'spec_helper'
 
 describe 'SUSE Conversion' do
@@ -275,6 +277,37 @@ Info abstract
 :experimental:
 EOS
 
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
+
+    expect(output).to eq(expected)
+
+  end
+  it 'should preserve ids' do
+    input = <<-EOS.rstrip
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+                 type="text/xml" 
+                 title="Profiling step"?>
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink" version="5.0">
+    <title>xml:id test</title>
+    <para xml:id="id">foo</para>
+</chapter>
+EOS
+    expected = <<-EOS.rstrip
+= xml:id test
+:doctype: book
+:sectnums:
+:toc: left
+:icons: font
+:experimental:
+:sourcedir: .
+
+[[id]]
+
+foo
+EOS
     dirname = File.dirname(__FILE__)
     output = Docbookrx.convert input, cwd: dirname
 

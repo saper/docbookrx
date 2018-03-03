@@ -282,6 +282,9 @@ class DocbookVisitor
   end
 
   def append_block_role node
+    if (id = node.attribute_with_ns('id','http://www.w3.org/XML/1998/namespace'))
+      append_line %([[#{id}]])
+    end
     if (role = node.attr('role'))
       append_line %([.#{role}])
       #@adjoin_next = true
