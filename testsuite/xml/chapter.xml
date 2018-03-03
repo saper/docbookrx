@@ -281,7 +281,7 @@
             <emphasis>This is the emphasis tag.</emphasis>
         </para>
 
-        <!-- Example TEST 
+        <!-- Example TEST -->
         <example xml:id="ex.dssslfunction">
             <title>A DSSSL Function</title>
                 <screen>(define (node-list-filter-by-gi nodelist gilist)
@@ -295,7 +295,6 @@
     		  (node-list-rest nl))
   	    (loop result (node-list-rest nl))))))                </screen>
         </example>
-        -->
 
         <!-- Formalpara TEST 
         <formalpara>

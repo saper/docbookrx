@@ -517,6 +517,22 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'This is the emphasis tag.', emphasis.text
       end
     end
+    describe "chapter one example" do
+      # <example xml:id="_ex.dssslfunction">
+      #<title>A DSSSL Function</title>
+      #<screen>
+      example = xml.at_xpath("/book/part/chapter/section/example[@id='_ex.dssslfunction']")
+      title = example.at_xpath("title")
+      screen = example.at_xpath("screen")
+      it "exists" do
+        assert example
+        assert title
+        assert screen
+      end
+      it "has the correct title" do
+        assert_equal 'A DSSSL Function', title.text
+      end
+    end
     #
     # chapter two
     #
