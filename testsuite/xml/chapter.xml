@@ -276,11 +276,10 @@
             command: <screen>$ echo $PATH</screen>
         </para>
 
-        <!-- Emphasis TEST 
-        <para>
+        <!-- Emphasis TEST -->
+        <para xml:id="emphasis">
             <emphasis>This is the emphasis tag.</emphasis>
         </para>
-        -->
 
         <!-- Example TEST 
         <example xml:id="ex.dssslfunction">

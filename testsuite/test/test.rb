@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 19, simparas.size
+        assert_equal 20, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -506,6 +506,15 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "refers to '$PATH'" do
         assert_equal '$PATH', constant.text
+      end
+    end
+    describe "chapter one emphasis" do
+      emphasis = xml.at_xpath("/book/part/chapter/section/simpara[@id='emphasis']/emphasis")
+      it "exists" do
+        assert emphasis
+      end
+      it "has the correct text" do
+        assert_equal 'This is the emphasis tag.', emphasis.text
       end
     end
     #
