@@ -263,10 +263,9 @@
         <!-- Email TEST -->
         <para xml:id="email"><email>example@example.com</email></para>
 
-        <!-- Command TEST 
-        <para>The <command>ls -a</command> command is used to list all information about
+        <!-- Command TEST -->
+        <para xml:id="command">The <command>ls -a</command> command is used to list all information about
             files.</para>
-            -->
 
         <!-- Date TEST
             
@@ -363,7 +362,7 @@ Directory of  C:\
             -->
 
         <!-- Replaceable TEST -->
-        <para>Exchange the <replaceable class="command">ls</replaceable> command with <replaceable
+        <para xml:id="replaceable">Exchange the <replaceable class="command">ls</replaceable> command with <replaceable
                 class="command">ls -a</replaceable></para>
         <remark>class Identifies the nature of the replaceable text Enumerated values: “command” A
             command “function” A function “option” An option “parameter” A parameter</remark>

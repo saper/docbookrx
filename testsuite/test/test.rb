@@ -220,10 +220,9 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one section simparas" do
       simparas = xml.xpath("/book/part/chapter[1]/section[1]/simpara")
       simpara1 = simparas[0]
-      simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 16, simparas.size
+        assert_equal 17, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -233,18 +232,12 @@ class SuseXmlTest < MiniTest::Spec
         assert href
         assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
       end
-      it "has two literals with a replacable role" do
-        literals = simparalast.xpath("literal")
-        assert literals
-        assert_equal 2, literals.size
-        l = literals[0]
-        la = l.attribute('role')
-        assert_equal 'replaceable', la.text
-        assert_equal 'ls', l.text
-        l = literals[1]
-        la = l.attribute('role')
-        assert_equal 'replaceable', la.text
-        assert_equal 'ls -a', l.text
+    end
+    describe "chapter one replaceables" do
+      it "has two replacables" do
+        replaceables = xml.xpath("/book/part/chapter/section/simpara[@id='replaceable']/replaceable")
+        assert replaceables
+        assert_equal 2, replaceables.size
       end
     end
     describe "chapter one tip" do
@@ -480,14 +473,21 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one email" do
-      # <simpara xml:id="email"><email>example@example.com</email></simpara>
-      simpara = xml.at_xpath("/book/part/chapter/section/simpara[@id='email']")
-      email = simpara.at_xpath("email")
+      email = xml.at_xpath("/book/part/chapter/section/simpara[@id='email']/email")
       it "exists" do
         assert email
       end
       it "refers to example@example.com" do
         assert_equal 'example@example.com', email.text
+      end
+    end
+    describe "chapter one command" do
+      command = xml.at_xpath("/book/part/chapter/section/simpara[@id='command']/command")
+      it "exists" do
+        assert command
+      end
+      it "refers to 'ls -a'" do
+        assert_equal 'ls -a', command.text
       end
     end
     #
