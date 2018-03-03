@@ -104,6 +104,7 @@ class DocbookVisitor
     @nested_formatting = []
     @last_added_was_special = false
     @cwd = opts[:cwd] || Dir.pwd
+    @outstanding_callouts = {}
   end
 
   ## Traversal methods
@@ -1040,17 +1041,38 @@ class DocbookVisitor
 
   def visit_screen node
     append_blank_line unless node.parent.name == 'para'
-    source_lines = node.text.rstrip.split EOL
-    if source_lines.detect {|line| line.match(/^-{4,}/) }
-      append_line '[listing]'
-      append_line '....'
-      append_line node.text.rstrip
-      append_line '....'
-    else
-      append_line '----'
-      append_line node.text.rstrip
-      append_line '----'
+    first_text = true
+    finalize = ""
+    node.children.each do |child|
+      case child.name
+      when 'text'
+        text = child.text.strip
+        source_lines = text.split EOL
+        if first_text
+          if source_lines.detect {|line| line.match(/^-{4,}/) }
+            append_line '[listing]'
+            append_line '....'
+            finalize = '....'
+          else
+            append_line '----'
+            finalize = '----'
+          end
+        end
+        append_line text
+        first_text = false
+      when 'co' # embedded callout reference
+        id = child.attribute_with_ns('id', XmlNs) || child.attribute('id')
+        ref = @outstanding_callouts[id.value]
+        unless ref
+          ref = @outstanding_callouts.size+1
+          @outstanding_callouts[id.value] = ref
+        end
+        append_text " <#{ref}>"
+      else
+        warn %(Can only handle 'text' and 'co' within <screen>, but not #{child.name})
+      end
     end
+    append_line finalize
     false
   end
 
@@ -1808,19 +1830,40 @@ class DocbookVisitor
   # see https://github.com/asciidoctor/asciidoctor/issues/1077
   def visit_calloutlist node
     node.elements.each do |element|
-      if (element.name == "callout")
-        arearefs = element.attribute('arearefs')
-        append_line "arearefs:#{arearefs}"
+      unless (element.name == "callout")
+        warn %(Expected <callout> after <calloutlist> but got <#{element.name}>. Ignoring.)
+        next
       end
-      visit element
+      arearefs = element.attribute('arearefs')
+      ref = @outstanding_callouts[arearefs.value]
+      unless ref
+        warn %(<callout> references undefined #{arearefs.value}, ignoring)
+      end
+      visit_callout element, ref
     end
   end
-  def visit_callout node
+  def visit_callout node, ref=nil
     unless node.parent.name == "calloutlist"
       warn %(callout outside of calloutlist)
     end
     node.elements.each do |element|
-      visit element
+      unless PARA_TAG_NAMES.include? element.name
+        warn %(Unhandled <callout> child: <#{element.name}>)
+        next
+      end
+      element.children.each do |child|
+        case child.name
+        when 'text'
+          if ref
+            append_line "<#{ref}>#{child.text}"
+          else
+            append_line child.text
+          end
+          ref = nil
+        else
+          visit child
+        end
+      end
     end
   end
 

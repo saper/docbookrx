@@ -163,43 +163,6 @@ EOS
 
   end
 
-  it 'should handle calloutlist' do
-    input = <<-EOS
-    <calloutlist>
-     <callout arearefs="co.s2-cobbler-dhcp.exist.bootp">
-      <para>
-       Enable network booting with the <systemitem>bootp</systemitem> protocol.
-      </para>
-     </callout>
-     <callout arearefs="co.s2-cobbler-dhcp.exist.pxe">
-      <para>
-       Create a class called <literal>PXE</literal>.
-      </para>
-     </callout>
-    </calloutlist>
-EOS
-
-    # this is ugly. docbookrx converts a trailing "." to ". "
-    # expected would end in ". \n".
-    # Doing EOS.rstrip would make this ".". But we need ". ".
-    expected = <<-EOS[0..-2]
-arearefs:co.s2-cobbler-dhcp.exist.bootp
-
-Enable network booting with the [path]``bootp``
- protocol. 
-arearefs:co.s2-cobbler-dhcp.exist.pxe
-
-
-Create a class called ``PXE``. 
-EOS
-
-    dirname = File.dirname(__FILE__)
-    output = Docbookrx.convert input, cwd: dirname
-
-    expect(output).to eq(expected)
-
-  end
-
   it 'should handle simplelist' do
     input = <<-EOS
     <simplelist>
