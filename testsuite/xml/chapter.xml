@@ -310,11 +310,10 @@
             </menuchoice>
         </para>
 
-        <!-- Parameter TEST
-        <para>Using the <parameter class="command">-l</parameter>parameter on the Linux
+        <!-- Parameter TEST -->
+        <para xml:id="parameter">Using the <parameter class="command">-l</parameter> parameter on the Linux
                 <command>ls</command> command prints a long directory listing. </para>
         <remark>You can use command, function, or option as attribs</remark>
-         -->
 
         <!-- Member TEST 
         <simplelist>
