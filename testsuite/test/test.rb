@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 24, simparas.size
+        assert_equal 25, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -594,6 +594,13 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "has two acronyms" do
         assert_equal 2, acronyms.size
+      end
+    end
+    describe "chapter one package" do
+      package = xml.at_xpath("/book/part/chapter/section/simpara[@id='package']/package")
+      it "refers to YaST2" do
+        assert package
+        assert_equal 'YaST2', package.text
       end
     end
     #

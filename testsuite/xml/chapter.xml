@@ -349,9 +349,8 @@
                 <acronym>DOS</acronym>
             <command>attrib</command>command, for example.</para>
 
-        <!-- Package TEST
-        <para>The <package>YaST2</package> package should be installed...</para>
-        -->
+        <!-- Package TEST -->
+        <para xml:id="package">The <package>YaST2</package> package should be installed...</para>
 
         <!-- See TEST (Used to link to another Index term)
         <indexterm>
