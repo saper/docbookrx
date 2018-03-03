@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 18, simparas.size
+        assert_equal 19, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -497,6 +497,15 @@ class SuseXmlTest < MiniTest::Spec
       end
       it "refers to '09/16/1978'" do
         assert_equal '09/16/1978', date.text
+      end
+    end
+    describe "chapter one constant" do
+      constant = xml.at_xpath("/book/part/chapter/section/simpara[@id='constant']/constant")
+      it "exists" do
+        assert constant
+      end
+      it "refers to '$PATH'" do
+        assert_equal '$PATH', constant.text
       end
     end
     #

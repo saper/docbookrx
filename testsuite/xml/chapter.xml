@@ -271,11 +271,10 @@
             
         <para xml:id="date"><date>09/16/1978</date></para>
 
-        <!-- Constant TEST 
-        <para>To check your current <constant>$PATH</constant> from the CLI execute the following
+        <!-- Constant TEST -->
+        <para xml:id="constant">To check your current <constant>$PATH</constant> from the CLI execute the following
             command: <screen>$ echo $PATH</screen>
         </para>
-        -->
 
         <!-- Emphasis TEST 
         <para>
