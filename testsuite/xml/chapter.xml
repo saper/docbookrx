@@ -352,14 +352,13 @@
         <!-- Package TEST -->
         <para xml:id="package">The <package>YaST2</package> package should be installed...</para>
 
-        <!-- See TEST (Used to link to another Index term)
+        <!-- See TEST (Used to link to another Index term) -->
         <indexterm>
             <primary>Extensible markup Language</primary>
             <see>XML</see>
         </indexterm>
         <indexterm><primary> XML is a markup language much like HTML. XML was designed to store and
                 transport data.</primary></indexterm>
-         -->
 
         <!-- Table TEST  
         <table xml:id="ex.calstable" frame="all">

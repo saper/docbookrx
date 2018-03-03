@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 25, simparas.size
+        assert_equal 27, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -601,6 +601,15 @@ class SuseXmlTest < MiniTest::Spec
       it "refers to YaST2" do
         assert package
         assert_equal 'YaST2', package.text
+      end
+    end
+    describe "chapter one indexterm" do
+      indexterms = xml.xpath("/book/part/chapter/section/simpara/indexterm")
+      it "has primary" do
+        assert_equal 2, indexterms.size
+        indexterms.each do |indexterm|
+          assert indexterm.at_xpath("primary")
+        end
       end
     end
     #
