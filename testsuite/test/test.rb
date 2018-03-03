@@ -402,6 +402,12 @@ class SuseXmlTest < MiniTest::Spec
         assert filename
       end
     end
+    describe "chapter one literal" do
+      literal = xml.xpath("/book/part/chapter/section/simpara/literal[@id='literal']")
+      it "exists" do
+        assert literal
+      end
+    end
     #
     # chapter two
     #

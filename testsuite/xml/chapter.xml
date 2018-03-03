@@ -190,7 +190,7 @@
         <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
 
         <!-- Literal TEST -->
-        <para> This is a <literal>Literal</literal> string.</para>
+        <para xml:id="literal"> This is a <literal>Literal</literal> string.</para>
 
         <!-- Link TEST 
         <para>See <link linkend="nextsect">this</link> to find more information on hot dogs and New
