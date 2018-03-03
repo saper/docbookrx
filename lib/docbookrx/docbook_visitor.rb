@@ -286,6 +286,7 @@ class DocbookVisitor
   def append_block_role node
     if (id = node.attribute_with_ns('id', XmlNs))
       append_line %([[#{id}]])
+      append_blank_line
     end
     if (role = node.attr('role'))
       append_line %([.#{role}])
