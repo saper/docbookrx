@@ -314,4 +314,51 @@ EOS
     expect(output).to eq(expected)
 
   end
+  it 'should convert quandaset without qandadiv elements to Q and A list' do
+    input = <<-EOS
+<article>
+  <qandaset>
+      <title>Various Questions</title>
+      <qandaentry xml:id="some-question">
+        <question>
+          <para>My question?</para>
+        </question>
+        <answer>
+          <para>My answer!</para>
+        </answer>
+      </qandaentry>
+      <qandaentry>
+        <question>
+          <para>Another question?</para>
+        </question>
+        <answer>
+          <para>Another answer!</para>
+        </answer>
+      </qandaentry>
+  </qandaset>
+  <para>A paragraph</para>
+</article>
+    EOS
+
+    expected = <<-EOS.rstrip
+.Various Questions
+
+[qanda]
+[[_some_question]]
+My question?::
+
+My answer!
+
+Another question?::
+
+Another answer!
+
+
+A paragraph
+    EOS
+
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'
