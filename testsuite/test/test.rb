@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 22, simparas.size
+        assert_equal 23, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -574,10 +574,16 @@ class SuseXmlTest < MiniTest::Spec
     end
     describe "chapter one replaceables" do
       it "has two replacables" do
-        anchor = xml.at_xpath("/book/part/chapter/section/simpara/anchor[@id='replaceable']")
-        replaceables = anchor.parent.xpath("replaceable")
+        replaceables = xml.xpath("/book/part/chapter/section/simpara[@id='replaceable']/replaceable")
         assert replaceables
         assert_equal 2, replaceables.size
+      end
+    end
+    describe "chapter one systemitem" do
+      it "exists as a literal path" do
+        literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='systemitem']/literal")
+        assert literal
+        assert_equal 'path', literal.attribute("role").value
       end
     end
     #

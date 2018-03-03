@@ -323,8 +323,8 @@
         </simplelist>
         </para>
 
-        <!-- Systemitem TEST
-        <para><systemitem class="etheraddress">00:05:4E:49:FD:8E</systemitem></para>
+        <!-- Systemitem TEST -->
+        <para xml:id="systemitem"><systemitem class="etheraddress">00:05:4E:49:FD:8E</systemitem></para>
         <remark>class Identifies the nature of the system item Enumerated values: “daemon” A daemon
             or other system process (syslogd) “domainname” A domain name (example.com)
             “etheraddress” An ethernet address (00:05:4E:49:FD:8E) “event” An event of some sort
@@ -336,7 +336,6 @@
             (gnome-cups-icon) “protocol” A protocol (ftp) “resource” A resource “server” A server
             (mail.example.com) “service” A service (ppp) “systemname” A system name (hephaistos)
             “username” A user name (ndw)</remark>
-            -->
 
         <!-- Replaceable TEST -->
         <para xml:id="replaceable">Exchange the <replaceable class="command">ls</replaceable> command with <replaceable
