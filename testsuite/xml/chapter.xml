@@ -260,9 +260,8 @@
             “emailmessage” “gopher” “journal” “manuscript” “newsposting” “part” “refentry” “section”
             “series” “set” “webpage” “wiki”</remark>
 
-        <!-- Email TEST
-        <para><email>example@example.com</email></para>
-         -->
+        <!-- Email TEST -->
+        <para xml:id="email"><email>example@example.com</email></para>
 
         <!-- Command TEST 
         <para>The <command>ls -a</command> command is used to list all information about

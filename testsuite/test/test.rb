@@ -223,7 +223,7 @@ class SuseXmlTest < MiniTest::Spec
       simparalast = simparas[-1]
       it "has many simparas" do
         assert simparas
-        assert_equal 15, simparas.size
+        assert_equal 16, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -477,6 +477,17 @@ class SuseXmlTest < MiniTest::Spec
       ref = xml.at_xpath("/book/part/chapter/section/simpara/emphasis/phrase[@role='ref']")
       it "exists" do
         assert ref
+      end
+    end
+    describe "chapter one email" do
+      # <simpara xml:id="email"><email>example@example.com</email></simpara>
+      simpara = xml.at_xpath("/book/part/chapter/section/simpara[@id='email']")
+      email = simpara.at_xpath("email")
+      it "exists" do
+        assert email
+      end
+      it "refers to example@example.com" do
+        assert_equal 'example@example.com', email.text
       end
     end
     #
