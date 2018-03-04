@@ -868,7 +868,6 @@ class DocbookVisitor
       if ( child.name.eql? "text" ) && child.text.rstrip.empty?
         next
       end
-    
       local_continuation = false
       unless i == 0 || first_line || (child.name == 'literallayout' || (LIST_NAMES.include? child.name) )
         append_line '+'
@@ -887,12 +886,11 @@ class DocbookVisitor
         if item_text.empty? && text.empty?
           next
         end
-    
         item_text.split(EOL).each do |line|
           line = line.gsub IndentationRx, ''
           if line.length > 0
             if first_line
-              append_text line
+              (line == "----") ? (append_line line) : (append_text line)
               first_line = false
             else
               append_line line
