@@ -612,6 +612,36 @@ class SuseXmlTest < MiniTest::Spec
         end
       end
     end
+    describe "chapter one table" do
+      table = xml.xpath("/book/part/chapter/section/table")
+      it "has the correct title" do
+        title = table.at_css "> title"
+        assert_equal 'Sample CALS Table', title.text
+      end
+      it "has four entries in the header row" do
+        entries = table.css "> tgroup > thead > row > entry"
+        assert_equal 4, entries.size
+      end
+      it "has five entries in the footer row" do
+        entries = table.css "> tgroup > tfoot > row > entry"
+        assert_equal 5, entries.size
+      end
+      it "has a header row with a horizontal span" do
+        entry = table.at_css "> tgroup > thead > row > entry"
+        assert entry
+        assert_equal 'col_1', entry.attribute("namest").value
+        assert_equal 'col_2', entry.attribute("nameend").value
+        assert_equal 'Horizontal Span a1', entry.text
+      end
+      it "has a body row with a vertical span" do
+        entry = table.at_xpath "tgroup/tbody/row/entry[@morerows='1']"
+        assert entry
+      end
+      it "has a body row with a vertical and a horizontal span" do
+        entry = table.at_xpath "tgroup/tbody/row/entry[@namest='col_2'][@nameend='col_3'][@morerows='1']"
+        assert entry
+      end
+    end
     #
     # chapter two
     #

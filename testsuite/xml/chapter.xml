@@ -360,7 +360,7 @@
         <indexterm><primary> XML is a markup language much like HTML. XML was designed to store and
                 transport data.</primary></indexterm>
 
-        <!-- Table TEST  
+        <!-- Table TEST -->
         <table xml:id="ex.calstable" frame="all">
             <title>Sample CALS Table</title>
             <tgroup cols="5" align="left" colsep="1" rowsep="1">
@@ -409,7 +409,6 @@
                 </tbody>
             </tgroup>
         </table>
-        -->
 
         <!-- Informaltable TEST (No TITLE)
         <informaltable>
