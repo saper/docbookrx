@@ -340,4 +340,35 @@ EOS
 
     expect(output).to include(expected)
   end
+  it 'should properly close <screen>' do
+    input = <<-EOS
+  <variablelist>
+  <varlistentry>
+  <term>&sls; Clients (using <package>zypp-plugin-spacewalk</package>) &mdash; <filename>/etc/zypp/zypp.conf</filename>:</term>
+  <listitem>
+  <screen>## Valid values:  [0,3600]
+## Default value: 180
+download.transfer_timeout = 180</screen>
+       <para>
+          foo
+       </para>
+  </listitem>
+  </varlistentry>
+  </variablelist>
+EOS
+    expected = "
+Clients (using [package]#zypp-plugin-spacewalk# ) [path]``/etc/zypp/zypp.conf`` :::
++
+
+----
+## Valid values:  [0,3600]
+## Default value: 180
+download.transfer_timeout = 180
+----
+foo"
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
 end # 'SUSE Conversion'
