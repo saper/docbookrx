@@ -1228,6 +1228,39 @@ class DocbookVisitor
     return 1
   end
 
+  # compute prefix for row entry
+  # combinings spans and alignments
+  def cell_prefix colspecs, cell
+    align = cell.attribute("align").value rescue nil
+    as = case align
+           when "left"
+             "<"
+           when "center"
+             "^"
+           when "right"
+             ">"
+           else
+             ""
+         end
+    valign = cell.attribute("valign").value rescue nil
+    vas = case valign
+            when "top"
+              ".<"
+            when "middle"
+              ".^"
+            when "bottom"
+              ".>"
+            else
+              ""
+            end
+    vspan = entry_vspan(cell)
+    vs = vspan ? ".#{vspan+1}" : ""
+    hspan = compute_hspan(colspecs, cell)
+    hs = (hspan > 1) ? "#{hspan}" : ""
+    span = (hs.empty? && vs.empty?) ? "" : "#{hs}#{vs}+"
+    "#{span}#{as}#{vas}"
+  end
+
   def process_table node
     tgroup = node.at_css '> tgroup'
     numcols = tgroup.attr('cols').to_i
@@ -1280,9 +1313,8 @@ class DocbookVisitor
     append_line '|==='
     if head_row
       (head_row.css '> entry').each do |cell|
-        span = compute_hspan(colspecs, cell)
-        xspan = (span > 1) ? "#{span}+" : ""
-        append_line %(#{xspan}| #{text cell})
+        pf = cell_prefix colspecs, cell
+        append_line %(#{pf}| #{text cell})
       end
       append_blank_line
     end
@@ -1290,16 +1322,12 @@ class DocbookVisitor
       append_ifdef_start_if_condition(row)
       append_blank_line
       row.elements.each do |cell|
-        vspan = entry_vspan(cell)
-        vs = vspan ? ".#{vspan+1}" : ""
-        hspan = compute_hspan(colspecs, cell)
-        hs = (hspan > 1) ? "#{hspan}" : ""
-        span = (hs.empty? && vs.empty?) ? "" : "#{hs}#{vs}+"
+        pf = cell_prefix colspecs, cell
         case cell.name
         when 'literallayout'
-          append_line "#{span}|#{text cell}"
+          append_line "#{pf}|#{text cell}"
         else
-          append_line "#{span}|"
+          append_line "#{pf}|"
           proceed cell
         end
       end
@@ -1307,8 +1335,8 @@ class DocbookVisitor
     end
     if foot
       (foot.css '> row > entry').each do |cell|
-        # FIXME needs inline formatting like body
-        append_line %(| #{text cell})
+        pf = cell_prefix colspecs, cell
+        append_line %(#{pf}| #{text cell})
       end
     end
     append_line '|==='
