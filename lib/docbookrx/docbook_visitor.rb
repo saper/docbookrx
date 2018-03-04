@@ -1192,8 +1192,9 @@ class DocbookVisitor
     false
   end
 
+  # check for horizontal span of entry
   # return [namest,nameend] of entry
-  def entry_span node
+  def entry_hspan node
     namest = node.attribute('namest').value rescue nil
     nameend = node.attribute('nameend').value rescue nil
     [namest, nameend]
@@ -1207,7 +1208,7 @@ class DocbookVisitor
   end
 
   def compute_span colspecs, entry
-    nstart, nend = entry_span entry
+    nstart, nend = entry_hspan entry
     if nstart && nend
       # if there's a span given, compute the index difference
       sindex = find_colname_index colspecs, nstart
@@ -1234,7 +1235,7 @@ class DocbookVisitor
     if colspecs && (colspecs.size != numcols)
       warn %(#{numcols} columns specified in table#{title}, but only #{colspecs.size} colspecs)
     end
-    if (head_row = (head.at_css '> row'))
+    if (head_row = (tgroup.at_css '> thead > row'))
       numheaders = 0
       head_row.css('> entry').each do |entry|
         numheaders += compute_span colspecs, entry
@@ -1244,7 +1245,7 @@ class DocbookVisitor
       end
     end
     cols = ('1' * numcols).split('')
-    body = node.at_css '> tgroup > tbody'
+    body = tgroup.at_css '> tbody'
     unless body.nil?
       row1 = body.at_css '> row'
       row1_cells = row1.elements
