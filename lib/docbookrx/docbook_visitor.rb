@@ -1200,6 +1200,11 @@ class DocbookVisitor
     [namest, nameend]
   end
 
+  # check for vertical span of entry
+  def entry_vspan node
+    node.attribute("morerows").value.to_i rescue nil
+  end
+
   def find_colname_index colspecs, name
     colspecs.find_index do |colspec|
       v = colspec.attribute('colname').value rescue nil
@@ -1285,11 +1290,13 @@ class DocbookVisitor
       append_ifdef_start_if_condition(row)
       append_blank_line
       row.elements.each do |cell|
+        vspan = entry_vspan(cell)
+        vs = vspan ? ".#{vspan+1}+" : ""
         case cell.name
         when 'literallayout'
-          append_line %(|`#{text cell}`)
+          append_line "#{vs}|#{text cell}"
         else
-          append_line '|'
+          append_line "#{vs}|"
           proceed cell
         end
       end
