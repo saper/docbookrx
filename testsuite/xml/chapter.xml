@@ -462,7 +462,8 @@
             </tgroup>
         </informaltable>
 
-        <!-- Procedure + Stepalternatives and Substeps
+        <!-- Procedure + Stepalternatives and Substeps -->
+        <para xml:id="procedure_alternatives">
         <procedure>
             <step>
                 <para> Create a custom X.509 key and certificate used for signing: </para>
@@ -494,11 +495,10 @@
                 </stepalternatives>
             </step>
         </procedure>
-        -->
+        </para>
 
-        <!-- URI TEST
-        <para><uri> http://docbook.org/ns/docbook</uri></para>
-         -->
+        <!-- URI TEST -->
+        <para xml:id="uri"><uri>http://docbook.org/ns/docbook</uri></para>
 
         <!-- Varname TEST 
         <para>In Perl, <varname>@ARGV</varname> contains the command line parameters used when the

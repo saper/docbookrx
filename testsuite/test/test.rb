@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 27, simparas.size
+        assert_equal 28, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -651,6 +651,32 @@ class SuseXmlTest < MiniTest::Spec
           entries = row.css "> entry"
           assert_equal 4, entries.size
         end
+      end
+    end
+    describe "chapter one procedure" do
+      procedure = xml.xpath("/book/part/chapter/section/orderedlist[@id='procedure_alternatives']")
+      items = procedure.xpath("listitem")
+      sublist = procedure.xpath("listitem/orderedlist[@numeration='loweralpha']")
+      it "exist" do
+        assert procedure
+      end
+      it "has two items" do
+        assert_equal 2, items.size
+      end
+      it "has a sub-list" do
+        assert sublist
+        items = sublist.xpath("listitem")
+        assert_equal 2, items.size
+      end
+    end
+    describe "chapter one uri" do
+      uri = xml.at_xpath("/book/part/chapter/section/simpara[@id='uri']/link")
+      it "exists" do
+        assert uri
+      end
+      it "links to docbook" do
+        assert_equal 'http://docbook.org/ns/docbook', uri.text
+        assert_equal 'http://docbook.org/ns/docbook', uri.attribute("href").value
       end
     end
     #
