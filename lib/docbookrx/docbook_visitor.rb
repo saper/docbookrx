@@ -1212,7 +1212,7 @@ class DocbookVisitor
     end
   end
 
-  def compute_span colspecs, entry
+  def compute_hspan colspecs, entry
     nstart, nend = entry_hspan entry
     if nstart && nend
       # if there's a span given, compute the index difference
@@ -1243,7 +1243,7 @@ class DocbookVisitor
     if (head_row = (tgroup.at_css '> thead > row'))
       numheaders = 0
       head_row.css('> entry').each do |entry|
-        numheaders += compute_span colspecs, entry
+        numheaders += compute_hspan colspecs, entry
       end
       if numheaders != numcols
         warn %(#{numcols} columns specified in table#{title}, but only #{numheaders} headers)
@@ -1280,7 +1280,7 @@ class DocbookVisitor
     append_line '|==='
     if head_row
       (head_row.css '> entry').each do |cell|
-        span = compute_span(colspecs, cell)
+        span = compute_hspan(colspecs, cell)
         xspan = (span > 1) ? "#{span}+" : ""
         append_line %(#{xspan}| #{text cell})
       end
@@ -1291,12 +1291,15 @@ class DocbookVisitor
       append_blank_line
       row.elements.each do |cell|
         vspan = entry_vspan(cell)
-        vs = vspan ? ".#{vspan+1}+" : ""
+        vs = vspan ? ".#{vspan+1}" : ""
+        hspan = compute_hspan(colspecs, cell)
+        hs = (hspan > 1) ? "#{hspan}" : ""
+        span = (hs.empty? && vs.empty?) ? "" : "#{hs}#{vs}+"
         case cell.name
         when 'literallayout'
-          append_line "#{vs}|#{text cell}"
+          append_line "#{span}|#{text cell}"
         else
-          append_line "#{vs}|"
+          append_line "#{span}|"
           proceed cell
         end
       end
