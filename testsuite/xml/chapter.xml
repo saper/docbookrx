@@ -410,7 +410,7 @@
             </tgroup>
         </table>
 
-        <!-- Informaltable TEST (No TITLE)
+        <!-- Informaltable TEST (No TITLE) -->
         <informaltable>
             <tgroup cols="4">
                 <tbody>
@@ -461,7 +461,6 @@
                 </tbody>
             </tgroup>
         </informaltable>
-         -->
 
         <!-- Procedure + Stepalternatives and Substeps
         <procedure>

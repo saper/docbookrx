@@ -642,6 +642,17 @@ class SuseXmlTest < MiniTest::Spec
         assert entry
       end
     end
+    describe "chapter one informaltable" do
+      table = xml.xpath("/book/part/chapter/section/informaltable")
+      it "has two rows of four entries each" do
+        rows = table.css "> tgroup > tbody > row"
+        assert_equal 2, rows.size
+        rows.each do |row|
+          entries = row.css "> entry"
+          assert_equal 4, entries.size
+        end
+      end
+    end
     #
     # chapter two
     #
