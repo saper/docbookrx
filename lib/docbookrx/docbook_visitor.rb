@@ -1237,7 +1237,7 @@ class DocbookVisitor
       ((title_node = (node.at_css '> title')).nil? ?
         "" : title_node.children[0].text) +
       "\'"
-    if colspecs && (colspecs.size != numcols)
+    unless colspecs.empty? || (colspecs.size == numcols)
       warn %(#{numcols} columns specified in table#{title}, but only #{colspecs.size} colspecs)
     end
     if (head_row = (tgroup.at_css '> thead > row'))
