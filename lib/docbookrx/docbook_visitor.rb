@@ -1070,8 +1070,20 @@ class DocbookVisitor
           @outstanding_callouts[id.value] = ref
         end
         append_text " <#{ref}>"
+      when 'replaceable'
+        append_text %(`#{child.text}`)
+      when 'comment'
+          # skipe
+      when '#cdata-section'
+      when 'prompt'
+        append_text child.text
+      when 'command'
+        append_text %(``#{child.text}``)
       else
-        warn %(Can only handle 'text' and 'co' within <screen>, but not #{child.name})
+        warn %(Cannot handle #{child.name} within <screen>)
+        child.ancestors.each do |parent|
+          warn %(  from #{parent.name})
+        end
       end
     end
     append_line finalize
