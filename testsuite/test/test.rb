@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 29, simparas.size
+        assert_equal 30, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -543,18 +543,19 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one menuchoice" do
-      # <example xml:id="_ex.dssslfunction">
-      #<title>A DSSSL Function</title>
-      #<screen>
       menuchoice = xml.at_xpath("/book/part/chapter/section/simpara[@id='menuchoice']/menuchoice")
+      guimenu = menuchoice.at_xpath("guimenu")
+      guimenuitem = menuchoice.at_xpath("guimenuitem")
       it "exists" do
         assert menuchoice
       end
-      it "has a guimenu" do
-        assert menuchoice.at_xpath("guimenu")
+      it "has guimenu" do
+        assert guimenu
+        assert_equal 'System', guimenu.text
       end
       it "has a guimenuitem" do
-        assert menuchoice.at_xpath("guimenuitem")
+        assert guimenuitem
+        assert_equal 'Salt Systems', guimenuitem.text
       end
     end
     describe "chapter one parameter" do
@@ -684,6 +685,19 @@ class SuseXmlTest < MiniTest::Spec
       it "contains @ARGV" do
         assert varname
         assert_equal '@ARGV', varname.text
+      end
+    end
+    describe "chapter one guimenu" do
+      simpara = xml.xpath("/book/part/chapter/section/simpara[@id='guimenu']")
+      guimenu = simpara.xpath("guimenu")
+      it "doesn't leak asciidoc" do
+        refute simpara.text.include? "menu:"
+      end
+      it "includes a menuchoice with a guimenu and a guimenuitem" do
+        assert guimenu
+        assert_equal 2, guimenu.size
+        assert_equal 'File', guimenu[0].text
+        assert_equal 'New Virtual Machine', guimenu[1].text
       end
     end
     #
