@@ -163,8 +163,11 @@
         </orderedlist>
 
         <!-- Keycap TEST -->
-        <para> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the upper left
+        <para xml:id="keycap"> The <keycap>F1</keycap> key on an IBM PC keyboard is located in the upper left
             quadrant. </para>
+
+        <!-- Keycap Function TEST -->
+        <para xml:id="keycap_function">Using <keycap function="control"/>-click or using <keycap function="shift"/>-click is two different actions.</para>
 
         <!-- Keycombo TEST -->
         <para><keycombo>
