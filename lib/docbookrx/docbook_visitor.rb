@@ -1618,7 +1618,20 @@ class DocbookVisitor
     when 'guilabel'
       append_text %([label]##{node.text}#)
     when 'keycap'
-      append_text %(kbd:[#{node.text}])
+      function = node.attribute("function").value rescue nil
+      case function
+      when 'control'
+        append_text %(kbd:[Ctrl])
+      when 'shift'
+        append_text %(kbd:[Shift])
+      when nil
+        # skip
+      else
+        warn "Unhandled <keycap> function #{function}"
+      end
+      unless (t = node.text).empty?
+        append_text %(kbd:[#{t}])
+      end
     when 'mousebutton'
       append_text %(mouse:[#{node.text}])
     end
