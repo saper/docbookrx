@@ -1624,10 +1624,12 @@ class DocbookVisitor
         append_text %(kbd:[Ctrl])
       when 'shift'
         append_text %(kbd:[Shift])
+      when 'alt'
+        append_text %(kbd:[Alt])
       when nil
         # skip
       else
-        warn "Unhandled <keycap> function #{function}"
+        warn "Unhandled <keycap> function #{function.inspect}"
       end
       unless (t = node.text).empty?
         append_text %(kbd:[#{t}])

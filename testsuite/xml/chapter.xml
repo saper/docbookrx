@@ -167,7 +167,9 @@
             quadrant. </para>
 
         <!-- Keycap Function TEST -->
-        <para xml:id="keycap_function">Using <keycap function="control"/>-click or using <keycap function="shift"/>-click is two different actions.</para>
+        <para xml:id="keycap_function">Using <keycap
+function="control"/>-click, or using <keycap function="shift"/>-click
+, or using <keycap function="alt"/>-click is three different actions.</para>
 
         <!-- Keycombo TEST -->
         <para><keycombo>

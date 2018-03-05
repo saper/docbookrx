@@ -368,11 +368,12 @@ class SuseXmlTest < MiniTest::Spec
     end
     describe "chapter one keycap function" do
       keycap = xml.xpath("/book/part/chapter/section/simpara[@id='keycap_function']/keycap")
-      it "covers control and shift" do
+      it "covers control, shift, and alt" do
         assert keycap
-        assert_equal 2, keycap.size
+        assert_equal 3, keycap.size
         assert_equal 'Ctrl', keycap[0].text
         assert_equal 'Shift', keycap[1].text
+        assert_equal 'Alt', keycap[2].text
       end
     end
     describe "chapter one keycombos" do
