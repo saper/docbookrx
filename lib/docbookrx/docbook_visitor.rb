@@ -349,7 +349,7 @@ class DocbookVisitor
       @last_added_was_special = false
       case method_name
       when "visit_para", "visit_text", "visit_simpara", 
-           "visit_emphasis", "visit_link"
+           "visit_emphasis", "visit_link", "visit_xref"
       else
         unless ( FORMATTING_NAMES.include? node.name ) || ( ["uri", "ulink"].include? node.name )
           @last_added_was_special = true
