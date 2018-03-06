@@ -4,6 +4,7 @@
 /pkg/
 /samples/
 /tmp/
+/vendor/
 *~
 spec/lib/docbookrx/suse_book.adoc
 testsuite/asciidoctor
