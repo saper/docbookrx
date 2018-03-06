@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a9ab96c2-4baa-43ff-9d78-a59316bf5e66" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/docbookrx/docbook_visitor.rb" afterPath="$PROJECT_DIR$/lib/docbookrx/docbook_visitor.rb" />
-    </list>
+    <list default="true" id="a9ab96c2-4baa-43ff-9d78-a59316bf5e66" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +14,8 @@
       <file leaf-file-name="docbook_visitor.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/docbookrx/docbook_visitor.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="514" column="37" lean-forward="true" selection-start-line="514" selection-start-column="37" selection-end-line="514" selection-end-column="37" />
+            <state relative-caret-position="432">
+              <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,12 +127,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1520352660897</updated>
-      <workItem from="1520352662010" duration="391000" />
+      <workItem from="1520352662010" duration="981000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="391000" />
+    <option name="totallyTimeSpent" value="981000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="27" width="1920" height="1173" extended-state="6" />
@@ -181,8 +179,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/docbookrx/docbook_visitor.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="514" column="37" lean-forward="true" selection-start-line="514" selection-start-column="37" selection-end-line="514" selection-end-column="37" />
+        <state relative-caret-position="432">
+          <caret line="24" column="0" lean-forward="true" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
       </provider>
