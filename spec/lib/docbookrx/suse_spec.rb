@@ -370,5 +370,21 @@ foo"
 
     expect(output).to include(expected)
   end
+  it "should parse embedded tags in screen" do
+    input = <<-EOS
+<screen><prompt># </prompt><command>cat <replaceable>MODIFIED-SCRIPT.SH</replaceable> \
+  | ssh root@example.com /bin/bash</command>
+</screen>
+EOS
+    expected = <<-EOS.rstrip
 
+----
+#``cat MODIFIED-SCRIPT.SH   | ssh root@example.com /bin/bash``
+
+----
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'

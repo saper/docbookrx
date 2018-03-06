@@ -1039,27 +1039,34 @@ class DocbookVisitor
     false
   end
 
-  def visit_screen node
-    append_blank_line unless node.parent.name == 'para'
-    first_text = true
-    finalize = ""
+  # process any test inside <screen>
+  # check if any child has '----' in text, switch tag to '....' in this case
+  # return enclosing tag
+  def choose_screen_tag node
+    tag = '----'
     node.children.each do |child|
+      text = child.text.strip
+      next if text.empty?
+      source_lines = text.split EOL
+      if source_lines.detect {|line| line.match(/^-{4,}/) }
+        append_line '[listing]'
+        tag = '....'
+        break
+      end
+    end
+    append_line tag
+    tag
+  end
+
+  def visit_screen node
+    return false if node.children.empty?
+    append_blank_line unless node.parent.name == 'para'
+    tag = choose_screen_tag node.children
+    node.children.each do |child|
+      text = child.text.strip
       case child.name
-      when 'text'
-        text = child.text.strip
-        source_lines = text.split EOL
-        if first_text
-          if source_lines.detect {|line| line.match(/^-{4,}/) }
-            append_line '[listing]'
-            append_line '....'
-            finalize = '....'
-          else
-            append_line '----'
-            finalize = '----'
-          end
-        end
+      when 'text', '#cdata-section', 'prompt'
         append_line text
-        first_text = false
       when 'co' # embedded callout reference
         id = child.attribute_with_ns('id', XmlNs) || child.attribute('id')
         ref = @outstanding_callouts[id.value]
@@ -1069,14 +1076,11 @@ class DocbookVisitor
         end
         append_text " <#{ref}>"
       when 'replaceable'
-        append_text %(`#{child.text}`)
+        append_text %(`#{text}`)
       when 'comment'
-          # skipe
-      when '#cdata-section'
-      when 'prompt'
-        append_text child.text
+          # skip
       when 'command'
-        append_text %(``#{child.text}``)
+        append_text %(``#{text}``)
       else
         warn %(Cannot handle #{child.name} within <screen>)
         child.ancestors.each do |parent|
@@ -1084,7 +1088,7 @@ class DocbookVisitor
         end
       end
     end
-    append_line finalize
+    append_line tag
     false
   end
 
