@@ -725,7 +725,11 @@ class DocbookVisitor
   def visit_listitem node
     marker = (node.parent.name == 'orderedlist' || node.parent.name == 'procedure' ? '.' * @list_depth : 
       (node.parent.name == 'stepalternatives' ? 'a.' : '*' * @list_depth))
-    append_text marker
+    if @lines[-1].empty?
+      append_text marker
+    else
+      append_line marker
+    end
 
     first_line = true
     unless node.elements.empty?

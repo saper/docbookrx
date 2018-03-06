@@ -387,4 +387,44 @@ EOS
 
     expect(output).to include(expected)
   end
+  
+  it "should parse procedure content" do
+    input = <<-EOS
+    <procedure xml:id="at.manager.proxy.install.prep">
+     <title>Registering the Proxy</title>
+
+   <important>
+    <para>
+     First completly download the channels (&sle; 12 SP3) and then create the
+     activation key. Only then you can select the correct child channels.
+    </para>
+   </important>
+   
+   <step>
+    <para>
+     Create an activation key based on the &sle; 12 SP3 base channel. For more
+     information about activation keys, see
+     <xref
+        linkend="create.act.keys"/>.
+    </para>
+  </step>
+  </procedure>
+EOS
+    expected = <<-EOS.rstrip
+
+.Procedure: Registering the Proxy
+
+
+[IMPORTANT]
+====
+First completly download the channels ( 12 SP3) and then create the activation key.
+Only then you can select the correct child channels. 
+====
+. Create an activation key based on the  12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>> . 
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
 end # 'SUSE Conversion'
