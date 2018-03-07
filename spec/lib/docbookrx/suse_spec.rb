@@ -353,7 +353,7 @@ download.transfer_timeout = 180</screen>
   </variablelist>
 EOS
     expected = "
-Clients (using [package]#zypp-plugin-spacewalk# ) [path]``/etc/zypp/zypp.conf`` :::
+Clients (using [package]#zypp-plugin-spacewalk# ) - [path]``/etc/zypp/zypp.conf`` :::
 +
 
 ----
@@ -413,10 +413,10 @@ EOS
 
 [IMPORTANT]
 ====
-First completly download the channels ( 12 SP3) and then create the activation key.
+First completly download the channels (SLE 12 SP3) and then create the activation key.
 Only then you can select the correct child channels. 
 ====
-. Create an activation key based on the  12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>> . 
+. Create an activation key based on the SLE 12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>>. 
 EOS
     output = Docbookrx.convert input
 
