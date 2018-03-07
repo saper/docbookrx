@@ -262,7 +262,7 @@ EOS
 :experimental:
 :sourcedir: .
 
-[[id]]
+[[_id]]
 
 
 foo

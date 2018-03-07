@@ -284,10 +284,7 @@ class DocbookVisitor
   end
 
   def append_block_role node
-    if (id = node.attribute_with_ns('id', XmlNs))
-      append_line %([[#{id}]])
-      append_blank_line
-    end
+    process_xml_id node
     if (role = node.attr('role'))
       append_line %([.#{role}])
       #@adjoin_next = true
@@ -434,7 +431,15 @@ class DocbookVisitor
     visit_chapter node, :part
   end
 
+  def process_xml_id node
+    if (id = node.attribute_with_ns('id', XmlNs))
+      append_line %([[_#{id}]])
+      append_blank_line
+    end
+  end
+
   def process_doc node
+    process_xml_id node
     # In DocBook 5.0, title is directly inside book/article element
     if (title = text_at_css node, '> title')
       append_line %(= #{title})
