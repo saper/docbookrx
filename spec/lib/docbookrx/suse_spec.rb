@@ -475,4 +475,17 @@ EOS
 
     expect(output).to include(expected)
   end
+
+  # DON'T DROP - copy & paste new tests from here
+  it "should provide a template" do
+    input = <<-EOS
+<para>template</para>
+EOS
+    expected = <<-EOS.rstrip
+template
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'
