@@ -339,7 +339,7 @@ EOS
     input = <<-EOS
   <variablelist>
   <varlistentry>
-  <term>&sls; Clients (using <package>zypp-plugin-spacewalk</package>) &mdash; <filename>/etc/zypp/zypp.conf</filename>:</term>
+  <term>Clients (using <package>zypp-plugin-spacewalk</package>) - <filename>/etc/zypp/zypp.conf</filename>:</term>
   <listitem>
   <screen>## Valid values:  [0,3600]
 ## Default value: 180
@@ -347,6 +347,7 @@ download.transfer_timeout = 180</screen>
        <para>
           foo
        </para>
+  </screen>
   </listitem>
   </varlistentry>
   </variablelist>
@@ -390,14 +391,14 @@ EOS
 
    <important>
     <para>
-     First completly download the channels (&sle; 12 SP3) and then create the
+     First completly download the channels (SLE 12 SP3) and then create the
      activation key. Only then you can select the correct child channels.
     </para>
    </important>
    
    <step>
     <para>
-     Create an activation key based on the &sle; 12 SP3 base channel. For more
+     Create an activation key based on the SLE 12 SP3 base channel. For more
      information about activation keys, see
      <xref
         linkend="create.act.keys"/>.
