@@ -510,7 +510,7 @@ class DocbookVisitor
     include_infile = File.join(@cwd, href)
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
-      doc = Docbookrx.read_xml(::File.read include_infile)
+      doc = Docbookrx.read_xml(::File.read include_infile, {infile: include_infile})
       visitor = self.class.new @opts
       doc.root.accept visitor
       result = visitor.lines

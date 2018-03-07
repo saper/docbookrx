@@ -2,13 +2,26 @@ require 'nokogiri'
 require_relative 'docbookrx/docbook_visitor'
 
 module Docbookrx
-  def self.read_xml(str)
-    ::Nokogiri::XML(str) do |config|
-      config.default_xml.dtdload
+  def self.root
+    nil
+  end
+  def self.read_xml(str, opts = {})
+    begin
+      ::Nokogiri::XML.parse(str,nil,'ASCII-8BIT') do |config|
+        config.default_xml.dtdload
+      end
+    rescue Nokogiri::XML::SyntaxError => e
+      filename = opts[:infile]
+      if filename
+        STDERR.puts "Failed to parse #{filename}: #{e}"
+      else
+        STDERR.puts e
+      end
+      self
     end
   end
   def self.convert(str, opts = {})
-    xmldoc = self.read_xml(str)
+    xmldoc = self.read_xml(str, opts)
     raise 'Not a parseable document' unless (root = xmldoc.root)
     visitor = DocbookVisitor.new opts
     root.accept visitor
@@ -24,7 +37,7 @@ module Docbookrx
     end
 
     str = ::IO.read infile
-    output = convert str, opts
+    output = convert str, opts.merge({:infile => infile})
     ::IO.write outfile, output
     nil
   end
