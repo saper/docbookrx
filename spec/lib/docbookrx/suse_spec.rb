@@ -441,4 +441,38 @@ EOS
 
     expect(output).to include(expected)
   end
+  it "should list titles within procedure steps" do
+    input = <<-EOS
+<procedure>
+   <step>
+    <para>Enter a Github or Gitlab repositiory URL (http/https/token authentication) in the
+      <guimenu>Path</guimenu> field using one of the following formats: </para>
+    <itemizedlist>
+     <title>Github Path Options</title>
+     <para></para>
+     <listitem>
+      <para>Github Single User Project Repository:</para>
+      <screen>https://github.com/USER/project.git#branchname:folder</screen>
+     </listitem>
+    </itemizedlist>
+  </step>
+</procedure>
+EOS
+    expected = <<-EOS
+
+
+. Enter a Github or Gitlab repositiory URL (http/https/token authentication) in the menu:Path[] field using one of the following formats: 
+
+.Github Path Options
+** Github Single User Project Repository:
++
+
+----
+https://github.com/USER/project.git#branchname:folder
+----
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'
