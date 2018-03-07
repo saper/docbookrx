@@ -432,9 +432,8 @@ class DocbookVisitor
   end
 
   def process_xml_id node
-    if (id = node.attribute_with_ns('id', XmlNs))
-      append_line %([[_#{id}]])
-      append_blank_line
+    if (id = (resolve_id node, normalize: @normalize_ids))
+      append_line %([[#{id}]])
     end
   end
 
@@ -693,6 +692,7 @@ class DocbookVisitor
 
   def visit_procedure node
     append_blank_line
+    process_xml_id node
     append_block_title node, 'Procedure: '
     visit_orderedlist node
   end
@@ -728,6 +728,7 @@ class DocbookVisitor
 
   # FIXME this method needs cleanup, remove hardcoded logic!
   def visit_listitem node
+    process_xml_id node
     marker = (node.parent.name == 'orderedlist' || node.parent.name == 'procedure' ? '.' * @list_depth : 
       (node.parent.name == 'stepalternatives' ? 'a.' : '*' * @list_depth))
     if @lines[-1].empty?
@@ -855,7 +856,7 @@ class DocbookVisitor
     # FIXME adds an extra blank line before first item
     #append_blank_line unless (previous = node.previous_element) && previous.name == 'title'
     append_blank_line
-    
+    process_xml_id node
     text = format_text(node.at_css node, '> term')
     text.each do |text_line| 
       text_line.split(EOL).each_with_index do |line,i|
@@ -1205,6 +1206,7 @@ class DocbookVisitor
 
   def visit_table node
     append_blank_line
+    process_xml_id node
     append_block_title node
     process_table node
     false
@@ -1212,6 +1214,7 @@ class DocbookVisitor
 
   def visit_informaltable node
     append_blank_line
+    process_xml_id node
     process_table node
     false
   end
