@@ -510,10 +510,7 @@ class DocbookVisitor
     include_infile = File.join(@cwd, href)
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
-      #doc = ::Nokogiri::XML::Document.parse(::File.read include_infile)
-      doc = ::Nokogiri::XML(::File.read include_infile) do |cfg|
-        cfg.default_xml.dtdload.noent
-      end
+      doc = Docbookrx.read_xml(::File.read include_infile)
       visitor = self.class.new @opts
       doc.root.accept visitor
       result = visitor.lines
