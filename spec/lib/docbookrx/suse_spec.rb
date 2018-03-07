@@ -76,11 +76,6 @@ EOS
 
   end
 
-  it 'should convert an included file' do
-    dirname = File.dirname(__FILE__)
-    expect(File.read(File.join(dirname,"suse_book.expected"))).to eq(File.read(File.join(dirname,"suse_book.adoc")))
-  end
-
   it 'should accept a <keycombo> with <mousebutton> node' do
     input = <<-EOS
      <para>
