@@ -423,4 +423,22 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should listitem titles" do
+    input = <<-EOS
+    <itemizedlist>
+     <title>Github Path Options</title>
+     <listitem>
+      <para>Github Single User Project Repository:</para>
+     </listitem>
+    </itemizedlist>
+EOS
+    expected = <<-EOS.rstrip
+
+.Github Path Options
+* Github Single User Project Repository:
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
 end # 'SUSE Conversion'
