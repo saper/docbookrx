@@ -1066,6 +1066,7 @@ class DocbookVisitor
     return false if node.children.empty?
     append_blank_line unless node.parent.name == 'para'
     tag = choose_screen_tag node.children
+    first = node.children.first
     node.children.each do |child|
       text = child.text.strip
       case child.name
@@ -1080,11 +1081,11 @@ class DocbookVisitor
         end
         append_text " <#{ref}>"
       when 'replaceable'
-        append_text %(`#{text}`)
+        (child == first) ? append_line("`#{text}`") : append_text("`#{text}`")
       when 'comment'
           # skip
       when 'command'
-        append_text %(``#{text}``)
+        (child == first) ? append_line("``#{text}``") : append_text("``#{text}``")
       else
         warn %(Cannot handle #{child.name} within <screen>)
         child.ancestors.each do |parent|

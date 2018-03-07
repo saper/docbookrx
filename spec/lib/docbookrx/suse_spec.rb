@@ -476,6 +476,38 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should handle screen within a procedure step" do
+    input = <<-EOS
+<procedure>
+            <title>Performing a Hot Backup</title>
+            <step>
+                <para> If you want to create a backup for the first time, run: </para>
+                <screen><command>smdba</command> backup-hot --enable=on --backup-dir=/var/spacewalk/db-backup</screen>
+
+                <para> This command performs a restart of the postgresql database. If you want to
+                    renew the basic backup, use the same command. </para>
+            </step>
+</procedure>
+EOS
+    expected = <<-EOS.rstrip
+
+.Procedure: Performing a Hot Backup
+. If you want to create a backup for the first time, run: 
++
+
+----
+``smdba``
+backup-hot --enable=on --backup-dir=/var/spacewalk/db-backup
+----
++
+This command performs a restart of the postgresql database.
+If you want to renew the basic backup, use the same command.
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
