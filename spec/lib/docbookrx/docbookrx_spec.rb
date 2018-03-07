@@ -1100,7 +1100,7 @@ And sometimes it does not.
     expect(output).to include(expected)
   end
 
-  it 'adds an XML ID for figures' do
+  it 'adds an XML ID for figures as an inline ID' do
 
     input = <<-EOS
 <article xmlns='http://docbook.org/ns/docbook'
@@ -1122,8 +1122,7 @@ And sometimes it does not.
     expected = <<-EOS.rstrip
 See <<_sample_figure>>
 
-[[_sample_figure]]
-.Local History
+.Local History [[_sample_figure]]
 image::images/dummy.png[]
     EOS
 

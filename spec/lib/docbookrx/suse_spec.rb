@@ -264,7 +264,6 @@ EOS
 
 [[_id]]
 
-
 foo
 EOS
     dirname = File.dirname(__FILE__)

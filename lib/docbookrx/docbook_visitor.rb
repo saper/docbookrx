@@ -1739,10 +1739,10 @@ class DocbookVisitor
     
     if node.name != 'informalfigure'
       append_blank_line
-      if id = resolve_id(node, normalize: @normalize_ids)
-        append_line %([[#{id}]])
-      end
       append_block_title node
+      if id = resolve_id(node, normalize: @normalize_ids)
+        append_text %( [[#{id}]])
+      end
       append_blank_line
     end
 #    if node.name == 'informalfigure'
