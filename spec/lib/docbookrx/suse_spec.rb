@@ -545,6 +545,23 @@ EOS
 
     expect(output).to include(expected)
   end
+
+  it "should handle replaceable within option" do
+    input = <<-EOS
+<para>
+   The <option>--name=<replaceable>string</replaceable></option> option is a
+   label used to differentiate one distribution choice from another (for
+   example, <literal>sles12server</literal>).
+  </para>
+EOS
+    expected = <<-EOS.rstrip
+
+The [option]``--name=[replaceable]``string```` option is a label used to differentiate one distribution choice from another (for example, ``sles12server``).
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
