@@ -578,11 +578,10 @@ class DocbookVisitor
       end
     end
     if (id = (resolve_id node, normalize: @normalize_ids)) && id != (generate_id title)
-      append_line %([[#{id}]]) unless special
+      append_line %([[#{id}]])
     end
     append_ifdef_start_if_condition(title_node) if title_node
     append_line %(#{'=' * @level} #{unwrap_text title})
-    append_text %( [[#{id}]]) if id && special
     lines.concat(text) unless text.nil? || text.empty?
     append_ifdef_end_if_condition(title_node) if title_node
     yield if block_given?
