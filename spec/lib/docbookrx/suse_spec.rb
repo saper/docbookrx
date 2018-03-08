@@ -123,14 +123,13 @@ EOS
     expect(output).to eq(expected)
   end
 
-  it 'should handle entities' do
+  it 'should handle internal entities' do
     input = <<-EOS
-    <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
                  type="text/xml" 
                  title="Profiling step"?>
 <!DOCTYPE EXAMPLE SYSTEM "suse.dtd" [
-  <!ENTITY productnumber "{productnumber}">
+  <!ENTITY productnumber "42.0">
 ]>
 <book xmlns="http://docbook.org/ns/docbook">
 <info>
@@ -140,7 +139,7 @@ EOS
     EOS
 
     expected = <<-EOS.rstrip
-= SUSE Manager
+= SUSE Manager 42.0
 :doctype: book
 :sectnums:
 :toc: left
