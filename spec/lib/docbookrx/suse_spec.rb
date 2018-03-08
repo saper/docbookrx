@@ -549,14 +549,14 @@ EOS
   it "should handle replaceable within option" do
     input = <<-EOS
 <para>
-   The <option>--name=<replaceable>string</replaceable></option> option is a
+   The <option>--name=</option><replaceable>string</replaceable> option is a
    label used to differentiate one distribution choice from another (for
    example, <literal>sles12server</literal>).
   </para>
 EOS
     expected = <<-EOS.rstrip
 
-The [option]``--name=[replaceable]``string```` option is a label used to differentiate one distribution choice from another (for example, ``sles12server``).
+The [option]``--name=``[replaceable]``string`` option is a label used to differentiate one distribution choice from another (for example, ``sles12server``).
 EOS
     output = Docbookrx.convert input
 
