@@ -25,10 +25,13 @@ module Docbookrx
     end
   end
   def self.convert(str, opts = {})
-    xmldoc = self.read_xml(str, opts)
+    xmldoc = nil
+    Dir.chdir(opts[:cwd] || File.dirname(opts[:infile]||".")) do |path|
+      xmldoc = self.read_xml(str, opts)
+    end
     raise 'Not a parseable document' unless (root = xmldoc.root)
     visitor = DocbookVisitor.new opts
-    root.accept visitor
+    xmldoc.accept visitor
     visitor.after
     visitor.lines * "\n"
   end

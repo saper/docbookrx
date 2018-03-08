@@ -23,7 +23,8 @@ describe 'SUSE Conversion' do
     expected = <<-EOS.rstrip
 EOS
 
-    output = Docbookrx.convert input
+    dirname = File.dirname(__FILE__)
+    output = Docbookrx.convert input, cwd: dirname
 
     expect(output).to eq(expected)
   end
@@ -115,6 +116,22 @@ EOS
 <!DOCTYPE book [ <!ENTITY lala "tux"> ]><para>bar &lala; </para>
 EOS
     expected = <<-EOS.rstrip
+
+
+bar {lala}
+EOS
+    output = Docbookrx.convert input, strict: true
+
+    expect(output).to eq(expected)
+  end
+
+  it 'should handle entity in xml' do
+    input = <<-EOS
+<!-- BREAKS WITH:   <?xml version="1.0" encoding="UTF-8"?> -->
+<!DOCTYPE book [ <!ENTITY lala "tux"> ]><para>bar &lala; </para>
+EOS
+    expected = <<-EOS.rstrip
+
 
 bar {lala}
 EOS

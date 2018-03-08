@@ -118,6 +118,10 @@ class DocbookVisitor
     visit_method_name = case node.type
     when PI_NODE
       :visit_pi
+    when DTD_NODE
+      :visit_dtd
+    when 17
+      :visit_entity_decl
     when ENTITY_REF_NODE
       :visit_entity_ref
     else
@@ -366,6 +370,18 @@ class DocbookVisitor
     false
   end
 
+  def visit_document node
+    true
+  end
+
+  def visit_dtd node
+    true
+  end
+
+  def visit_entity_decl node
+    false
+  end
+
   # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
   def visit_entity_ref node
     STDERR.puts "visit_entity_ref #{node.name.inspect}"
@@ -508,7 +524,7 @@ class DocbookVisitor
     include_infile = File.join(@cwd, href)
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
-      doc = Docbookrx.read_xml(::File.read include_infile, {infile: include_infile})
+      doc = Docbookrx.read_xml(::File.read include_infile, @opts.merge({infile: include_infile}))
       visitor = self.class.new @opts
       doc.root.accept visitor
       result = visitor.lines
