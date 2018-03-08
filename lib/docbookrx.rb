@@ -8,7 +8,11 @@ module Docbookrx
   def self.read_xml(str, opts = {})
     begin
       ::Nokogiri::XML.parse(str,nil,'ASCII-8BIT') do |config|
-        config.default_xml.dtdload
+        if opts[:strict]
+          config.strict.dtdload
+        else
+          config.default_xml.dtdload
+        end
       end
     rescue Nokogiri::XML::SyntaxError => e
       filename = opts[:infile]

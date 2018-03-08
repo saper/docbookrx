@@ -6,7 +6,12 @@ else
   require 'docbookrx'
 end
 
-infile = ARGV.first
+infile = ARGV.shift
+strict = false
+if (infile == "--strict")
+  strict = true
+  infile = ARGV.shift
+end
 unless infile
   warn 'Please specify a DocBook file to convert.'
   exit 1
@@ -27,6 +32,7 @@ opts = {
 #    'sourcedir' => '.',
 #    'uri-example' => 'http://example.org'
 #  }
+  strict: strict,
   cwd: File.dirname(infile)
 }
 
