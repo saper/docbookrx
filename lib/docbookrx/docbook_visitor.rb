@@ -118,6 +118,8 @@ class DocbookVisitor
     visit_method_name = case node.type
     when PI_NODE
       :visit_pi
+    when ENTITY_NODE
+      :visit_entity
     when ENTITY_REF_NODE
       :visit_entity_ref
     else
@@ -368,14 +370,7 @@ class DocbookVisitor
 
   # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
   def visit_entity_ref node
-    STDERR.puts "visit_entity_ref({node.to_s})"
-    entity_ref_name = node.to_s[1..-2]
-    if entity_ref_name == "mdash"
-      # AsciiDoc syntax requires -- is surrounded by white space
-      append_text " -- "
-    else
-      append_text %({#{entity_ref_name}})
-    end
+    append_text %({#{node.name}})
     false
   end
 

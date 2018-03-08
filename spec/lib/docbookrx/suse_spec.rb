@@ -110,6 +110,19 @@ EOS
     expect(output).to eq(expected)
   end
 
+  it 'should handle entity' do
+    input = <<-EOS
+<!DOCTYPE book [ <!ENTITY lala "tux"> ]><para>bar &lala; </para>
+EOS
+    expected = <<-EOS.rstrip
+
+bar {lala}
+EOS
+    output = Docbookrx.convert input, strict: true
+
+    expect(output).to eq(expected)
+  end
+
   it 'should handle entities' do
     input = <<-EOS
     <?xml version="1.0" encoding="UTF-8"?>
