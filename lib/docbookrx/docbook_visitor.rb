@@ -900,7 +900,7 @@ class DocbookVisitor
           line = line.gsub IndentationRx, ''
           if line.length > 0
             if first_line
-              (line == "----") ? (append_line line) : (append_text line)
+              ((line == "----") || (line == "====")) ? (append_line line) : (append_text line)
               first_line = false
             else
               append_line line

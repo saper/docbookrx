@@ -507,6 +507,44 @@ EOS
     expect(output).to include(expected)
   end
 
+  it 'should properly handle <listitem> notes' do
+    input = <<-EOS
+  <variablelist>
+  <varlistentry>
+    <term>Manage System Completely via SSH (Will not Install an Agent)</term>
+    <listitem>
+     <note>
+      <title>Technology Preview</title>
+      <para>
+       This feature is a Technology preview.
+      </para>
+     </note>
+     <para>
+      If selected a system will automatically be configured to use SSH. No
+      other connection method will be configured.
+     </para>
+    </listitem>
+  </varlistentry>
+  </variablelist>
+EOS
+    expected = <<-EOS.rstrip
+
+Manage System Completely via SSH (Will not Install an Agent)::
++
+
+.Technology Preview
+[NOTE]
+====
+This feature is a Technology preview. 
+====
+If selected a system will automatically be configured to use SSH.
+No other connection method will be configured. 
+EOS
+
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
