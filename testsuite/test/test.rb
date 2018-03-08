@@ -80,7 +80,7 @@ class SuseXmlTest < MiniTest::Spec
       title = part.at_xpath("title")
       chapters = part.xpath("chapter")
       it "has an id" do
-        assert_equal "_book_one", part.attribute("id").text
+        assert_equal "_book.one", part.attribute("id").text
       end
       it "has a title" do
         assert title
@@ -358,7 +358,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one keycap" do
-      keycap = xml.at_xpath("/book/part/chapter/section/simpara[@id='keycap']/keycap")
+      keycap = xml.at_xpath("/book/part/chapter/section/simpara[@id='_keycap']/keycap")
       it "exists" do
         assert keycap
       end
@@ -367,7 +367,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one keycap function" do
-      keycap = xml.xpath("/book/part/chapter/section/simpara[@id='keycap_function']/keycap")
+      keycap = xml.xpath("/book/part/chapter/section/simpara[@id='_keycap_function']/keycap")
       it "covers control, shift, and alt" do
         assert keycap
         assert_equal 3, keycap.size
@@ -399,13 +399,13 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one literal" do
-      literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='literal']/literal")
+      literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='_literal']/literal")
       it "exists" do
         assert literal
       end
     end
     describe "chapter one link" do
-      link = xml.at_xpath("/book/part/chapter/section/simpara[@id='link']/link")
+      link = xml.at_xpath("/book/part/chapter/section/simpara[@id='_link']/link")
       it "exists" do
         assert link
       end
@@ -416,7 +416,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one xref" do
-      xref = xml.at_xpath("/book/part/chapter/section/simpara[@id='xref']/xref")
+      xref = xml.at_xpath("/book/part/chapter/section/simpara[@id='_xref']/xref")
       it "exists" do
         assert xref
       end
@@ -476,7 +476,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one email" do
-      email = xml.at_xpath("/book/part/chapter/section/simpara[@id='email']/email")
+      email = xml.at_xpath("/book/part/chapter/section/simpara[@id='_email']/email")
       it "exists" do
         assert email
       end
@@ -485,7 +485,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one command" do
-      command = xml.at_xpath("/book/part/chapter/section/simpara[@id='command']/command")
+      command = xml.at_xpath("/book/part/chapter/section/simpara[@id='_command']/command")
       it "exists" do
         assert command
       end
@@ -494,7 +494,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one date" do
-      date = xml.at_xpath("/book/part/chapter/section/simpara[@id='date']/date")
+      date = xml.at_xpath("/book/part/chapter/section/simpara[@id='_date']/date")
       it "exists" do
         assert date
       end
@@ -503,7 +503,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one constant" do
-      constant = xml.at_xpath("/book/part/chapter/section/simpara[@id='constant']/constant")
+      constant = xml.at_xpath("/book/part/chapter/section/simpara[@id='_constant']/constant")
       it "exists" do
         assert constant
       end
@@ -512,7 +512,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one emphasis" do
-      emphasis = xml.at_xpath("/book/part/chapter/section/simpara[@id='emphasis']/emphasis")
+      emphasis = xml.at_xpath("/book/part/chapter/section/simpara[@id='_emphasis']/emphasis")
       it "exists" do
         assert emphasis
       end
@@ -553,7 +553,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one menuchoice" do
-      menuchoice = xml.at_xpath("/book/part/chapter/section/simpara[@id='menuchoice']/menuchoice")
+      menuchoice = xml.at_xpath("/book/part/chapter/section/simpara[@id='_menuchoice']/menuchoice")
       guimenu = menuchoice.at_xpath("guimenu")
       guimenuitem = menuchoice.at_xpath("guimenuitem")
       it "exists" do
@@ -569,7 +569,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one parameter" do
-      parameter = xml.at_xpath("/book/part/chapter/section/simpara[@id='parameter']/literal")
+      parameter = xml.at_xpath("/book/part/chapter/section/simpara[@id='_parameter']/literal")
       it "exists" do
         assert parameter
       end
@@ -578,27 +578,28 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one member" do
-      members = xml.xpath("/book/part/chapter/section/itemizedlist[@id='member']/listitem")
+      members = xml.xpath("/book/part/chapter/section/itemizedlist[@id='_member']/listitem")
       it "has two members" do
         assert_equal 2, members.size
       end
     end
     describe "chapter one replaceables" do
       it "has two replacables" do
-        replaceables = xml.xpath("/book/part/chapter/section/simpara[@id='replaceable']/replaceable")
+        replaceables = xml.xpath("/book/part/chapter/section/simpara[@id='_replaceable']/replaceable")
         assert replaceables
         assert_equal 2, replaceables.size
       end
     end
     describe "chapter one systemitem" do
       it "exists as a literal path" do
-        literal = xml.at_xpath("/book/part/chapter/section/simpara[@id='systemitem']/literal")
+        anchor = xml.at_xpath("/book/part/chapter/section/simpara/anchor[@id='_systemitem']")
+        literal = anchor.parent.at_xpath("literal")
         assert literal
         assert_equal 'path', literal.attribute("role").value
       end
     end
     describe "chapter one option" do
-      option = xml.at_xpath("/book/part/chapter/section/simpara[@id='option']")
+      option = xml.at_xpath("/book/part/chapter/section/simpara[@id='_option']")
       acronyms = option.xpath("acronym")
       it "exists" do
         assert option
@@ -608,7 +609,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one package" do
-      package = xml.at_xpath("/book/part/chapter/section/simpara[@id='package']/package")
+      package = xml.at_xpath("/book/part/chapter/section/simpara[@id='_package']/package")
       it "refers to YaST2" do
         assert package
         assert_equal 'YaST2', package.text
@@ -665,7 +666,7 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one procedure" do
-      procedure = xml.xpath("/book/part/chapter/section/orderedlist[@id='procedure_alternatives']")
+      procedure = xml.xpath("/book/part/chapter/section/orderedlist[@id='_procedure_alternatives']")
       items = procedure.xpath("listitem")
       sublist = procedure.xpath("listitem/orderedlist[@numeration='loweralpha']")
       it "exist" do
@@ -681,7 +682,8 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one uri" do
-      uri = xml.at_xpath("/book/part/chapter/section/simpara[@id='uri']/link")
+      anchor = xml.at_xpath("/book/part/chapter/section/simpara/anchor[@id='_uri']")
+      uri = anchor.parent.at_xpath("link")
       it "exists" do
         assert uri
       end
@@ -691,14 +693,14 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one varname" do
-      varname = xml.at_xpath("/book/part/chapter/section/simpara[@id='varname']/varname")
+      varname = xml.at_xpath("/book/part/chapter/section/simpara[@id='_varname']/varname")
       it "contains @ARGV" do
         assert varname
         assert_equal '@ARGV', varname.text
       end
     end
     describe "chapter one guimenu" do
-      simpara = xml.xpath("/book/part/chapter/section/simpara[@id='guimenu']")
+      simpara = xml.xpath("/book/part/chapter/section/simpara[@id='_guimenu']")
       guimenu = simpara.xpath("guimenu")
       it "doesn't leak asciidoc" do
         refute simpara.text.include? "menu:"
