@@ -7,7 +7,7 @@ module Docbookrx
   end
   def self.read_xml(str, opts = {})
     begin
-      ::Nokogiri::XML.parse(str) do |config|
+      ::Nokogiri::XML(str) do |config|
         if opts[:strict]
           config.strict.dtdload
         else

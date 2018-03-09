@@ -127,7 +127,7 @@ EOS
 
   it 'should handle entity in xml' do
     input = <<-EOS
-<!-- BREAKS WITH:   <?xml version="1.0" encoding="UTF-8"?> -->
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [ <!ENTITY lala "tux"> ]><para>bar &lala; </para>
 EOS
     expected = <<-EOS.rstrip
