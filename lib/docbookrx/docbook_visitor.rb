@@ -384,7 +384,7 @@ class DocbookVisitor
 
   # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
   def visit_entity_ref node
-    STDERR.puts "visit_entity_ref #{node.name.inspect}"
+#    STDERR.puts "visit_entity_ref #{node.name.inspect}"
     append_text %({#{node.name}})
     false
   end
@@ -1091,6 +1091,12 @@ class DocbookVisitor
     tag = choose_screen_tag node.children
     first = node.children.first
     node.children.each do |child|
+      if child.type == ENTITY_REF_NODE
+        s = "{#{child.name}}"
+        (child == first) ? append_line(s) : append_text(s)
+        next
+      end
+
       text = child.text.strip
       case child.name
       when 'text', '#cdata-section', 'prompt'
