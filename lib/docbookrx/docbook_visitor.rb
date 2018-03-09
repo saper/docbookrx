@@ -524,8 +524,13 @@ class DocbookVisitor
     include_infile = File.join(@cwd, href)
     include_outfile = include_infile.sub '.xml', '.adoc'
     if ::File.readable? include_infile
+      str = ::File.read(include_infile)
       opts = @opts.merge({infile: include_infile})
-      doc = Docbookrx.read_xml(::File.read(include_infile), opts)
+      dirname = File.dirname(include_infile)
+      doc = nil
+      Dir.chdir((dirname == ".") ? opts[:cwd] : dirname) do |path|
+        doc = Docbookrx.read_xml(str, opts)
+      end
       exit 1 unless doc.root
       visitor = self.class.new opts
       doc.root.accept visitor
