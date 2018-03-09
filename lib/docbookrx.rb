@@ -17,7 +17,7 @@ module Docbookrx
     rescue Nokogiri::XML::SyntaxError => e
       filename = opts[:infile]
       if filename
-        STDERR.puts "Failed to parse #{filename}: #{e}"
+        STDERR.puts "** Error - failed to parse #{filename}: #{e}"
       else
         STDERR.puts e
       end
