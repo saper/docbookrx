@@ -65,9 +65,7 @@ EOS
     expected = <<-EOS
 = SUSE Manager
 
-
 include::suse_book.adoc[]
-
 EOS
 
     dirname = File.dirname(__FILE__)
