@@ -50,12 +50,12 @@
                 linkend="chapt.one.b1.sect2">Section Two</link></remark>
 
         <!-- Procedure TEST -->
-        <procedure>
+        <procedure xml:id="procedure">
             <title>Test Procedure</title>
             <step>
                 <para>Do this first...</para>
             </step>
-            <step>
+            <step xml:id="procedure_step_2">
                 <para>Now do that...</para>
             </step>
             <step>

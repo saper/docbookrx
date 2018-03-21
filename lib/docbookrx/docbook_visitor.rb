@@ -443,7 +443,11 @@ class DocbookVisitor
 
   def process_xml_id node
     if (id = (resolve_id node, normalize: @normalize_ids))
-      append_line %([[#{id}]])
+      if @lines[-1] == "" && @lines[-2] =~ /\.\s+.+/ # xml_id inside list
+        append_text %([[#{id}]])
+      else
+        append_line %([[#{id}]])
+      end
     end
   end
 
