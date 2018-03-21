@@ -189,10 +189,13 @@ function="control"/>-click, or using <keycap function="shift"/>-click
             </keycombo></para>
 
         <!-- Keycode TEST -->
-        <para>The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
+        <para xml:id="keycode">The F1 key generates the scan code <keycode>0x3B</keycode>.</para>
 
         <!-- Filename TEST -->
-        <para>The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
+        <para xml:id="filename">The value for the F1 key is stored in <filename>keyboard.h</filename>.</para>
+
+        <!-- Filename URL TEST -->
+        <para xml:id="filename_url">Lorem ipsum blah blah <filename>http://&lt;EXAMPLE-MANAGER-FQDN.com/pub&gt;</filename>.</para>
 
         <!-- Literal TEST -->
         <para xml:id="literal"> This is a <literal>Literal</literal> string.</para>
