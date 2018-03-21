@@ -589,6 +589,21 @@ EOS
 
     expect(output).to include(expected)
   end
+
+  it "should handle urls as filename" do
+    input = <<-EOS
+<para>
+<filename>http://&lt;EXAMPLE-MANAGER-FQDN.com/pub&gt;</filename>
+</para>
+EOS
+    expected = <<-EOS.rstrip
+[path]``http://<EXAMPLE-MANAGER-FQDN.com/pub>``
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
@@ -601,4 +616,5 @@ EOS
 
     expect(output).to include(expected)
   end
+
 end # 'SUSE Conversion'
