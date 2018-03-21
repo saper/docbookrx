@@ -1606,7 +1606,12 @@ class DocbookVisitor
   end
 
   def process_path node
-    role = 'path'
+    case node.name
+    when 'systemitem'
+      role = node['class'] || node.name
+    else
+      role = 'path'
+    end
     #role = case (name = node.name)
     #when 'directory'
     #  'path'

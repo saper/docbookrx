@@ -222,7 +222,7 @@ class SuseXmlTest < MiniTest::Spec
       simpara1 = simparas[0]
       it "has many simparas" do
         assert simparas
-        assert_equal 31, simparas.size
+        assert_equal 32, simparas.size
       end
       it "simpara1 has an embedded link" do
         link = simpara1.at_xpath("link")
@@ -393,7 +393,8 @@ class SuseXmlTest < MiniTest::Spec
       end
     end
     describe "chapter one literal filename" do
-      filename = xml.at_xpath("/book/part/chapter/section/simpara/literal[@role='path']")
+      simpara = xml.xpath("/book/part/chapter/section/simpara[@id='_filename']")
+      filename = simpara.at_xpath("filename")
       it "exists" do
         assert filename
       end
@@ -593,9 +594,9 @@ class SuseXmlTest < MiniTest::Spec
     describe "chapter one systemitem" do
       it "exists as a literal path" do
         anchor = xml.at_xpath("/book/part/chapter/section/simpara/anchor[@id='_systemitem']")
-        literal = anchor.parent.at_xpath("literal")
-        assert literal
-        assert_equal 'path', literal.attribute("role").value
+        systemitem = anchor.parent.at_xpath("systemitem")
+        assert systemitem
+        assert_equal 'etheraddress', systemitem['class']
       end
     end
     describe "chapter one option" do
@@ -710,6 +711,16 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 2, guimenu.size
         assert_equal 'File', guimenu[0].text
         assert_equal 'New Virtual Machine', guimenu[1].text
+      end
+    end
+    describe "chapter one filename_url" do
+      simpara = xml.xpath("/book/part/chapter/section/simpara[@id='_filename_url']")
+      filename = simpara.at_xpath("filename")
+      link = filename.at_xpath("link")
+      it "is converted to <filename>" do
+        assert simpara
+        assert filename
+        assert link
       end
     end
     #
