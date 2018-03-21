@@ -717,10 +717,14 @@ class SuseXmlTest < MiniTest::Spec
       simpara = xml.xpath("/book/part/chapter/section/simpara[@id='_filename_url']")
       filename = simpara.at_xpath("filename")
       link = filename.at_xpath("link")
+      href = link['href']
       it "is converted to <filename>" do
         assert simpara
         assert filename
         assert link
+        assert href
+        assert_equal "http://<EXAMPLE-MANAGER-FQDN.com/pub>", href
+        assert_equal href, link.text
       end
     end
     #
