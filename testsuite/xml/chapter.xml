@@ -55,7 +55,7 @@
             <step>
                 <para>Do this first...</para>
             </step>
-            <step xml:id="procedure_step_2">
+            <step>
                 <para>Now do that...</para>
             </step>
             <step>

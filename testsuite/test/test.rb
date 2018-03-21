@@ -166,19 +166,21 @@ class SuseXmlTest < MiniTest::Spec
         assert href
         assert_equal 'https://www.space.com/25509-spacex-historic-nasa-apollo-launch-pad.html', href.text
       end
-      it "is has an odered list" do
-        assert section1.at_xpath("orderedlist")
-      end
     end
-    describe "chapter one section ordered list" do
-      ol = xml.at_xpath("/book/part/chapter[1]/section/orderedlist")
+    describe "chapter one section procedure" do
+      ol = xml.at_xpath("/book/part/chapter/section/orderedlist[@id='_procedure']")
+      listitems = ol.xpath("listitem")
+      it "exists" do
+        assert ol
+        assert ol['numeration']
+        assert_equal 'arabic', ol['numeration']
+      end
       it "has a title" do
         title = ol.at_xpath("title")
         assert title
         assert_equal 'Procedure: Test Procedure', title.text
       end
       it "has three steps" do
-        listitems = ol.xpath("listitem")
         assert listitems
         assert_equal 3, listitems.size
         assert_equal 'Do this first…​', listitems[0].at_xpath('simpara').text
