@@ -1628,6 +1628,11 @@ class DocbookVisitor
     false
   end
 
+  # replace "...\n  ..." with "... ..."
+  def menu_normalize str
+    str.split("\n").map{|s| s.strip}.join(" ")
+  end
+
   def process_ui node
     name = node.name
     if name == 'guilabel' && (next_node = node.next) &&
@@ -1647,7 +1652,7 @@ class DocbookVisitor
       append_text %(menu:#{items[0]}[#{items[1..-1] * ' > '}])
     # ex. <guimenu>Files</guimenu> (top-level)
     when 'guimenu'
-      append_text %(menu:#{node.text}[])
+      append_text %(menu:#{menu_normalize(node.text)}[])
       # QUESTION when is this needed??
       #items = []
       #while (node = node.next) && ((node.type == ENTITY_REF_NODE && ['rarr', 'gt'].include?(node.name)) ||
@@ -1659,7 +1664,7 @@ class DocbookVisitor
       #end
       #append_text %([#{items * ' > '}]) 
     when 'guibutton'
-      append_text %(btn:[#{node.text}])
+      append_text %(btn:[#{menu_normalize(node.text)}])
     when 'guilabel'
       append_text %([label]##{node.text}#)
     when 'keycap'
