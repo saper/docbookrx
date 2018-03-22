@@ -434,14 +434,13 @@ EOS
 EOS
     expected = <<-EOS.rstrip
 
+[[_at.manager.proxy.install.prep]]
 .Procedure: Registering the Proxy
 
 
-[IMPORTANT]
-====
+IMPORTANT: 
 First completly download the channels (SLE 12 SP3) and then create the activation key.
 Only then you can select the correct child channels. 
-====
 . Create an activation key based on the SLE 12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>>. 
 EOS
     output = Docbookrx.convert input
