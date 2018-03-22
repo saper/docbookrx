@@ -598,7 +598,9 @@ class DocbookVisitor
       append_line %([[#{id}]])
     end
     append_ifdef_start_if_condition(title_node) if title_node
-    append_line %(#{'=' * @level} #{unwrap_text title})
+    # title formatting adds spurious \n, strip leading/trailing ones, replace the others with blanks
+    t = title.strip.split("\n").map{|s|s.strip}.join(' ')
+    append_line %(#{'=' * @level} #{t})
     lines.concat(text) unless text.nil? || text.empty?
     append_ifdef_end_if_condition(title_node) if title_node
     yield if block_given?

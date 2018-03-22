@@ -603,6 +603,20 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should handle qoutes in titles" do
+    input = <<-EOS
+<section>
+<title>Registering <quote>Traditional</quote> Clients</title>
+</section>
+EOS
+    expected = <<-EOS.rstrip
+= Registering "`Traditional`" Clients
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
