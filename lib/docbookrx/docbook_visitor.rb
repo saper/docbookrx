@@ -677,12 +677,20 @@ class DocbookVisitor
     label = name.upcase
     append_blank_line unless @continuation
     append_block_title node
-    append_line %([#{label}])
-    append_line '===='
-    @adjoin_next = true
-    proceed node
-    @adjoin_next = false
-    append_line '===='
+    if @list_depth > 0
+      local_continuation = @continuation
+      append_line %(#{label}: )
+      @continuation = true
+      proceed node
+      @continuation = local_continuation
+    else
+      append_line %([#{label}])
+      append_line '===='
+      @adjoin_next = true
+      proceed node
+      @adjoin_next = false
+      append_line '===='
+    end
     false
   end
 
