@@ -187,6 +187,10 @@ class SuseXmlTest < MiniTest::Spec
         assert_equal 'Now do that…​', listitems[1].at_xpath('simpara').text
         assert_equal 'Then do this again…​', listitems[2].at_xpath('simpara').text
       end
+      it "has a list item with a _procedure_step2 id" do
+        step2 = listitems.at_xpath("//*[@id='_procedure_step2']")
+        assert step2
+      end
     end
     describe "chapter one section informalfigure" do
       fig = xml.at_xpath("/book/part/chapter[1]/section/informalfigure")
