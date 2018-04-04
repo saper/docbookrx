@@ -617,6 +617,43 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should handle imagedata inside variablelist" do
+    input = <<-EOS
+     <variablelist>
+     <varlistentry>
+      <term>Centrally-Managed Files</term>
+      <listitem>
+       <informalfigure>
+        <mediaobject>
+         <imageobject role="fo">
+          <imagedata fileref="system_details_traditional_configuration_view_mod_central_paths.png"
+           width="400"/>
+         </imageobject>
+         <imageobject role="html">
+          <imagedata fileref="system_details_traditional_configuration_view_mod_central_paths.png"
+           width="80%"/>
+         </imageobject>
+        </mediaobject>
+       </informalfigure>
+       <para>
+        Centrally-managed configuration files are provided by global
+       </para>
+      </listitem>
+     </varlistentry>
+    </variablelist>
+EOS
+    expected = <<-EOS.rstrip
+
+Centrally-Managed Files::
++
+image::system_details_traditional_configuration_view_mod_central_paths.png[]
+Centrally-managed configuration files are provided by global 
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
@@ -629,5 +666,6 @@ EOS
 
     expect(output).to include(expected)
   end
+
 
 end # 'SUSE Conversion'

@@ -1787,11 +1787,11 @@ class DocbookVisitor
         append_text %( [[#{id}]])
       end
       append_blank_line
-    end
-#    if node.name == 'informalfigure'
+    else
+      #if node.name == 'informalfigure'
 #      append_block_title node
-#      append_blank_line
-#    end
+      append_blank_line
+    end
     if (image_node = node.at_css('imageobject imagedata'))
       src = image_node.attr('fileref')
       alt = text_at_css node, 'textobject phrase'
