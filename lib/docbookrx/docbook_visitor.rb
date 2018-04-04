@@ -1799,7 +1799,7 @@ class DocbookVisitor
       alt = nil if alt && alt == generated_alt
       output = %(image::#{src}[#{lazy_quote alt}])
       if node.parent.name == 'listitem'
-        append_text output
+        append_line output
       else
         append_blank_line
         append_line output
