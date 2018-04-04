@@ -1801,6 +1801,7 @@ class DocbookVisitor
       if node.parent.name == 'listitem'
         append_text output
       else
+        append_blank_line
         append_line output
         append_blank_line
       end
