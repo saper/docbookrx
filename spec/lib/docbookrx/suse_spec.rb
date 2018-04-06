@@ -654,6 +654,44 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should not add '+' between screen and para in a list" do
+    input = <<-EOS
+<variablelist>
+ <varlistentry>
+  <term>General Targeting</term>
+  <listitem>
+   <para> List available grains on all minions: </para>
+   <screen><prompt># </prompt>salt '*' grains.ls</screen>
+   <para> Ping a specific minion: </para>
+   <screen><prompt># </prompt>salt 'web1.example.com' test.ping</screen>
+  </listitem>
+ </varlistentry>
+</variablelist>
+EOS
+    expected = <<-EOS.rstrip
+
+General Targeting::
+List available grains on all minions: 
++
+
+----
+#
+salt '*' grains.ls
+----
++
+Ping a specific minion: 
++
+
+----
+#
+salt 'web1.example.com' test.ping
+----
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS

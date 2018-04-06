@@ -906,8 +906,9 @@ class DocbookVisitor
         next
       end
       local_continuation = false
-      unless i == 0 || first_line || (child.name == 'literallayout' || (LIST_NAMES.include? child.name) )
+      unless i == 0 || first_line || (child.name == 'literallayout' || child.name == 'screen' || (LIST_NAMES.include? child.name) )
         append_line '+'
+#        append_line "+#{child.name.inspect}"
         append_blank_line
         @continuation = true
         local_continuation = true
