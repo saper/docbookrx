@@ -802,7 +802,7 @@ class DocbookVisitor
 
           local_continuation = false
           unless i == 0 || first_line || (child.name == 'literallayout' || child.name == 'itemizedlist' || child.name == 'orderedlist' || child.name == 'procedure')
-            append_line '+'
+            append_line '+' unless lines.last == '+'
             @continuation = true
             local_continuation = true
             first_line = true
