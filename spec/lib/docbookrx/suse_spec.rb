@@ -437,8 +437,7 @@ EOS
 .Procedure: Registering the Proxy
 
 
-IMPORTANT: 
-First completly download the channels (SLE 12 SP3) and then create the activation key.
+IMPORTANT: First completly download the channels (SLE 12 SP3) and then create the activation key.
 Only then you can select the correct child channels. 
 . Create an activation key based on the SLE 12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>>. 
 EOS
@@ -682,6 +681,29 @@ Ping a specific minion:
 ----
 # salt 'web1.example.com' test.ping
 ----
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
+  it "should handle notes without title" do
+    input = <<-EOS
+<itemizedlist>
+<listitem>
+<para>blah</para>
+<note>
+<para>note</para>
+</note>
+</listitem>
+</itemizedlist>
+EOS
+    expected = <<-EOS.rstrip
+
+* blah
++
+
+NOTE: note
 EOS
     output = Docbookrx.convert input
 

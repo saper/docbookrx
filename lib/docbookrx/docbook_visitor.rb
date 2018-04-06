@@ -660,7 +660,7 @@ class DocbookVisitor
 
   def visit_para node
     empty_last_line = ! lines.empty? && lines.last.empty?
-    append_blank_line
+    append_blank_line unless @continuation
     append_block_role node
     append_blank_line unless empty_last_line
     true
