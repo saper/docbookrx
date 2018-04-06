@@ -401,8 +401,7 @@ EOS
     expected = <<-EOS.rstrip
 
 ----
-#``cat MODIFIED-SCRIPT.SH   | ssh root@example.com /bin/bash``
-
+# ``cat MODIFIED-SCRIPT.SH   | ssh root@example.com /bin/bash`` 
 ----
 EOS
     output = Docbookrx.convert input
@@ -521,8 +520,7 @@ EOS
 +
 
 ----
-``smdba``
-backup-hot --enable=on --backup-dir=/var/spacewalk/db-backup
+``smdba`` backup-hot --enable=on --backup-dir=/var/spacewalk/db-backup
 ----
 +
 This command performs a restart of the postgresql database.
@@ -675,16 +673,14 @@ List available grains on all minions:
 +
 
 ----
-#
-salt '*' grains.ls
+# salt '*' grains.ls
 ----
 +
 Ping a specific minion: 
 +
 
 ----
-#
-salt 'web1.example.com' test.ping
+# salt 'web1.example.com' test.ping
 ----
 EOS
     output = Docbookrx.convert input

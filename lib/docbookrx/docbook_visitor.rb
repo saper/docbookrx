@@ -1110,8 +1110,12 @@ class DocbookVisitor
 
       text = child.text.strip
       case child.name
-      when 'text', '#cdata-section', 'prompt'
+      when 'text'
+        (child == first) ? append_line(text) : append_text(text)
+      when '#cdata-section'
         append_line text
+      when 'prompt'
+        append_line %(#{text} )
       when 'co' # embedded callout reference
         id = child.attribute_with_ns('id', XmlNs) || child.attribute('id')
         ref = @outstanding_callouts[id.value]
@@ -1125,7 +1129,7 @@ class DocbookVisitor
       when 'comment'
           # skip
       when 'command'
-        (child == first) ? append_line("``#{text}``") : append_text("``#{text}``")
+        (child == first) ? append_line("``#{text}`` ") : append_text("``#{text}`` ")
       else
         warn %(Cannot handle #{child.name} within <screen>)
         child.ancestors.each do |parent|
