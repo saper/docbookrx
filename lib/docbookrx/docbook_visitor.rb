@@ -311,7 +311,7 @@ class DocbookVisitor
     end
 
     case method.to_s
-    when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", 
+    when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", "visit_variablelist",
          "visit_procedure", "visit_substeps", "visit_stepalternatives"
       @list_depth += 1
     when "visit_table", "visit_informaltable"
@@ -338,7 +338,7 @@ class DocbookVisitor
     else
       method_name = method.to_s
       case method_name
-      when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", 
+      when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", "visit_variablelist",
            "visit_procedure", "visit_substeps", "visit_stepalternatives"
         @list_depth -= 1
       when "visit_table", "visit_informaltable"
@@ -678,11 +678,11 @@ class DocbookVisitor
     name = node.name
     label = name.upcase
     append_blank_line unless @continuation
-    append_block_title node
+    have_title = append_block_title node
     if @list_depth > 0
       local_continuation = @continuation
       append_line %(#{label}: )
-      @continuation = true
+      @continuation = !have_title # otherwise .title<label>: happens
       proceed node
       @continuation = local_continuation
     else
@@ -897,7 +897,7 @@ class DocbookVisitor
         end
       end
     end
-    append_text "::"
+    append_text ":" + (":" * @list_depth)
 
     first_line = true
     listitem = node.at_css node, '> listitem'

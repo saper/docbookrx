@@ -556,10 +556,7 @@ Manage System Completely via SSH (Will not Install an Agent)::
 +
 
 .Technology Preview
-[NOTE]
-====
-This feature is a Technology preview. 
-====
+NOTE: This feature is a Technology preview. 
 If selected a system will automatically be configured to use SSH.
 No other connection method will be configured. 
 EOS
@@ -709,6 +706,52 @@ EOS
 
     expect(output).to include(expected)
   end
+
+  it "should handle nested variablelists" do
+    input = <<-EOS
+  <variablelist>
+   <varlistentry>
+    <term>Salt Calls</term>
+    <listitem>
+     <para> Salt calls are defined by three main properties: </para>
+     <variablelist>
+      <varlistentry>
+       <term>Target</term>
+       <listitem>
+        <para> Use the second property in a Salt call to define a target machine. Specify the minion
+         or group of minions you would like to run a function on. </para>
+        <variablelist>
+         <varlistentry>
+          <term>General Targeting</term>
+          <listitem>
+           <para> List available grains on all minions: </para>
+          </listitem>
+         </varlistentry>
+        </variablelist>
+       </listitem>
+      </varlistentry>
+     </variablelist>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+EOS
+    expected = <<-EOS.rstrip
+
+Salt Calls::
+Salt calls are defined by three main properties: 
+
+Target:::
+Use the second property in a Salt call to define a target machine.
+Specify the minion or group of minions you would like to run a function on. 
+
+General Targeting::::
+List available grains on all minions: 
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
 
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
