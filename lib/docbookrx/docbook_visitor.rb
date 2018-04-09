@@ -677,7 +677,7 @@ class DocbookVisitor
   def process_admonition node
     name = node.name
     label = name.upcase
-    append_blank_line unless @continuation
+    append_blank_line unless @continuation || (@list_depth > 0)
     have_title = append_block_title node
     if @list_depth > 0
       local_continuation = @continuation

@@ -436,7 +436,6 @@ EOS
 [[_at.manager.proxy.install.prep]]
 .Procedure: Registering the Proxy
 
-
 IMPORTANT: First completly download the channels (SLE 12 SP3) and then create the activation key.
 Only then you can select the correct child channels. 
 . Create an activation key based on the SLE 12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>>. 
@@ -554,7 +553,6 @@ EOS
 
 Manage System Completely via SSH (Will not Install an Agent)::
 +
-
 .Technology Preview
 NOTE: This feature is a Technology preview. 
 If selected a system will automatically be configured to use SSH.
@@ -699,7 +697,6 @@ EOS
 
 * blah
 +
-
 NOTE: note
 EOS
     output = Docbookrx.convert input
@@ -752,7 +749,67 @@ EOS
     expect(output).to include(expected)
   end
 
+  it "should handle embedded admonition" do
+    input = <<-EOS
+  <variablelist>
+   <varlistentry>
+    <term>States</term>
+    <listitem>
+     <para> States are templates which place systems into a known configuration, for example which
+      applications and services are installed and running on those systems. States are a way for you
+      to describe what each of your systems should look like. Once written, states are applied to
+      target systems automating the process of managing and maintaining a large numbers of systems
+      into a known state. For more information on states, see <link
+       xlink:href="https://docs.saltstack.com/en/latest/topics/tutorials/starting_states.html"/>.
 
+     </para>
+     <warning>
+      <title>Updating Salt</title>
+      <para> Do not update <package>salt</package> itself using Salt states. First update all other
+       system packages using Salt states then update <package>salt</package> as a separate
+       stand-alone step from the &susemgr; &webui;. </para>
+     </warning>
+    </listitem>
+   </varlistentry>
+   <varlistentry>
+    <term>Pillar</term>
+    <listitem>
+     <para> Pillars unlike grains are created on the master. Pillar files contain information about
+      a minion or group of minions. Pillars allow you to send confidential information to a targeted
+      minion or group of minions. Pillars are useful for sensitive data, configuration of minions,
+      variables, and any arbitrary data which should be defined. For more information on pillars,
+      see <link xlink:href="https://docs.saltstack.com/en/latest/topics/tutorials/pillar.html"/>.
+     </para>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+EOS
+    expected = <<-EOS.rstrip
+
+States::
+States are templates which place systems into a known configuration, for example which applications and services are installed and running on those systems.
+States are a way for you to describe what each of your systems should look like.
+Once written, states are applied to target systems automating the process of managing and maintaining a large numbers of systems into a known state.
+For more information on states, see link:.
++
+
+.Updating Salt
+WARNING: 
+Do not update [package]#salt#
+ itself using Salt states.
+First update all other system packages using Salt states then update [package]#salt#
+ as a separate stand-alone step from the  . 
+Pillar::
+Pillars unlike grains are created on the master.
+Pillar files contain information about a minion or group of minions.
+Pillars allow you to send confidential information to a targeted minion or group of minions.
+Pillars are useful for sensitive data, configuration of minions, variables, and any arbitrary data which should be defined.
+For more information on pillars, see link:. 
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
