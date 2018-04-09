@@ -686,6 +686,8 @@ class DocbookVisitor
       @continuation = true
       proceed node
       @continuation = local_continuation
+      append_line '+'
+      append_blank_line
       append_blank_line
     else
       append_line %([#{label}])

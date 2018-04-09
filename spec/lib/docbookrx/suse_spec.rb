@@ -438,6 +438,8 @@ EOS
 
 IMPORTANT: First completly download the channels (SLE 12 SP3) and then create the activation key.
 Only then you can select the correct child channels. 
++
+
 . Create an activation key based on the SLE 12 SP3 base channel. For more information about activation keys, see <<_create.act.keys>>. 
 EOS
     output = Docbookrx.convert input
@@ -554,7 +556,9 @@ EOS
 Manage System Completely via SSH (Will not Install an Agent)::
 +
 .Technology Preview
-NOTE: This feature is a Technology preview. If selected a system will automatically be configured to use SSH.
+NOTE: This feature is a Technology preview. 
++
+If selected a system will automatically be configured to use SSH.
 No other connection method will be configured. 
 EOS
 
@@ -797,6 +801,8 @@ WARNING: Do not update [package]#salt#
  itself using Salt states.
 First update all other system packages using Salt states then update [package]#salt#
  as a separate stand-alone step from the  . 
++
+
 
 Pillar::
 Pillars unlike grains are created on the master.
