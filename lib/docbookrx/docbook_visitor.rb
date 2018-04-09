@@ -680,11 +680,13 @@ class DocbookVisitor
     append_blank_line unless @continuation || (@list_depth > 0)
     have_title = append_block_title node
     if @list_depth > 0
+      append_blank_line if have_title
       local_continuation = @continuation
       append_line %(#{label}: )
-      @continuation = !have_title # otherwise .title<label>: happens
+      @continuation = true
       proceed node
       @continuation = local_continuation
+      append_blank_line
     else
       append_line %([#{label}])
       append_line '===='

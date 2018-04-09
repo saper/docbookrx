@@ -554,8 +554,7 @@ EOS
 Manage System Completely via SSH (Will not Install an Agent)::
 +
 .Technology Preview
-NOTE: This feature is a Technology preview. 
-If selected a system will automatically be configured to use SSH.
+NOTE: This feature is a Technology preview. If selected a system will automatically be configured to use SSH.
 No other connection method will be configured. 
 EOS
 
@@ -794,11 +793,11 @@ For more information on states, see link:.
 +
 
 .Updating Salt
-WARNING: 
-Do not update [package]#salt#
+WARNING: Do not update [package]#salt#
  itself using Salt states.
 First update all other system packages using Salt states then update [package]#salt#
  as a separate stand-alone step from the  . 
+
 Pillar::
 Pillars unlike grains are created on the master.
 Pillar files contain information about a minion or group of minions.
