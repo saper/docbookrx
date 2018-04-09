@@ -341,6 +341,7 @@ class DocbookVisitor
       when "visit_simplelist", "visit_itemizedlist", "visit_orderedlist", "visit_variablelist",
            "visit_procedure", "visit_substeps", "visit_stepalternatives"
         @list_depth -= 1
+        append_blank_line if method_name == "visit_variablelist"
       when "visit_table", "visit_informaltable"
         @in_table = false
       when "visit_emphasis", "process_literal"

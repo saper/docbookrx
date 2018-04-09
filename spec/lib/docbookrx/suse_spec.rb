@@ -815,6 +815,48 @@ EOS
 
     expect(output).to include(expected)
   end
+
+  it "should handle notes following variablelist" do
+    input = <<-EOS
+ <para>
+  <variablelist>
+   <varlistentry>
+    <term>States</term>
+    <listitem>
+     <para>States are templates which place systems into a known configuration</para>
+     <screen>Screen is the culprit</screen>
+    </listitem>
+   </varlistentry>
+  </variablelist>
+  <tip>
+   <title>I have a tip</title>
+   <para>This is just for you.</para>
+  </tip>
+ </para>
+EOS
+    expected = <<-EOS.rstrip
+
+
+
+States::
+States are templates which place systems into a known configuration
++
+
+----
+Screen is the culprit
+----
+
+.I have a tip
+[TIP]
+====
+This is just for you.
+====
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
   # DON'T DROP - copy & paste new tests from here
   it "should provide a template" do
     input = <<-EOS
