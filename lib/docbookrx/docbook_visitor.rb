@@ -760,6 +760,7 @@ class DocbookVisitor
 
   # FIXME this method needs cleanup, remove hardcoded logic!
   def visit_listitem node
+    @adjoin_next = false
     process_xml_id node
     marker = (node.parent.name == 'orderedlist' || node.parent.name == 'procedure' ? '.' * @list_depth : 
       (node.parent.name == 'stepalternatives' ? 'a.' : '*' * @list_depth))

@@ -447,24 +447,6 @@ EOS
     expect(output).to include(expected)
   end
 
-  it "should listitem titles" do
-    input = <<-EOS
-    <itemizedlist>
-     <title>Github Path Options</title>
-     <listitem>
-      <para>Github Single User Project Repository:</para>
-     </listitem>
-    </itemizedlist>
-EOS
-    expected = <<-EOS.rstrip
-
-.Github Path Options
-* Github Single User Project Repository:
-EOS
-    output = Docbookrx.convert input
-
-    expect(output).to include(expected)
-  end
   it "should list titles within procedure steps" do
     input = <<-EOS
 <procedure>
@@ -851,6 +833,41 @@ Screen is the culprit
 ====
 This is just for you.
 ====
+EOS
+    output = Docbookrx.convert input
+
+    expect(output).to include(expected)
+  end
+
+  it "should itemizedlist in step" do
+    input = <<-EOS
+  <procedure>
+   <title>Create an Image Profile</title>
+   <step>
+    <para>Enter a Github or Gitlab repositiory URL (http/https/token authentication) in the
+      <guimenu>Path</guimenu> field using one of the following formats: </para>
+    <itemizedlist>
+     <title>Github Path Options</title>
+     <listitem>
+      <para>Github Single User Project Repository:</para>
+      <screen>https://github.com/USER/project.git#branchname:folder</screen>
+     </listitem>
+    </itemizedlist>
+   </step>
+  </procedure>
+EOS
+    expected = <<-EOS.rstrip
+
+.Procedure: Create an Image Profile
+. Enter a Github or Gitlab repositiory URL (http/https/token authentication) in the menu:Path[] field using one of the following formats: 
+
+.Github Path Options
+** Github Single User Project Repository:
++
+
+----
+https://github.com/USER/project.git#branchname:folder
+----
 EOS
     output = Docbookrx.convert input
 
