@@ -221,6 +221,9 @@ class SuseXmlTest < MiniTest::Spec
         fr = id.attribute("fileref")
         assert fr
         assert_equal 'numbers.jpg', fr.text
+        wi = id.attribute("width")
+        assert wi
+        assert_equal '80%', wi.text
       end
     end
     describe "chapter one section simparas" do

@@ -1805,10 +1805,14 @@ class DocbookVisitor
     end
     if (image_node = node.at_css('imageobject imagedata'))
       src = image_node.attr('fileref')
+      width = image_node.attr('width')
+      width_s = (width.nil?) ? "" : "scaledwidth=#{width}"
       alt = text_at_css node, 'textobject phrase'
       generated_alt = ::File.basename(src)[0...-(::File.extname(src).length)]
       alt = nil if alt && alt == generated_alt
-      output = %(image::#{src}[#{lazy_quote alt}])
+      lqa = (lazy_quote alt) || ""
+      sep = (lqa.empty? || width_s.empty?) ? "" : ","
+      output = %(image::#{src}[#{lqa}#{sep}#{width_s}])
       if node.parent.name == 'listitem'
         append_line output
       else
