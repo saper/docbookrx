@@ -1785,7 +1785,9 @@ class DocbookVisitor
   end
 
   def visit_mediaobject node
-    visit_figure node
+    unless node.attr('role') == "fo" # skip role=fo
+      visit_figure node
+    end
   end
 
   # FIXME share logic w/ visit_inlinemediaobject, which is the same here except no block_title and uses append_text, not append_line
@@ -1803,7 +1805,13 @@ class DocbookVisitor
 #      append_block_title node
       append_blank_line
     end
-    if (image_node = node.at_css('imageobject imagedata'))
+    imageobject = nil
+    node.css('imageobject').each do |io|
+      next if io.attr('role') == "fo" # skip role=fo
+      imageobject = io
+      break
+    end
+    if (image_node = imageobject.at_css('imagedata'))
       src = image_node.attr('fileref')
       width = image_node.attr('width')
       width_s = (width.nil?) ? "" : "scaledwidth=#{width}"

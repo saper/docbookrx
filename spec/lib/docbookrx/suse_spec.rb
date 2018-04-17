@@ -623,7 +623,7 @@ EOS
 
 Centrally-Managed Files::
 +
-image::system_details_traditional_configuration_view_mod_central_paths.png[]
+image::system_details_traditional_configuration_view_mod_central_paths.png[scaledwidth=80%]
 Centrally-managed configuration files are provided by global 
 EOS
     output = Docbookrx.convert input
