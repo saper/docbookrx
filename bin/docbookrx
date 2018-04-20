@@ -33,7 +33,8 @@ opts = {
 #    'uri-example' => 'http://example.org'
 #  }
   strict: strict,
-  cwd: File.dirname(infile)
+  cwd: File.dirname(infile),
+  attributes: { imagesdir: '../images/src/png' }
 }
 
 Docbookrx.convert_file infile, opts
