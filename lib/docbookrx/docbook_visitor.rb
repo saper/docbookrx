@@ -1776,11 +1776,22 @@ class DocbookVisitor
   alias :visit_guiicon :proceed
 
   def visit_inlinemediaobject node
-    src = node.at_css('imageobject imagedata').attr('fileref')
+    imageobject = nil
+    node.css('imageobject').each do |io|
+      next if io.attr('role') == "fo" # skip role=fo
+      imageobject = io
+      break
+    end
+    imagedata = imageobject.at_css('imagedata')
+    src = imagedata.attr('fileref')
+    width = imagedata.attr('width')
+    width_s = (width.nil?) ? "" : "scaledwidth=#{width}"
     alt = text_at_css node, 'textobject phrase'
     generated_alt = ::File.basename(src)[0...-(::File.extname(src).length)]
     alt = nil if alt && alt == generated_alt
-    append_text %(image:#{src}[#{lazy_quote alt}])
+    lqa = (lazy_quote alt) || ""
+    sep = (lqa.empty? || width_s.empty?) ? "" : ","
+    append_text %(image:#{src}[#{lqa}#{sep}#{width_s}])
     false
   end
 

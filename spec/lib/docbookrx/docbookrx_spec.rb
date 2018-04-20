@@ -1085,11 +1085,13 @@ Crazy
 Non-global stories: 
 
 .Local History
+
 image::Designer/localhistory1.png[]
 
 The Local History results screen allows stuff. 
 
 .Local History Sample Results
+
 image::Designer/localhistory-results.png[]
 
 And sometimes it does not.
@@ -1123,6 +1125,7 @@ And sometimes it does not.
 See <<_sample_figure>>
 
 .Local History [[_sample_figure]]
+
 image::images/dummy.png[]
     EOS
 
@@ -1532,11 +1535,13 @@ endif::bar[]
 
 
 .a1
-image::images/dummy.png[]
+
+image::images/dummy.png[scaledwidth=4in]
 
 
 .b1
-image::images/dummy2.png[]
+
+image::images/dummy2.png[scaledwidth=4in]
         EOS
         output = Docbookrx.convert input
         expect(output).to eq(expected)
@@ -1569,12 +1574,14 @@ image::images/dummy2.png[]
 ifdef::foo[]
 
 .a1
-image::images/dummy.png[]
+
+image::images/dummy.png[scaledwidth=4in]
 
 endif::foo[]
 
 .b1
-image::images/dummy2.png[]
+
+image::images/dummy2.png[scaledwidth=4in]
         EOS
         output = Docbookrx.convert input
         expect(output).to eq(expected)
