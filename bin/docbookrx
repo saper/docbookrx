@@ -34,7 +34,7 @@ opts = {
 #  }
   strict: strict,
   cwd: File.dirname(infile),
-  attributes: { imagesdir: '../images/src/png' }
+  attributes: { imagesdir: './images' }
 }
 
 Docbookrx.convert_file infile, opts
