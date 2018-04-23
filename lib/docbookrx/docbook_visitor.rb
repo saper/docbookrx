@@ -1775,15 +1775,18 @@ class DocbookVisitor
 
   alias :visit_guiicon :proceed
 
-  def visit_inlinemediaobject node
-    imageobject = nil
+  def imagedata_attrs node
+    imagedata = src = nil
     node.css('imageobject').each do |io|
-      next if io.attr('role') == "fo" # skip role=fo
-      imageobject = io
+      id = io.at_css('imagedata')
+      src = id.attr('fileref')
+      unless src.end_with? '.svg' # prefer .svg files
+        next if io.attr('role') == "fo" # skip role=fo
+      end
+      imagedata = id
       break
     end
-    imagedata = imageobject.at_css('imagedata')
-    src = imagedata.attr('fileref')
+    return nil unless imagedata
     width = imagedata.attr('width')
     width_s = (width.nil?) ? "" : "scaledwidth=#{width}"
     alt = text_at_css node, 'textobject phrase'
@@ -1791,7 +1794,11 @@ class DocbookVisitor
     alt = nil if alt && alt == generated_alt
     lqa = (lazy_quote alt) || ""
     sep = (lqa.empty? || width_s.empty?) ? "" : ","
-    append_text %(image:#{src}[#{lqa}#{sep}#{width_s}])
+    "#{src}[#{lqa}#{sep}#{width_s}]"
+  end
+
+  def visit_inlinemediaobject node
+    append_text %(image:#{imagedata_attrs node})
     false
   end
 
@@ -1816,22 +1823,8 @@ class DocbookVisitor
 #      append_block_title node
       append_blank_line
     end
-    imageobject = nil
-    node.css('imageobject').each do |io|
-      next if io.attr('role') == "fo" # skip role=fo
-      imageobject = io
-      break
-    end
-    if (image_node = imageobject.at_css('imagedata'))
-      src = image_node.attr('fileref')
-      width = image_node.attr('width')
-      width_s = (width.nil?) ? "" : "scaledwidth=#{width}"
-      alt = text_at_css node, 'textobject phrase'
-      generated_alt = ::File.basename(src)[0...-(::File.extname(src).length)]
-      alt = nil if alt && alt == generated_alt
-      lqa = (lazy_quote alt) || ""
-      sep = (lqa.empty? || width_s.empty?) ? "" : ","
-      output = %(image::#{src}[#{lqa}#{sep}#{width_s}])
+    if (attrs = imagedata_attrs(node))
+      output = %(image::#{attrs})
       if node.parent.name == 'listitem'
         append_line output
       else
