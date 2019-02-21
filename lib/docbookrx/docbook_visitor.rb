@@ -1136,8 +1136,10 @@ class DocbookVisitor
           # skip
       when 'command'
         (child == first) ? append_line("``#{text}`` ") : append_text("``#{text}`` ")
+      when 'option'
+        (child == first) ? append_line("_#{text}_ ") : append_text("_#{text}_ ")
       else
-        warn %(Cannot handle #{child.name} within <screen>)
+        warn %(Cannot handle <#{child.name}> within <screen>)
         child.ancestors.each do |parent|
           warn %(  from #{parent.name})
         end
