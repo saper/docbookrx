@@ -1138,6 +1138,8 @@ class DocbookVisitor
         (child == first) ? append_line("``#{text}`` ") : append_text("``#{text}`` ")
       when 'option'
         (child == first) ? append_line("_#{text}_ ") : append_text("_#{text}_ ")
+      when 'xref'
+        visit_xref child
       else
         warn %(Cannot handle <#{child.name}> within <screen>)
         child.ancestors.each do |parent|
