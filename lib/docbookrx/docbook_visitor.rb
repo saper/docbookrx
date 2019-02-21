@@ -1701,6 +1701,8 @@ class DocbookVisitor
         append_text %(kbd:[Shift])
       when 'alt'
         append_text %(kbd:[Alt])
+      when 'enter'
+        append_text %(kbd:[Enter])
       when nil
         # skip
       else
