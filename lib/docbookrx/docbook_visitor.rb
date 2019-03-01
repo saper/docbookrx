@@ -1135,7 +1135,7 @@ class DocbookVisitor
       when 'comment'
           # skip
       when 'command'
-        (child == first) ? append_line("``#{text}`` ") : append_text("``#{text}`` ")
+        (child == first) ? append_line("#{text} ") : append_text("#{text} ")
       when 'option'
         (child == first) ? append_line("_#{text}_ ") : append_text("_#{text}_ ")
       when 'xref'
