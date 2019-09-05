@@ -24,6 +24,7 @@ class DocbookVisitor
   EOL = "\n"
 
   ENTITY_TABLE = {
+     160 => '{nbsp}',
      169 => '(C)',
      174 => '(R)',
     8201 => ' ', # thin space
