@@ -659,6 +659,28 @@ class DocbookVisitor
     true
   end
 
+  def visit_citerefentry node
+    return false if node.children.empty?
+    first = node.children.first
+    refentrytitle = ""
+    manvolnum = ""
+    node.children.each do |child|
+      text = child.text.strip
+      case child.name
+      when 'refentrytitle'
+          refentrytitle = text
+      when 'manvolnum'
+          manvolnum = text
+      end
+    end
+    if defined? refentrytitle && defined? manvolnum
+      append_text " {{< manpage"
+      append_text " \"#{refentrytitle}\""
+      append_text " \"#{manvolnum}\""
+      append_text " >}}"
+    end
+  end
+
   def visit_para node
     empty_last_line = ! lines.empty? && lines.last.empty?
     append_blank_line unless @continuation
