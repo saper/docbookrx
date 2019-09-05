@@ -484,6 +484,19 @@ class DocbookVisitor
     if (title = text_at_css node, '> title')
       append_line %(= #{title.strip})
     end
+    if node.name == 'bookinfo' || node.parent.name == 'book' || node.parent.name == 'chapter'
+      append_line ':compat-mode:' if @compat_mode
+      append_line ':doctype: book'
+      append_line ':sectnums:'
+      append_line ':toc: left'
+      append_line ':icons: font'
+      append_line ':experimental:'
+    end
+    append_line %(:idprefix: #{@idprefix}).rstrip unless @idprefix == '_'
+    append_line %(:idseparator: #{@idseparator}).rstrip unless @idseparator == '_'
+    @attributes.each do |name, val|
+      append_line %(:#{name}: #{val}).rstrip
+    end
     authors = []
     (node.css 'author').each do |author_node|
       # FIXME need to detect DocBook 4.5 vs 5.0 to handle names properly
@@ -506,19 +519,6 @@ class DocbookVisitor
       append_line %(#{date_line}#{date_node.text})
     end
     process_abstract node
-    if node.name == 'bookinfo' || node.parent.name == 'book' || node.parent.name == 'chapter'
-      append_line ':compat-mode:' if @compat_mode
-      append_line ':doctype: book'
-      append_line ':sectnums:'
-      append_line ':toc: left'
-      append_line ':icons: font'
-      append_line ':experimental:'
-    end
-    append_line %(:idprefix: #{@idprefix}).rstrip unless @idprefix == '_'
-    append_line %(:idseparator: #{@idseparator}).rstrip unless @idseparator == '_'
-    @attributes.each do |name, val|
-      append_line %(:#{name}: #{val}).rstrip
-    end
     false
   end
 
