@@ -1648,7 +1648,7 @@ class DocbookVisitor
   end
 
   def visit_trademark node
-    format_append_text node, "#", "(TM)"
+    format_append_text node, "", "(TM)"
     false
   end
 
