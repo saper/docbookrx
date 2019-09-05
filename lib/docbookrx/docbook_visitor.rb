@@ -358,7 +358,7 @@ class DocbookVisitor
 
       @last_added_was_special = false
       case method_name
-      when "visit_para", "visit_text", "visit_simpara", 
+      when "visit_para", "visit_text", "visit_simpara",
            "visit_emphasis", "visit_link", "visit_xref"
       else
         unless ( FORMATTING_NAMES.include? node.name ) || ( ["uri", "ulink"].include? node.name )
@@ -393,7 +393,6 @@ class DocbookVisitor
 
   # Convert XML entity refs into attribute refs - e.g. &prodname; -> {prodname}
   def visit_entity_ref node
-#    STDERR.puts "visit_entity_ref #{node.name.inspect}"
     append_text %({#{node.name}})
     false
   end
