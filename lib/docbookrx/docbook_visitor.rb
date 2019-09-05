@@ -307,6 +307,13 @@ class DocbookVisitor
   ## Lifecycle callbacks
 
   def before_traverse node, method
+    at_root = (node == node.document.root)
+    if at_root
+      title = (text_at_css node, '> title') || (text_at_css node, '> info > title')
+      append_line "---"
+      append_line "title: \"#{title}\""
+      append_line "---"
+    end
     unless IGNORED_NAMES.include? node.name
       append_ifdef_start_if_condition(node)
     end
