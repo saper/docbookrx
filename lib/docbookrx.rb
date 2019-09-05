@@ -13,6 +13,9 @@ module Docbookrx
         else
           config.default_xml.dtdload
         end
+	if opts[:noent]
+	  config.noent
+	end
       end
     rescue Nokogiri::XML::SyntaxError => e
       filename = opts[:infile]

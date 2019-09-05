@@ -12,6 +12,11 @@ if (infile == "--strict")
   strict = true
   infile = ARGV.shift
 end
+noent = false
+if (infile == "--noent")
+  noent = true
+  infile = ARGV.shift
+end
 unless infile
   warn 'Please specify a DocBook file to convert.'
   exit 1
@@ -32,6 +37,7 @@ opts = {
 #    'sourcedir' => '.',
 #    'uri-example' => 'http://example.org'
 #  }
+  noent: noent,
   strict: strict,
   cwd: File.dirname(infile),
   attributes: { imagesdir: './images' }
