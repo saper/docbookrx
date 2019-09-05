@@ -487,22 +487,24 @@ class DocbookVisitor
   end
 
   def process_info node
-    # In DocBook 4.5, title is nested inside info element
-    if (title = text_at_css node, '> title')
-      append_line %(= #{title.strip})
-    end
-    if node.name == 'bookinfo' || node.parent.name == 'book' || node.parent.name == 'chapter'
-      append_line ':compat-mode:' if @compat_mode
-      append_line ':doctype: book'
-      append_line ':sectnums:'
-      append_line ':toc: left'
-      append_line ':icons: font'
-      append_line ':experimental:'
-    end
-    append_line %(:idprefix: #{@idprefix}).rstrip unless @idprefix == '_'
-    append_line %(:idseparator: #{@idseparator}).rstrip unless @idseparator == '_'
-    @attributes.each do |name, val|
-      append_line %(:#{name}: #{val}).rstrip
+    if node.parent != node.document.root
+      # In DocBook 4.5, title is nested inside info element
+      if (title = text_at_css node, '> title')
+        append_line %(= #{title.strip})
+      end
+      if node.name == 'bookinfo' || node.parent.name == 'book' || node.parent.name == 'chapter'
+        append_line ':compat-mode:' if @compat_mode
+        append_line ':doctype: book'
+        append_line ':sectnums:'
+        append_line ':toc: left'
+        append_line ':icons: font'
+        append_line ':experimental:'
+      end
+      append_line %(:idprefix: #{@idprefix}).rstrip unless @idprefix == '_'
+      append_line %(:idseparator: #{@idseparator}).rstrip unless @idseparator == '_'
+      @attributes.each do |name, val|
+        append_line %(:#{name}: #{val}).rstrip
+      end
     end
     authors = []
     (node.css 'author').each do |author_node|
@@ -592,8 +594,7 @@ class DocbookVisitor
       if (subtitle_node = (node.at_css '> subtitle') || (node.at_css '> info > subtitle'))
         title_node.inner_html += %(: #{subtitle_node.inner_html})
       end
-      text = format_text title_node
-      text.shift(1)[0]
+      text = text title_node
     else
       if special
         special.capitalize
@@ -609,7 +610,6 @@ class DocbookVisitor
     # title formatting adds spurious \n, strip leading/trailing ones, replace the others with blanks
     t = title.strip.split("\n").map{|s|s.strip}.join(' ')
     append_line %(#{'=' * @level} #{t})
-    lines.concat(text) unless text.nil? || text.empty?
     append_ifdef_end_if_condition(title_node) if title_node
     yield if block_given?
     if (info_node = node.at_css('> info'))
