@@ -1152,6 +1152,8 @@ class DocbookVisitor
           @outstanding_callouts[id.value] = ref
         end
         append_text " <#{ref}>"
+      when 'userinput'
+        (child == first) ? append_line("#{text}") : append_text("#{text}")
       when 'replaceable'
         (child == first) ? append_line("`#{text}`") : append_text("`#{text}`")
       when 'comment'
