@@ -59,7 +59,7 @@ class DocbookVisitor
 
   SECTION_NAMES = DOCUMENT_NAMES + ['chapter', 'part'] + NORMAL_SECTION_NAMES + SPECIAL_SECTION_NAMES
 
-  ANONYMOUS_LITERAL_NAMES = ['abbrev', 'code', 'computeroutput', 'database', 'function', 'literal', 'tag', 'userinput']
+  ANONYMOUS_LITERAL_NAMES = ['abbrev', 'code', 'computeroutput', 'database', 'function', 'literal', 'tag', 'userinput', 'optional', 'errorname', 'buildtarget']
 
   NAMED_LITERAL_NAMES = ['acronym', 'application', 'classname', 'command', 'constant', 'date', 'envar', 'exceptionname', 'interfacename', 'methodname', 'option', 'parameter', 'property', 'replaceable', 'type', 'varname']
 
