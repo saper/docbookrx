@@ -12,7 +12,9 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   files = begin
-    IO.popen('git ls-files -z') {|io| io.read }.split "\0"
+    git_files = IO.popen('git ls-files -z') {|io| io.read }.split "\0"
+    fail $?.exitstatus unless $?.success?
+    git_files
   rescue
     Dir['**/*']
   end
